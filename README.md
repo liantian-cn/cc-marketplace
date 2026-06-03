@@ -31,13 +31,13 @@ claude plugin install --from-marketplace liantian-cn
 ```
 claude-marketplace/
 ├── .claude-plugin/
-│   └── marketplace.json
+│   └── marketplace.json          # 市场清单（插件目录、元数据）
 ├── .github/workflows/
-│   └── validate.yml
-├── plugins/
-│   └── qcc-due-diligence/
-├── .gitignore
-└── README.md
+│   └── validate.yml              # CI 自动校验 marketplace 与插件结构
+├── plugins/                      # 插件存放目录
+│   └── qcc-due-diligence/        # 企查查企业尽职调查插件
+├── .gitignore                    # 忽略本地配置与缓存
+└── README.md                     # 本文件
 ```
 
 ## 如何贡献新插件
