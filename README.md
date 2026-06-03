@@ -7,17 +7,17 @@
 ## 添加此市场
 
 ```bash
-claude plugin marketplace add liantian-cn https://github.com/liantian-cn/claude-marketplace
+claude plugin marketplace add liantian-plugins https://github.com/liantian-cn/claude-marketplace
 ```
 
 ## 安装插件
 
 ```bash
 # 安装 qcc-due-diligence（从本市场）
-claude plugin install qcc-due-diligence@liantian-cn
+claude plugin install qcc-due-diligence@liantian-plugins
 
 # 安装所有可用插件
-claude plugin install --from-marketplace liantian-cn
+claude plugin install --from-marketplace liantian-plugins
 ```
 
 ## 已收录插件
