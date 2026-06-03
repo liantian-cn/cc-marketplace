@@ -31,28 +31,11 @@ claude plugin install --from-marketplace liantian-cn
 ```
 claude-marketplace/
 ├── .claude-plugin/
-│   └── marketplace.json          # 市场清单
+│   └── marketplace.json
 ├── .github/workflows/
-│   └── validate.yml              # CI 自动校验
+│   └── validate.yml
 ├── plugins/
-│   └── qcc-due-diligence/        # 企查查尽职调查插件
-│       ├── .claude-plugin/
-│       │   └── plugin.json
-│       ├── .mcp.json             # 5 个 QCC MCP 服务器
-│       └── skills/               # 13 个业务技能
-│           ├── kyb-verification/
-│           ├── ubo-screening/
-│           ├── credit-due-diligence/
-│           ├── credit-monitoring/
-│           ├── bankruptcy-monitor/
-│           ├── litigation-analysis/
-│           ├── counterparty-risk/
-│           ├── trade-finance-compliance/
-│           ├── guarantor-check/
-│           ├── executive-background/
-│           ├── equity-structure/
-│           ├── business-health-scan/
-│           └── enterprise-info-retrieval-env-setup/
+│   └── qcc-due-diligence/
 ├── .gitignore
 └── README.md
 ```
