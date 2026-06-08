@@ -108,6 +108,15 @@ All qcc-due-diligence skills use a consistent caching convention:
 | `qcc-due-diligence` | 12 | Enterprise due diligence via QCC database (KYB, UBO, credit, litigation, etc.) |
 | `advanced-search` | 1 | Dual-engine web search orchestration (WebSearch + Tavily) with deep research |
 
+## Versioning
+
+- Use [Semantic Versioning](https://semver.org/): `MAJOR.MINOR.PATCH`
+- **Any modification** (no matter how small — typo fixes, description updates, dependency changes, etc.): increment the **PATCH** version by 1 (the third digit: X.Y.Z → X.Y.Z+1)
+- Only update MINOR or MAJOR for breaking changes or significant feature additions, per semver convention
+- Update the version in **both** locations:
+  1. `plugins/<name>/.claude-plugin/plugin.json` — `version` field
+  2. `.claude-plugin/marketplace.json` — corresponding plugin entry's `version` field and metadata `version` field
+
 ## Repository Operations
 
 When working in this repo, follow these commit conventions:
