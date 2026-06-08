@@ -1,6 +1,6 @@
 ---
-name: env-setup
-description: "MANUAL_ONLY: 此技能仅通过 /env-setup 手动调用，不会被自动触发。用于 liantian cc market 插件的初始环境配置。"
+name: liantian-cc-env-setup
+description: "liantian cc market 环境配置技能。通过 /liantian-cc-env-setup 手动调用。完成 Python/Pandoc/markitdown 工具链安装、第三方平台 API Key 配置、以及业务插件的安装引导。当用户需要初始化 liantian cc market 环境、配置企查查/DeepSeek API Key、安装 qcc-due-diligence 等插件时使用此技能。"
 version: "2026-06-08"
 category: "环境配置"
 compatibility: "requires: python >= 3.12, pandoc >= 2.0"
@@ -27,7 +27,7 @@ model: deepseek-v4-pro
 ## 共享引用
 
 - 本 skill 为 liantian cc market 中所有插件的基础依赖。
-- 本 skill 仅通过用户手动执行 `/env-setup` 或明确要求"环境配置"时触发，不会被自动调用。
+- 本 skill 仅通过用户手动执行 `/liantian-cc-env-setup` 或明确要求"环境配置"时触发，不会被自动调用。
 
 ---
 
@@ -190,34 +190,33 @@ claude config set env.CLAUDE_CODE_EFFORT_LEVEL "max"
 
 ---
 
-## 五、添加 Marketplace 并安装插件
+## 五、安装其他业务插件
 
-### 5.1 添加 liantian cc market
+完成上述环境配置后，安装你需要的业务插件：
 
-```bash
-claude plugin marketplace add https://gitee.com/liantian-cn/claude-marketplace.git
-```
-
-### 5.2 查看可用插件
+### 5.1 查看可用插件
 
 ```bash
 claude plugin list --from-marketplace liantian-cc-market
 ```
 
-### 5.3 安装插件
+### 5.2 安装插件
 
 ```bash
 # 安装企查查尽职调查工具包
 claude plugin install qcc-due-diligence@liantian-cc-market
-
-# 安装环境配置工具包
-claude plugin install liantian-cc-env-setup@liantian-cc-market
 ```
 
 安装完成后，运行以下命令使插件生效：
 
 ```bash
 claude plugin reload
+```
+
+通过以下命令验证插件已安装：
+
+```bash
+claude plugin list
 ```
 
 ---
