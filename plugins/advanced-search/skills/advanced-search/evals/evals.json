@@ -4,19 +4,19 @@
     {
       "id": 1,
       "prompt": "I need to find information about Claude Code's new features in 2026. What's been released or announced recently?",
-      "expected_output": "Search results from all four engines (WebSearch, Tavily, Bailian, and Bocha), deduplicated and organized, with source attribution for each result. Should show recent Claude Code features/updates from 2026. Should note which engines contributed and which were unavailable.",
+      "expected_output": "Search results from all five engines (WebSearch, Tavily, Bailian, Bocha, and Baidu), deduplicated and organized, with source attribution for each result. Should show recent Claude Code features/updates from 2026. Should note which engines contributed and which were unavailable.",
       "files": []
     },
     {
       "id": 2,
       "prompt": "What's the latest news on AI regulation in the European Union? I'm particularly interested in any recent legislation or policy changes from this year.",
-      "expected_output": "Combined search results from all four engines covering EU AI Act and related regulations, with news-focused time-sensitive searching. Bocha's freshness filter should be leveraged for recent results. Results should be organized by topic/subtopic, with clear source attribution and publication dates where available.",
+      "expected_output": "Combined search results from all five engines covering EU AI Act and related regulations, with news-focused time-sensitive searching. Bocha's and Baidu's freshness filters should be leveraged for recent results. Results should be organized by topic/subtopic, with clear source attribution and publication dates where available.",
       "files": []
     },
     {
       "id": 3,
       "prompt": "Can you do a deep comparison of Python's FastAPI vs Go's Gin framework for building REST APIs? I want to understand performance, developer experience, ecosystem maturity, and which one would be better for a startup building microservices.",
-      "expected_output": "Comprehensive comparison report drawing from all four engines. Should use deep research capabilities (tavily_research), WebSearch for broad coverage, Bailian for Chinese-language ecosystem perspectives, and Bocha for semantic search of nuanced angles. Results should be well-organized with clear sections for each comparison dimension. Should note which engines contributed to the report.",
+      "expected_output": "Comprehensive comparison report drawing from all five engines. Should use deep research capabilities (tavily_research), WebSearch for broad coverage, Bailian and Baidu for Chinese-language ecosystem perspectives, and Bocha for semantic search of nuanced angles. Results should be well-organized with clear sections for each comparison dimension. Should note which engines contributed to the report.",
       "files": []
     }
   ]
