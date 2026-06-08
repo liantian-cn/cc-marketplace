@@ -32,8 +32,8 @@
         "贸易融资",
         "企业信息检索"
       ],
-      "homepage": "https://github.com/liantian-cn/claude-marketplace",
-      "repository": "https://github.com/liantian-cn/claude-marketplace/tree/main/plugins/qcc-due-diligence",
+      "homepage": "https://github.com/liantian-cn/cc-marketplace/",
+      "repository": "https://github.com/liantian-cn/cc-marketplace/tree/main/plugins/qcc-due-diligence",
       "category": "金融风控"
     },
     {
@@ -54,8 +54,8 @@
         "API Key",
         "初始化"
       ],
-      "homepage": "https://github.com/liantian-cn/claude-marketplace",
-      "repository": "https://github.com/liantian-cn/claude-marketplace/tree/main/plugins/liantian-env",
+      "homepage": "https://github.com/liantian-cn/cc-marketplace/",
+      "repository": "https://github.com/liantian-cn/cc-marketplace/tree/main/plugins/liantian-env",
       "category": "工具"
     }
   ]

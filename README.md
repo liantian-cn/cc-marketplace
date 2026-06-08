@@ -2,7 +2,7 @@
 
 **liantian-cn 的 Claude Code 插件市场** — 面向企业尽职调查与合规风控场景。
 
-[![Validate Plugins](https://github.com/liantian-cn/claude-marketplace/actions/workflows/validate.yml/badge.svg)](https://github.com/liantian-cn/claude-marketplace/actions/workflows/validate.yml)
+[![Validate Plugins](https://github.com/liantian-cn/cc-marketplace//actions/workflows/validate.yml/badge.svg)](https://github.com/liantian-cn/cc-marketplace//actions/workflows/validate.yml)
 
 ## 快速开始
 
