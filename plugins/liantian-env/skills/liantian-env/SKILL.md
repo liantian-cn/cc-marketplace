@@ -1,6 +1,6 @@
 ---
 name: liantian-env
-description: "liantian cc market 环境配置技能。通过 /liantian-env 手动调用。完成 Python/Pandoc/markitdown 工具链安装、第三方平台 API Key 配置（企查查/DeepSeek/阿里云/Tavily/博查）、以及业务插件的安装引导。当用户需要初始化 liantian cc market 环境、配置第三方 API Key、安装 qcc-due-diligence 等插件时使用此技能。"
+description: "liantian cc market 环境配置技能。通过 /liantian-env 手动调用。完成 Python/Pandoc/markitdown 工具链安装、第三方平台 API Key 配置（企查查/DeepSeek/阿里云/Tavily/博查/百度）、以及业务插件的安装引导。当用户需要初始化 liantian cc market 环境、配置第三方 API Key、安装 qcc-due-diligence 等插件时使用此技能。"
 version: "2026-06-08"
 category: "环境配置"
 mcp_servers: []
@@ -179,6 +179,22 @@ python "${CLAUDE_PLUGIN_ROOT}/skills/liantian-env/scripts/set_env.py" set TAVILY
 
 ```bash
 python "${CLAUDE_PLUGIN_ROOT}/skills/liantian-env/scripts/set_env.py" set BOCHA_API_KEY "your-bocha-api-key"
+```
+
+### 3.6 百度搜索 API（Baidu Web Search）
+
+**适用插件**：`advanced-search`
+
+> **说明**：`advanced-search` 插件使用百度搜索 MCP 服务（千帆平台），提供中文互联网搜索能力，该服务通过 `BAIDU_API_KEY` 认证。
+
+1. 访问 [https://console.bce.baidu.com/iam/#/iam/apikey/list](https://console.bce.baidu.com/iam/#/iam/apikey/list)
+2. 登录/注册百度智能云账号
+3. 在 API Key 管理页面创建或获取 API Key
+
+**配置方式**：
+
+```bash
+python "${CLAUDE_PLUGIN_ROOT}/skills/liantian-env/scripts/set_env.py" set BAIDU_API_KEY "your-baidu-api-key"
 ```
 
 ---
