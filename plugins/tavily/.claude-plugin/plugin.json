@@ -1,15 +1,25 @@
 {
   "name": "tavily",
   "version": "1.0.0",
-  "description": "Search, extract, crawl, and research the web using Tavily — get AI-optimized web data for any research or information-gathering task.",
+  "description": "基于 Tavily API 的网络搜索、内容提取、网页抓取与深度研究工具包，为 AI 应用提供实时网络数据获取与信息检索能力。",
   "author": {
-    "name": "Tavily Team",
-    "email": "dean.sacoransky@tavily.com",
-    "url": "https://www.tavily.com/"
+    "name": "liantian"
   },
-  "homepage": "https://docs.tavily.com",
-  "repository": "https://github.com/tavily-ai/skills",
+  "homepage": "https://github.com/liantian-cn/cc-marketplace/",
+  "repository": "https://github.com/liantian-cn/cc-marketplace/tree/main/plugins/tavily",
   "license": "MIT",
-  "keywords": ["search", "web-search", "rag", "agents", "llm", "research", "crawl", "extract"],
+  "keywords": [
+    "网络搜索",
+    "网页抓取",
+    "内容提取",
+    "深度研究",
+    "Tavily",
+    "web-search",
+    "crawl",
+    "research",
+    "extract",
+    "rag",
+    "agents"
+  ],
   "skills": "./skills/"
 }
