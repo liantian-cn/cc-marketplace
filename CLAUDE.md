@@ -4,9 +4,10 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Repository Overview
 
-This is a Claude Code plugin marketplace — a curated registry of plugins for enterprise due diligence and compliance risk control (企业尽职调查与合规风控). The marketplace is hosted on GitHub and also mirrored on Gitee.
+This is a Claude Code plugin marketplace — a curated registry of plugins for enterprise due diligence and compliance risk control (企业尽职调查与合规风控).
 
-**Remote**: `origin` = `https://github.com/liantian-cn/claude-marketplace.git`  
+**Primary repo**: `https://github.com/liantian-cn/cc-marketplace` (source of truth)  
+**Mirror**: `https://gitee.com/liantian-cn/cc-marketplace` (auto-syncs from GitHub; README uses Gitee URLs for faster access in China)  
 **Marketplace name**: `liantian-cc-market`
 
 ## Commands
@@ -35,7 +36,7 @@ done
 
 **GitHub operations** — use `gh` CLI:
 ```bash
-gh repo view liantian-cn/claude-marketplace   # repo info
+gh repo view liantian-cn/cc-marketplace   # repo info
 gh pr list                                     # open PRs
 gh pr create --title "..." --body "..."        # create PR
 ```
