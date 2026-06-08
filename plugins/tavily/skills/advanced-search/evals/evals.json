@@ -1,0 +1,23 @@
+{
+  "skill_name": "advanced-search",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "I need to find information about Claude Code's new features in 2026. What's been released or announced recently?",
+      "expected_output": "Search results from both WebSearch and Tavily, deduplicated and organized, with source attribution for each result. Should show recent Claude Code features/updates from 2026.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "What's the latest news on AI regulation in the European Union? I'm particularly interested in any recent legislation or policy changes from this year.",
+      "expected_output": "Combined search results covering EU AI Act and related regulations, with news-focused time-sensitive searching. Results should be organized by topic/subtopic, with clear source attribution.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "Can you do a deep comparison of Python's FastAPI vs Go's Gin framework for building REST APIs? I want to understand performance, developer experience, ecosystem maturity, and which one would be better for a startup building microservices.",
+      "expected_output": "Comprehensive comparison report drawing from multiple sources. Should use deep research capabilities (tavily_research) plus WebSearch for broad coverage. Results should be well-organized with clear sections for each comparison dimension.",
+      "files": []
+    }
+  ]
+}
