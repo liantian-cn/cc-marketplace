@@ -1,5 +1,5 @@
 ---
-name: liantian cc market 环境配置
+name: env-setup
 description: "MANUAL_ONLY: 此技能仅通过 /env-setup 手动调用，不会被自动触发。用于 liantian cc market 插件的初始环境配置。"
 version: "2026-06-08"
 category: "环境配置"
@@ -15,6 +15,7 @@ tags:
   - 初始化
 model: deepseek-v4-pro
 ---
+
 # liantian cc market 环境配置
 
 ## SKILL 定位
@@ -210,7 +211,7 @@ claude plugin list --from-marketplace liantian-cc-market
 claude plugin install qcc-due-diligence@liantian-cc-market
 
 # 安装环境配置工具包
-claude plugin install liantian-cc-market-setup@liantian-cc-market
+claude plugin install liantian-cc-env-setup@liantian-cc-market
 ```
 
 安装完成后，运行以下命令使插件生效：
@@ -286,17 +287,17 @@ pandoc 报告.md -o 报告.pptx --from markdown --to pptx
 
 ### 常见问题
 
-| 问题 | 原因 | 解决 |
-|------|------|------|
-| `python` 命令找不到 | Python 未安装或未加入 PATH | 重新运行安装命令，安装时勾选"Add Python to PATH" |
-| `pandoc` 命令找不到 | Pandoc 未安装或未加入 PATH | 重新运行安装命令或手动将 Pandoc 安装目录加入系统 PATH |
-| `markitdown` 命令找不到 | markitdown 未安装或 Python Scripts 目录未加入 PATH | 运行 `python -m pip install 'markitdown[all]'` |
-| `markitdown` 版本过旧 | pip 未升级到最新 | `python -m pip install --upgrade 'markitdown[all]'` |
-| PDF 转换失败 | 缺少 OCR 依赖 | 确认已安装 `markitdown[all]`（包含 PDF/图片 OCR 支持） |
-| API Key 不生效 | 配置在了系统环境变量而非 settings.json | 确认使用 `claude config set env.XXX` 或手动编辑 `~/.claude/settings.json` 的 `env` 字段 |
-| MCP 返回 401 鉴权失败 | API Key 值无效或过期 | 访问对应平台检查 API Key 是否正确或重新生成 |
-| 插件未找到 | Marketplace 未添加或名称错误 | 运行 `claude plugin marketplace list` 确认 marketplace 已添加 |
-| settings.json 配置丢失 | 手动编辑时 JSON 格式错误 | 使用 `claude config set` 命令代替手动编辑，或用 `python -m json.tool` 验证 JSON 格式 |
+| 问题                    | 原因                                               | 解决                                                                                    |
+| ----------------------- | -------------------------------------------------- | --------------------------------------------------------------------------------------- |
+| `python` 命令找不到     | Python 未安装或未加入 PATH                         | 重新运行安装命令，安装时勾选"Add Python to PATH"                                        |
+| `pandoc` 命令找不到     | Pandoc 未安装或未加入 PATH                         | 重新运行安装命令或手动将 Pandoc 安装目录加入系统 PATH                                   |
+| `markitdown` 命令找不到 | markitdown 未安装或 Python Scripts 目录未加入 PATH | 运行 `python -m pip install 'markitdown[all]'`                                          |
+| `markitdown` 版本过旧   | pip 未升级到最新                                   | `python -m pip install --upgrade 'markitdown[all]'`                                     |
+| PDF 转换失败            | 缺少 OCR 依赖                                      | 确认已安装 `markitdown[all]`（包含 PDF/图片 OCR 支持）                                  |
+| API Key 不生效          | 配置在了系统环境变量而非 settings.json             | 确认使用 `claude config set env.XXX` 或手动编辑 `~/.claude/settings.json` 的 `env` 字段 |
+| MCP 返回 401 鉴权失败   | API Key 值无效或过期                               | 访问对应平台检查 API Key 是否正确或重新生成                                             |
+| 插件未找到              | Marketplace 未添加或名称错误                       | 运行 `claude plugin marketplace list` 确认 marketplace 已添加                           |
+| settings.json 配置丢失  | 手动编辑时 JSON 格式错误                           | 使用 `claude config set` 命令代替手动编辑，或用 `python -m json.tool` 验证 JSON 格式    |
 
 ---
 
