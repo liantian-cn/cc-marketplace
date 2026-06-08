@@ -78,7 +78,7 @@ Every `SKILL.md` uses YAML frontmatter with these fields:
 - `category` — grouping label
 - `mcp_servers` — array of required MCP server names
 - `tags` — keyword array for matching
-- `model` — default model override (typically `deepseek-v4-pro`)
+- `model` — optional model override (leave unset to use the session default)
 
 Skills follow a consistent body structure: **定位** (purpose), **共享引用** (shared references), **工作流** (workflow), **输出模板** (output template), **参数** (parameters), **边界与免责** (boundaries & disclaimer).
 
