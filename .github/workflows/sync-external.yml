@@ -21,32 +21,48 @@ jobs:
         shell: bash
         run: .github/scripts/sync-external.sh
 
-      - name: Create Pull Request
-        uses: peter-evans/create-pull-request@5f6978faf089d4d20b00c7766989d076bb2fc7f1  # v8.1.1
-        with:
-          commit-message: |
-            chore: sync external plugins and skills
+      - name: Create Pull Request (if any changes)
+        shell: bash
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if [ -z "$(git status --porcelain)" ]; then
+            echo "No changes detected, skipping PR."
+            exit 0
+          fi
 
-            Automated weekly sync from upstream sources.
-            See .github/scripts/sync-external.sh for details.
+          echo "Changes detected, creating PR..."
 
-            Co-Authored-By: Claude <noreply@anthropic.com>
-          title: "chore: sync external plugins and skills"
-          body: |
-            🤖 Automated sync from external upstream sources.
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
 
-            | Source | Target |
-            |--------|--------|
-            | `anthropics/claude-plugins-official` → `external_plugins/playwright` | `plugins/playwright/` |
-            | `anthropics/claude-plugins-official` → `plugins/skill-creator` | `plugins/skill-creator/` |
-            | `obra/superpowers` (excl. `.git`/`.github`) | `plugins/superpowers/` |
-            | `alirezarezvani/claude-skills` → `finance` | `plugins/finance/` |
-            | `anthropics/skills` → `skills/docx` | `plugins/essentials/skills/docx/` |
-            | `anthropics/skills` → `skills/pdf` | `plugins/essentials/skills/pdf/` |
-            | `anthropics/skills` → `skills/pptx` | `plugins/essentials/skills/pptx/` |
-            | `anthropics/skills` → `skills/xlsx` | `plugins/essentials/skills/xlsx/` |
+          BRANCH="sync-external-$(date +%Y%m%d-%H%M)"
+          git checkout -b "$BRANCH"
+          git add -A
+          git commit -m "chore: sync external plugins and skills
 
-            🤖 Generated with [Claude Code](https://claude.com/claude-code)
-          branch: sync-external-content
-          delete-branch: true
-          base: main
+          Automated weekly sync from upstream sources.
+          See .github/scripts/sync-external.sh for details.
+
+          Co-Authored-By: Claude <noreply@anthropic.com>"
+
+          git push origin "$BRANCH"
+
+          gh pr create \
+            --title "chore: sync external plugins and skills" \
+            --body "🤖 Automated sync from external upstream sources.
+
+          | Source | Target |
+          |--------|--------|
+          | \`anthropics/claude-plugins-official\` → \`external_plugins/playwright\` | \`plugins/playwright/\` |
+          | \`anthropics/claude-plugins-official\` → \`plugins/skill-creator\` | \`plugins/skill-creator/\` |
+          | \`obra/superpowers\` (excl. \`.git\`/\`.github\`) | \`plugins/superpowers/\` |
+          | \`alirezarezvani/claude-skills\` → \`finance\` | \`plugins/finance/\` |
+          | \`anthropics/skills\` → \`skills/docx\` | \`plugins/essentials/skills/docx/\` |
+          | \`anthropics/skills\` → \`skills/pdf\` | \`plugins/essentials/skills/pdf/\` |
+          | \`anthropics/skills\` → \`skills/pptx\` | \`plugins/essentials/skills/pptx/\` |
+          | \`anthropics/skills\` → \`skills/xlsx\` | \`plugins/essentials/skills/xlsx/\` |
+
+          🤖 Generated with [Claude Code](https://claude.com/claude-code)" \
+            --base main \
+            --head "$BRANCH"
