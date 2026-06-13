@@ -558,7 +558,121 @@ claude plugin list
 
 #### Step 4: 确认
 
-报告 "✅ playwright 插件已就绪"，等待用户确认后进入 Phase 4。
+报告 "✅ playwright 插件已就绪"，等待用户确认后进入 3.5。
+
+---
+
+### 3.5 安装 finance 插件
+
+> **说明：** Finance 提供金融分析能力——财务比率分析、DCF 估值、SaaS 指标、预算编制、预测等，附带 7 个 Python 自动化工具。无需额外 API Key。
+
+#### Step 1: 检测是否已安装
+
+```bash
+claude plugin list
+```
+
+检查输出中是否包含 `finance@liantian-cc-market`。
+
+- **已安装 →** 报告 "✅ finance 已安装"，跳到 Step 4。
+- **未安装 →** 进入 Step 2。
+
+#### Step 2: 安装插件
+
+```bash
+claude plugin install --scope user finance@liantian-cc-market
+```
+
+- **成功：** 报告 "✅ finance 安装成功"。
+- **失败：** 报告错误信息，等待用户指示。
+
+#### Step 3: 验证
+
+```bash
+claude plugin list
+```
+
+确认 `finance@liantian-cc-market` 出现在列表中且状态为 enabled。
+
+#### Step 4: 确认
+
+报告 "✅ finance 插件已就绪"，等待用户确认后进入 3.6。
+
+---
+
+### 3.6 安装 skill-creator 插件
+
+> **说明：** skill-creator 提供技能创建与管理能力——从零创建新技能、优化现有技能、运行 evals 测试、基准测试与方差分析。无需额外 API Key。
+
+#### Step 1: 检测是否已安装
+
+```bash
+claude plugin list
+```
+
+检查输出中是否包含 `skill-creator@liantian-cc-market`。
+
+- **已安装 →** 报告 "✅ skill-creator 已安装"，跳到 Step 4。
+- **未安装 →** 进入 Step 2。
+
+#### Step 2: 安装插件
+
+```bash
+claude plugin install --scope user skill-creator@liantian-cc-market
+```
+
+- **成功：** 报告 "✅ skill-creator 安装成功"。
+- **失败：** 报告错误信息，等待用户指示。
+
+#### Step 3: 验证
+
+```bash
+claude plugin list
+```
+
+确认 `skill-creator@liantian-cc-market` 出现在列表中且状态为 enabled。
+
+#### Step 4: 确认
+
+报告 "✅ skill-creator 插件已就绪"，等待用户确认后进入 3.7。
+
+---
+
+### 3.7 安装 superpowers 插件
+
+> **说明：** Superpowers 是一套完整的软件开发方法论，包含 14 个技能——构思、规划、TDD、系统调试、代码审查、并行子代理调度等。从头脑风暴到 PR 提交的全流程协作模式。无需额外 API Key。
+
+#### Step 1: 检测是否已安装
+
+```bash
+claude plugin list
+```
+
+检查输出中是否包含 `superpowers@liantian-cc-market`。
+
+- **已安装 →** 报告 "✅ superpowers 已安装"，跳到 Step 4。
+- **未安装 →** 进入 Step 2。
+
+#### Step 2: 安装插件
+
+```bash
+claude plugin install --scope user superpowers@liantian-cc-market
+```
+
+- **成功：** 报告 "✅ superpowers 安装成功"。
+- **失败：** 报告错误信息，等待用户指示。
+
+#### Step 3: 验证
+
+```bash
+claude plugin list
+```
+
+确认 `superpowers@liantian-cc-market` 出现在列表中且状态为 enabled。
+
+#### Step 4: 确认
+
+报告 "✅ superpowers 插件已就绪"，等待用户确认后进入 Phase 4。
 
 ---
 
@@ -602,6 +716,9 @@ claude plugin list
 | essentials        | liantian-cc-market | ✅ 已安装 / ❌ 未安装 |
 | qcc-due-diligence | liantian-cc-market | ✅ 已安装 / ❌ 未安装 |
 | playwright        | liantian-cc-market | ✅ 已安装 / ❌ 未安装 |
+| finance           | liantian-cc-market | ✅ 已安装 / ❌ 未安装 |
+| skill-creator     | liantian-cc-market | ✅ 已安装 / ❌ 未安装 |
+| superpowers       | liantian-cc-market | ✅ 已安装 / ❌ 未安装 |
 
 ### 下一步
 
