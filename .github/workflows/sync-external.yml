@@ -43,8 +43,7 @@ jobs:
 
           Automated weekly sync from upstream sources.
           See .github/scripts/sync-external.sh for details.
-
-          Co-Authored-By: Claude <noreply@anthropic.com>"
+"
 
           git push origin "$BRANCH"
 
@@ -61,8 +60,6 @@ jobs:
           | \`anthropics/skills\` → \`skills/docx\` | \`plugins/essentials/skills/docx/\` |
           | \`anthropics/skills\` → \`skills/pdf\` | \`plugins/essentials/skills/pdf/\` |
           | \`anthropics/skills\` → \`skills/pptx\` | \`plugins/essentials/skills/pptx/\` |
-          | \`anthropics/skills\` → \`skills/xlsx\` | \`plugins/essentials/skills/xlsx/\` |
-
-          🤖 Generated with [Claude Code](https://claude.com/claude-code)" \
+          | \`anthropics/skills\` → \`skills/xlsx\` | \`plugins/essentials/skills/xlsx/\` |" \
             --base main \
             --head "$BRANCH"
