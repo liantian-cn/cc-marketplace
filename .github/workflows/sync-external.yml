@@ -18,7 +18,7 @@ jobs:
 
       - name: Sync external content
         shell: bash
-        run: .github/scripts/sync-external.sh
+        run: bash .github/scripts/sync-external.sh
 
       - name: Create Pull Request (if any changes)
         shell: bash
