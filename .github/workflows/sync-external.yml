@@ -4,7 +4,7 @@ on:
   schedule:
     # Weekly sync: Monday at 03:17 UTC (off-peak, avoids :00/:30 stampede)
     # GitHub cron uses UTC. Valid ranges: min 0-59, hour 0-23, dom 1-31, month 1-12, dow 0-6 (Sun-Sat)
-    - cron: '17 3 * * 1'
+    - cron: "17 3 * * 1"
   workflow_dispatch:
     # Manual trigger from Actions tab
 
@@ -12,12 +12,12 @@ jobs:
   sync:
     runs-on: ubuntu-latest
     permissions:
-      contents: write        # needed to push the sync branch
-      pull-requests: write   # needed to create the PR
+      contents: write # needed to push the sync branch
+      pull-requests: write # needed to create the PR
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@9f698171ed81b15d1823a05fc7211befd50c8ae0  # v6.0.3
+        uses: actions/checkout@9f698171ed81b15d1823a05fc7211befd50c8ae0 # v6.0.3
 
       - name: Sync external content
         shell: bash
@@ -116,7 +116,7 @@ jobs:
           echo "=== Sync finished ==="
 
       - name: Create Pull Request
-        uses: peter-evans/create-pull-request@5f6978faf089d4d20b00c7766989d076bb2fc7f1  # v8.1.1
+        uses: s@5f6978faf089d4d20b00c7766989d076bb2fc7f1 # v8.1.1
         with:
           commit-message: |
             chore: sync external plugins and skills
@@ -128,7 +128,7 @@ jobs:
             - anthropics/skills (docx, pdf, pptx, xlsx)
 
             Co-Authored-By: Claude <noreply@anthropic.com>
-          title: 'chore: sync external plugins and skills'
+          title: "chore: sync external plugins and skills"
           body: |
             🤖 Automated sync from external upstream sources.
 
