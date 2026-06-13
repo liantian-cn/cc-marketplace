@@ -10,7 +10,6 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
-      pull-requests: write
 
     steps:
       - name: Checkout repository
@@ -20,43 +19,17 @@ jobs:
         shell: bash
         run: bash .github/scripts/sync-external.sh
 
-      - name: Create Pull Request (if any changes)
+      - name: Commit and push (if any changes)
         shell: bash
-        env:
-          GH_TOKEN: ${{ github.token }}
         run: |
           if [ -z "$(git status --porcelain)" ]; then
-            echo "No changes detected, skipping PR."
+            echo "No changes detected."
             exit 0
           fi
-          echo "Changes detected, creating PR..."
 
           git config user.name  "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-
-          BRANCH="sync-external-$(date +%Y%m%d-%H%M)"
-          git checkout -b "$BRANCH"
           git add -A
           git commit -m "chore: sync external plugins and skills" \
-                     -m "Automated weekly sync from upstream sources. See .github/scripts/sync-external.sh for details."
-
-          git push origin "$BRANCH"
-
-          cat > /tmp/pr-body.md << 'PRBODY'
-          | Source | Target |
-          |--------|--------|
-          | `anthropics/claude-plugins-official` → `external_plugins/playwright` | `plugins/playwright/` |
-          | `anthropics/claude-plugins-official` → `plugins/skill-creator` | `plugins/skill-creator/` |
-          | `obra/superpowers` (excl. `.git`/`.github`) | `plugins/superpowers/` |
-          | `alirezarezvani/claude-skills` → `finance` | `plugins/finance/` |
-          | `anthropics/skills` → `skills/docx` | `plugins/essentials/skills/docx/` |
-          | `anthropics/skills` → `skills/pdf` | `plugins/essentials/skills/pdf/` |
-          | `anthropics/skills` → `skills/pptx` | `plugins/essentials/skills/pptx/` |
-          | `anthropics/skills` → `skills/xlsx` | `plugins/essentials/skills/xlsx/` |
-          PRBODY
-
-          gh pr create \
-            --title "chore: sync external plugins and skills" \
-            --body-file /tmp/pr-body.md \
-            --base main \
-            --head "$BRANCH"
+                     -m "Automated weekly sync from upstream sources."
+          git push origin main
