@@ -1,396 +1,256 @@
 ---
-name: "ifinD-finance-data"
-description: "同花顺金融数据查询，查询股票、基金、宏观经济、行业经济、新闻公告、债券、港美股及指数板块数据，同时支持智能选股、选基、宏观行业经济指标查询、金融公告资讯搜索等服务"
-homepage: https://www.51ifind.com
-version: 1.2.1
-author: iFinD
+name: ifinD-finance-data
+description: "同花顺金融数据一站式查询技能。当用户需要查询 A股/港美股股票数据、公募基金数据、宏观经济与行业经济指标（EDB）、财经新闻、上市公司公告、债券行情估值、指数板块行情时自动触发。覆盖智能选股、财务指标查询、风险分析、ESG 评级、基金持仓分析、可转债转股条款、IPO 事件等场景。如果你的任务是查询任何中国或全球金融市场数据、经济指标、或金融资讯，优先激活本技能——即使只需要一个具体数字（如\"茅台最新PE\"），也通过本技能获取。"
+version: "2026-06-13"
+category: "金融数据"
+compatibility: "requires: node >= 18 or python >= 3.12 （仅脚本兜底时需要）"
+mcp_servers:
+  - hexin-ifind-ds-stock-mcp
+  - hexin-ifind-ds-fund-mcp
+  - hexin-ifind-ds-edb-mcp
+  - hexin-ifind-ds-news-mcp
+  - hexin-ifind-ds-bond-mcp
+  - hexin-ifind-ds-global-stock-mcp
+  - hexin-ifind-ds-index-mcp
+tags:
+  - 同花顺
+  - 金融数据
+  - 股票
+  - 基金
+  - 宏观经济
+  - 行业经济
+  - 新闻公告
+  - 债券
+  - 港美股
+  - 指数板块
+  - 智能选股
+  - EDB
+  - 上市公司
+  - IPO
+  - ESG
+model: deepseek-v4-pro
 ---
 
-# 同花顺金融数据查询 (ifind-finance-data)
-- 本技能用于查询股票、基金、宏观经济、行业经济、新闻公告、债券、港美股及指数板块数据
-- 核心能力：智能选股选基，金融数据查询，公告资讯搜索，宏观行业指标搜索
-- 数据范围覆盖股票、基金、宏观经济、行业经济、新闻公告、债券、港美股及指数板块数据
+# iFinD 金融数据查询
+## SKILL 定位
+本技能提供同花顺 iFinD 金融数据库的一站式查询能力，覆盖 A 股、港美股、公募基金、债券、指数板块、宏观经济与行业经济指标(EDB)、财经新闻与上市公司公告等 **7 大金融数据域**。
 
-## 使用方法
-本 skill 封装了同花顺金融数据MCP服务的调用接口，支持 Python 和 Node.js 两种调用方式：
-- **Node.js方案**：使用 `call-node.js` 脚本（无需额外依赖，使用内置模块）
-- **Python方案**：使用 `call.py` 脚本（需安装 `requests` 库）
-- **推荐方案**：当用户未指定python，或不确定python环境时，优先使用Node.js方案
-- **query**：股票基金数据查询工具的 query 参数一般支持多主体、多指标，但不宜超过 5 个
+核心逻辑是 **"MCP 直连 + 自然语言查询"**——用户用自然语言描述想查的数据，技能直接调用对应 MCP 工具获取结果，无需用户了解 API 细节。当 MCP 不可用或个别工具未在 MCP 端暴露时，降级使用 `call.py` / `call-node.js` 脚本兜底。
 
-## 首次使用
-- **配置密钥**：需设置环境变量 `IFIND_API_KEY`，在 `~/.claude/settings.json` 的 `env` 字段中添加 `"IFIND_API_KEY": "您的密钥"`。密钥获取路径：MCP官网 -> 个人中心 -> 密钥。如未配置，脚本运行时会提示错误。
-- **环境验证**: 本技能基于 node.js 环境或 python 环境发起数据查询请求，要求用户至少拥有其中一个，若验证发现均不具备，需提示用户配置环境
-- **并发上限**: 免费用户每秒最多并发 2 个请求，个人版正式用户为 5 个，企业版正式用户为 10 个，请注意请求并发量控制；如不确认用户权益，默认为免费版；必要时可像用户询问或引导用户到MCP官网查看权益
+**何时触发本技能**：
+- 用户提到任何金融数据查询：股票行情、财务指标、估值、基金净值、债券久期、宏观经济指标、行业产销量
+- 用户想"搜一下"某类符合条件的股票/基金/债券
+- 用户想了解上市公司新闻、公告、IPO 事件、ESG 评级
+- 用户查询指数涨跌、板块走势
+- 即使用户只问一个具体数字（如"茅台 PE 现在多少"），也触发本技能
 
-## 数据范围
-- **股票数据**：股票搜索、基本信息、财务数据、行情、股东、风险指标、ESG评级、重大事件等
-- **基金数据**：基金搜索、基金资料、基金行情、持仓明细、持有人结构、基金公司信息等
-- **宏观经济数据**：GDP、CPI、PPI、行业经济指标、大宗商品数据等
-- **新闻公告**：财经新闻、上市公司公告、热点事件等
-- **债券数据**：债券基本信息、行情数据、财务数据、特殊指标（信用债、可转债、回购等）
-- **港美股数据**：港股/美股的智能选股、基本资料、行情数据、财务数据、公告事件等
-- **指数板块数据**：指数行情、板块行情、成分股数据等
+**不适用场景**：
+- 深度企业尽职调查（使用 qcc-due-diligence 系列技能）
+- 量化策略回测、复杂金融建模（本技能只提供原始数据）
 
-## 使用技巧
-- 1.**先搜再查**：针对宏观行业经济指标，当你无法确定用户具体想要的指标，可以先采用 search_edb 进行搜索，然后根据搜索结果指标结合上下文再发起数据查询 get_edb_data
-- 2.**查询合并**：股票基金数据查询相关工具支持多主体、多指标，例如{"query":"同花顺、东方财富、大智慧、恒生电子的2025-09-30的净利润增速、ROE、ROA"}，主体数、指标数控制在 5 个以内
-- 3.**板块类股票主体**：股票数据查询支持直接以行业板块类股票作为主体，直接查询某行业股票相关数据，但需注意行业范围或时间范围不宜过大，以免触发超长截断，例如{"query":"锂电池行业股票的今日涨跌幅"}
+## 共享引用
+- MCP 工具映射表：参见本目录下的 `mcp-tools-map.md`（MCP 工具 → 缓存文件名 → 脚本兜底对照）
+- MCP 缓存约定：参见本目录下的 `mcp-cache-guide.md`（数据缓存策略）
+> **核心原则**：优先调用 MCP 工具（`mcp__plugin_ifind_hexin-ifind-ds-{domain}-mcp__{tool_name}`），MCP 不可用或工具未覆盖时使用脚本兜底（`call("server_type", "tool_name", params)`）。
 
-## 核心函数
+## MCP 依赖
 
-### call(server_type, tool_name, params)
+| 服务器 | 作用 | 可用性 |
+|---|---|---|
+| `hexin-ifind-ds-stock-mcp` | A股全方位数据（10 工具） | ✅ 完整 |
+| `hexin-ifind-ds-fund-mcp` | 公募基金数据（7 工具） | ⚠️ 缺 search_funds |
+| `hexin-ifind-ds-edb-mcp` | 宏观经济与行业指标（1 工具） | ⚠️ 缺 search_edb |
+| `hexin-ifind-ds-news-mcp` | 财经新闻与公告（2 工具） | ⚠️ 缺 search_trending_news |
+| `hexin-ifind-ds-bond-mcp` | 债券市场数据（5 工具） | ✅ 完整 |
+| `hexin-ifind-ds-global-stock-mcp` | 港美股数据（4 工具） | ⚠️ 缺 search_global_stocks |
+| `hexin-ifind-ds-index-mcp` | 指数与板块数据（3 工具） | ✅ 完整 |
 
-发起金融数据请求。
+> **并发限制**：免费版 2 qps / 个人版 5 qps / 企业版 10 qps，7 个服务共享速率限制池。
 
-**参数：**
-- `server_type` (str): 服务类型，取值范围：
-  - `"stock"` - 股票服务
-  - `"fund"` - 基金服务
-  - `"edb"` - 宏观经济/行业经济指标服务
-  - `"news"` - 新闻公告服务
-  - `"bond"` - 债券服务
-  - `"global_stock"` - 港美股服务
-  - `"index"` - 指数板块服务
-- `tool_name` (str): 工具名称，详见下方工具列表
-- `params` (dict): 请求参数，不同工具的参数不同
+## 通用执行原则
 
-**返回值：**
-```python
-{
-    "ok": True/False,
-    "status_code": HTTP状态码,
-    "data": ...,      # ok=True时返回
-    "error": ...,     # ok=False时返回
-    "raw": ...        # 原始响应
-}
-```
+1. **MCP 优先，脚本兜底** — 优先调用 `mcp__plugin_ifind_...` 工具；仅当 MCP 工具不可用或返回错误，或工具未在 MCP 端暴露（见上方 ⚠️ 标记）时，使用脚本 `call()` 降级
+2. **先搜再查** — 当用户描述模糊、或指标/实体名不确定时，先用搜索类工具定位目标，再查询具体数据。搜索类工具有：`search_stocks`（MCP）、`search_news`（MCP）、`search_notice`（MCP）、以及仅脚本可用的 `search_edb`、`search_funds`、`search_global_stocks`
+3. **查询合并** — 单个工具调用支持多主体、多指标，但主体数和指标数各控制在 **5 个以内**，避免单次调用过重超时
+4. **并发友好** — 对不同数据域的查询可并行调用（它们走到不同 MCP 服务器），同域内注意速率限制
+5. **板块作主体** — 支持以行业板块作为查询主体（如"医疗设备板块的成分股涨幅"），但板块范围不宜过大
+6. **时效性优先** — 新闻/公告查询注重时效，参数不宜过于严格；无结果时尝试放宽时间范围或减少关键词
 
-### list_tools(server_type)
+## 工作流
 
-列出指定服务类型的所有可用工具。
+每个维度独立运作，用户通常只命中一个维度。当用户查询涉及跨域数据时（如"茅台和沪深300的走势对比"），并行查询多个维度然后汇总。
 
----
+### 维度一：A股股票数据
 
-## 股票服务工具 (server_type="stock")
+涵盖沪深北交易所 A 股的全方位数据：行情、基本面、财务、估值、股东、风险、事件、ESG。
 
-| 工具名称 | 功能说明 | 典型参数 |
-|---------|---------|---------|
-| `search_stocks` | 智能选股 | `{"query": "自然语言选股条件"}` 如 `"电子行业市值大于100亿"` |
-| `get_stock_summary` | 股票信息摘要 | `{"query": "股票简称+查询内容"}` 如 `"茅台财务状况"` |
-| `get_stock_info` | 股票基本资料、日频行情与技术指标 | `{"query": "股票简称+指标名称+时间"}` 如 `"格力电器上市时间"`或`"三花智控近5日涨跌幅"` |
-| `get_stock_shareholders` | 股本结构与股东数据 | `{"query": "股票简称+指标"}` 如 `"光明乳业流通股占比"` |
-| `get_stock_financials` | 财务数据与指标 | `{"query": "股票简称+财务指标+财报日期"}` 如 `"科大讯飞2025年三季度的ROE"` |
-| `get_risk_indicators` | 风险定量指标 | `{"query": "股票+时间+指标"}` 如 `"航天电子在2026-03-19的夏普比率"` |
-| `get_stock_events` | 上市公司重大事件类指标 | `{"query": "股票+事件相关指标"}` 如 `"摩尔线程IPO首发股本数量"` |
-| `get_esg_data` | ESG评级数据 | `{"query": "股票+ESG评级指标"}` 如 `"诚意药业中诚信ESG评级"` |
+**MCP 工具链**：
 
-### 选股查询示例
+| MCP 工具 | 功能 | 典型参数 |
+|---|---|---|
+| `mcp__plugin_ifind_hexin-ifind-ds-stock-mcp__search_stocks` | 智能选股 | `{query: "汽车零部件行业市值大于1000亿的股票"}` |
+| `mcp__plugin_ifind_hexin-ifind-ds-stock-mcp__get_stock_summary` | 股票信息摘要 | `{query: "同花顺和恒生电子最新估值水平"}` |
+| `mcp__plugin_ifind_hexin-ifind-ds-stock-mcp__get_stock_info` | 基本资料/行业分类 | `{query: "格力电器的上市时间与所属申万行业"}` |
+| `mcp__plugin_ifind_hexin-ifind-ds-stock-mcp__get_stock_performance` | 行情/技术指标/形态 | `{query: "三花智控最近5日的涨跌幅与换手率"}` |
+| `mcp__plugin_ifind_hexin-ifind-ds-stock-mcp__get_stock_financials` | 财务/估值指标 | `{query: "科大讯飞在2025-12-31的ROE、净利润率"}` |
+| `mcp__plugin_ifind_hexin-ifind-ds-stock-mcp__get_stock_shareholders` | 股本结构/股东 | `{query: "光明乳业的流通股占比、前5大股东持股占比"}` |
+| `mcp__plugin_ifind_hexin-ifind-ds-stock-mcp__get_risk_indicators` | 定量风险指标 | `{query: "航天电子过去1年的beta(沪深300基准)"}` |
+| `mcp__plugin_ifind_hexin-ifind-ds-stock-mcp__get_stock_events` | 重大事件 | `{query: "摩尔线程IPO首次发行新股数量"}` |
+| `mcp__plugin_ifind_hexin-ifind-ds-stock-mcp__get_esg_data` | ESG 评级 | `{query: "诚意药业的中诚信ESG评级"}` |
+| `mcp__plugin_ifind_hexin-ifind-ds-stock-mcp__stock_highfreq_quotes` | 日内高频行情 | `{symbols:"300033.SZ,贵州茅台", indicators:"最新价,涨跌幅", data_mode:"real_time"}` |
 
-```python
-# 智能选股
-call("stock", "search_stocks", {"query": "汽车零部件行业市值大于1000亿的股票"})
-```
+> ⚠️ `stock_highfreq_quotes` 仅支持交易日日内数据，不支持历史数据查询。
 
----
+### 维度二：公募基金数据
 
-## 基金服务工具 (server_type="fund")
+涵盖中国公募基金的基本资料、行情业绩、份额持有人、投资组合、财务数据、基金公司信息及高频行情。
 
-| 工具名称 | 功能说明 | 典型参数 |
-|---------|---------|---------|
-| `search_funds` | 基金搜索 | `{"query": "模糊基金名称或选基需求"}` 如 `"南方基金新能源ETF"` |
-| `get_fund_profile` | 基金基本资料 | `{"query": "基金名称+指标"}` 如 `"工银双盈债券A(010068)的发行日期与发行费率"` |
-| `get_fund_market_performance` | 基金行情与业绩 | `{"query": "基金名称+时间范围+指标"}` 如 `"方正富邦策略精选A(010072)在近一月收益率"` |
-| `get_fund_ownership` | 基金份额与持有人 | `{"query": "基金名称+日期+指标"}` 如 `"湘财长弘灵活配置混合A(010076)在2025-06-30的申购总份额和赎回总份额"` |
-| `get_fund_portfolio` | 基金持仓明细 | `{"query": "基金名称+日期+指标"}` 如 `"工银优质成长混合A(010088)在2025-06-30披露报告中的股票投资占比"` |
-| `get_fund_financials` | 基金财务指标 | `{"query": "基金名称+日期+指标"}` 如 `"泰康浩泽混合A(010081)在2025-06-30的利润"` |
-| `get_fund_company_info` | 基金公司信息 | `{"query": "基金名称+所属基金公司维度指标"}` 如 `"蜂巢丰瑞的所属基金公司基金经理数量"` |
+**MCP 工具链**：
 
----
+| MCP 工具 | 功能 | 典型参数 |
+|---|---|---|
+| `mcp__plugin_ifind_hexin-ifind-ds-fund-mcp__get_fund_profile` | 基金基本资料 | `{query: "工银双盈债券A(010068)的发行日期与发行费率"}` |
+| `mcp__plugin_ifind_hexin-ifind-ds-fund-mcp__get_fund_market_performance` | 行情/业绩/绩效评价 | `{query: "方正富邦策略精选A(010072)在近一周和近一月收益率"}` |
+| `mcp__plugin_ifind_hexin-ifind-ds-fund-mcp__get_fund_ownership` | 份额/持有人结构 | `{query: "湘财长弘灵活配置混合A(010076)在2025-06-30的申购总份额和赎回总份额"}` |
+| `mcp__plugin_ifind_hexin-ifind-ds-fund-mcp__get_fund_portfolio` | 资产配置/持仓 | `{query: "工银优质成长混合A(010088)在2025-06-30的股票投资占比"}` |
+| `mcp__plugin_ifind_hexin-ifind-ds-fund-mcp__get_fund_financials` | 基金财报/分红 | `{query: "泰康浩泽混合A(010081)在2025-06-30的利润"}` |
+| `mcp__plugin_ifind_hexin-ifind-ds-fund-mcp__get_fund_company_info` | 基金公司/经理 | `{query: "蜂巢丰瑞债券A(010084)所属基金公司的基金经理数量和平均从业年限"}` |
+| `mcp__plugin_ifind_hexin-ifind-ds-fund-mcp__fund_highfreq_quotes` | 日内高频行情 | `{symbols:"000307.OF,易方达蓝筹精选混合", indicators:"最新价,折价", data_mode:"real_time"}` |
 
-## 宏观经济/行业经济指标服务 (server_type="edb")
+> ⚠️ **MCP 暂未覆盖**：`search_funds`（基金搜索）仅在脚本端可用。使用 `call("fund", "search_funds", {"query": "南方基金的新能源ETF"})` 兜底。
 
-- 宏观行业经济指标支持"先搜索再取数"，当你不明确具体指标时，可以先发起搜索请求，再结合用户需求选择具体指标查询
+### 维度三：宏观经济与行业经济数据（EDB）
 
-| 工具名称 | 功能说明 | 典型参数 |
-|---------|---------|---------|
-| `search_edb` | 指标搜索 | `{"query": "行业/产品/指标描述"}` 如 `"光模块产业链相关指标"` |
-| `get_edb_data` | 指标数据查询 | `{"query": "指标名称+时间范围"}` 如 `"光伏电池产量202301-202506"` |
+涵盖全球经济指标、中国宏观指标、行业经济指标、大宗商品数据。
 
-### EDB查询示例
+**MCP 工具链**：
 
-```python
-# 搜索可能的指标
-call("edb", "search_edb", {"query": "新能源汽车产量相关指标"})
+| MCP 工具 | 功能 | 典型参数 |
+|---|---|---|
+| `mcp__plugin_ifind_hexin-ifind-ds-edb-mcp__get_edb_data` | 宏观/行业经济指标查询 | `{query: "新能源汽车产量当月值（202301-202506）"}` |
 
-# 获取具体数据
-call("edb", "get_edb_data", {"query": "新能源汽车产量当月值（202301-202506）"})
-```
+> ⚠️ **MCP 暂未覆盖**：`search_edb`（指标搜索）仅在脚本端可用。EDB 指标名称体系庞大，建议先用 `call("edb", "search_edb", {"query": "光伏电池产量相关指标"})` 搜索确认指标名，再用 MCP 的 `get_edb_data` 获取数据。
 
----
+### 维度四：新闻与公告
 
-## 新闻公告服务 (server_type="news")
+涵盖财经新闻语义搜索、上市公司公告全文搜索。
 
-- 新闻公告服务内置语义检索能力，支持输入需要查询的内容，返回相关段落，而非公告全文
-- 热点事件查询工具注重时效性，参数限制不宜过多，否则容易无结果，没有结果时可尝试放宽限制，或选择资讯搜索
-- query 字段支持同时输入报告元数据要求及查询内容，如{"query":"有研新材2024年年度报告 固态电池技术相关"}
+**MCP 工具链**：
 
-| 工具名称 | 功能说明 | 典型参数 |
-|---------|---------|---------|
-| `search_news` | 新闻资讯语义检索 | `{"query": "内容", "time_start": "开始日期", "time_end": "结束日期", "size": 数量}` |
-| `search_notice` | 公告语义检索 | `{"query": "内容", "time_start": "开始日期", "time_end": "结束日期", "size": 数量}` |
-| `search_trending_news` | 热点事件资讯查询 | `{"keyword": "关键词", "industry_name": "行业", "time_scope": "时效范围", "size": 数量}` |
+| MCP 工具 | 功能 | 典型参数 |
+|---|---|---|
+| `mcp__plugin_ifind_hexin-ifind-ds-news-mcp__search_news` | 财经新闻语义搜索 | `{query: "脑机接口技术最新进展", time_start: "2025-01-01", time_end: "2026-01-01", size: 5}` |
+| `mcp__plugin_ifind_hexin-ifind-ds-news-mcp__search_notice` | 上市公司公告语义搜索 | `{query: "光迅科技2024年度报告 光模块技术", time_start: "2025-01-01", time_end: "2026-01-01", size: 5}` |
 
-### 新闻查询示例
+> ⚠️ **MCP 暂未覆盖**：`search_trending_news`（热点事件搜索）仅在脚本端可用。使用 `call("news", "search_trending_news", {"keyword": "智能体", "industry_name": "计算机", "time_scope": "24小时", "size": 5})` 兜底。
 
-```python
-# 财经新闻
-call("news", "search_news", {
-    "query": "脑机接口技术最新进展",
-    "time_start": "2025-01-01",
-    "time_end": "2026-01-01",
-    "size": 5
-})
+### 维度五：债券市场数据
 
-# 上市公司公告
-call("news", "search_notice", {
-    "query": "光迅科技2024年度报告 光模块技术",
-    "time_start": "2025-01-01",
-    "time_end": "2026-01-01",
-    "size": 5
-})
+涵盖交易所债券的基本信息、行情估值、发行体财务、特殊指标（信用评级、回购、可转债转股）。
 
-# 热点事件
-call("news", "search_trending_news", {
-    "keyword": "智能体",
-    "industry_name": "计算机",
-    "time_scope": "24小时",
-    "size": 5
-})
-```
+**MCP 工具链**：
 
----
+| MCP 工具 | 功能 | 典型参数 |
+|---|---|---|
+| `mcp__plugin_ifind_hexin-ifind-ds-bond-mcp__bond_basic_info` | 债券及发行主体信息 | `{query: "23广东11、19黑龙江债01的发行期限与发行总额"}` |
+| `mcp__plugin_ifind_hexin-ifind-ds-bond-mcp__bond_market_data` | 行情/估值/风险收益 | `{query: "26国债01近五日收盘价、涨跌幅与最新久期、凸性"}` |
+| `mcp__plugin_ifind_hexin-ifind-ds-bond-mcp__bond_financial_data` | 发行体财务指标 | `{query: "24辽港01、24皮城01在20251231的资产负债率和ROE"}` |
+| `mcp__plugin_ifind_hexin-ifind-ds-bond-mcp__bond_special_data` | 信用评级/可转债/回购 | `{query: "华海转债、南航转债的最新转股价格及转换比例"}` |
+| `mcp__plugin_ifind_hexin-ifind-ds-bond-mcp__bond_highfreq_quotes` | 日内高频行情 | `{symbols:"240025.IB,24附息国债25", indicators:"最新价,涨跌幅", data_mode:"real_time"}` |
 
-## 债券服务工具 (server_type="bond")
+> ⚠️ 债券 MCP 工具仅支持交易所债券数据，不支持银行间市场数据。
 
-| 工具名称 | 功能说明 | 典型参数 |
-|---------|---------|---------|
-| `bond_basic_info` | 债券基本信息与发债主体资料 | `{"query": "债券简称/代码+查询内容"}` 如 `"23广东11的发行期限与发行总额"` |
-| `bond_market_data` | 债券行情数据与估值分析 | `{"query": "债券简称/代码+指标+时间"}` 如 `"26国债01近五日收盘价、涨跌幅与最新久期、凸性"` |
-| `bond_financial_data` | 债券发债主体财务数据与指标 | `{"query": "债券简称/代码+时间+指标"}` 如 `"24辽港01、24皮城01在20251231的资产负债率和ROE"` |
-| `bond_special_data` | 债券特殊指标（信用债评级、回购、可转债条款等） | `{"query": "债券简称/代码+指标"}` 如 `"华海转债、南航转债的最新转股价格及转换比例"` |
+### 维度六：港美股数据
 
-### 债券查询示例
+涵盖港股和美股的基本资料、行情、财务、事件（IPO、回购、分红、ESG）。
 
-```python
-# 债券基本信息
-call("bond", "bond_basic_info", {"query": "23广东11、19黑龙江债01的发行期限与发行总额"})
+**MCP 工具链**：
 
-# 债券行情与估值
-call("bond", "bond_market_data", {"query": "26国债01近五日收盘价、涨跌幅与最新久期、凸性"})
+| MCP 工具 | 功能 | 典型参数 |
+|---|---|---|
+| `mcp__plugin_ifind_hexin-ifind-ds-global-stock-mcp__global_stock_profile` | 基本资料/行业/上市信息 | `{query: "智谱、minimax的所属行业、上市日期与发行价"}` |
+| `mcp__plugin_ifind_hexin-ifind-ds-global-stock-mcp__global_stock_quotes` | 行情/技术指标 | `{query: "苹果和特斯拉近10个交易日的涨跌幅、换手率"}` |
+| `mcp__plugin_ifind_hexin-ifind-ds-global-stock-mcp__global_stock_financial` | 财务/估值/盈利预测 | `{query: "Google和Meta在最新报告期的ROE、ROA、利润增速"}` |
+| `mcp__plugin_ifind_hexin-ifind-ds-global-stock-mcp__global_stock_events` | 事件数据 | `{query: "minimax的IPO日期、数量、价格及保荐人"}` |
 
-# 发债主体财务数据
-call("bond", "bond_financial_data", {"query": "24辽港01、24皮城01在20251231的资产负债率和ROE"})
+> ⚠️ **MCP 暂未覆盖**：`search_global_stocks`（港美股选股）仅在脚本端可用。使用 `call("global_stock", "search_global_stocks", {"query": "汽车行业且市盈率低于50", "market": "港股"})` 兜底。
 
-# 可转债特殊指标
-call("bond", "bond_special_data", {"query": "华海转债、南航转债的最新转股价格及转换比例"})
-```
+### 维度七：指数与板块数据
 
----
+涵盖股票指数（如沪深300、创业板指）、行业板块（如医疗设备、新能源车）、概念板块的行情与成分股数据。
 
-## 港美股服务工具 (server_type="global_stock")
+**MCP 工具链**：
 
-| 工具名称 | 功能说明 | 典型参数 |
-|---------|---------|---------|
-| `search_global_stocks` | 港美股智能选股 | `{"query": "选股条件", "market": "港股/美股"}` 如 `{"query": "汽车行业且市盈率低于50", "market": "港股"}` |
-| `global_stock_profile` | 港美股基本资料与股本结构 | `{"query": "股票名称/代码+指标"}` 如 `"智谱、minimax的所属行业、上市日期与发行价"` |
-| `global_stock_quotes` | 港美股行情数据与技术指标 | `{"query": "股票名称/代码+时间+指标"}` 如 `"苹果和特斯拉近10个交易日的涨跌幅、换手率"` |
-| `global_stock_financial` | 港美股财务数据与估值指标 | `{"query": "股票名称/代码+指标"}` 如 `"Google和Meta在最新报告期的ROE、ROA、利润增速"` |
-| `global_stock_events` | 港美股公告事件（IPO、回购、分红、ESG等） | `{"query": "股票名称/代码+事件指标"}` 如 `"minimax的IPO日期、数量、价格及保荐人"` |
+| MCP 工具 | 功能 | 典型参数 |
+|---|---|---|
+| `mcp__plugin_ifind_hexin-ifind-ds-index-mcp__index_data` | 指数行情/估值/成分 | `{query: "沪深300、中证2000过去10个交易日的涨跌幅和收盘点数"}` |
+| `mcp__plugin_ifind_hexin-ifind-ds-index-mcp__sector_data` | 板块行情/成分股 | `{query: "医疗设备板块(中证行业)的成分股个数及过去5个交易日的成分股平均涨跌幅"}` |
+| `mcp__plugin_ifind_hexin-ifind-ds-index-mcp__index_highfreq_quotes` | 指数高频行情 | `{symbols:"000001.SH,创业板指", indicators:"最新价,涨跌幅,上涨家数", data_mode:"real_time"}` |
 
-### 港美股查询示例
+> ⚠️ 板块命名可能相似，查询时尽量提供板块所属分类（如"中证行业"、"申万行业"）以精确定位。
+
+## 脚本兜底
+
+当 MCP 工具不可用（网络异常、未配置、或工具未在 MCP 端暴露）时，使用同目录下的脚本直接发起 HTTP 调用。
+
+**Python**：`from call import call, list_tools`
+**Node.js**：`const { call, listTools } = require('./call-node.js')`
 
 ```python
-# 港美股智能选股
-call("global_stock", "search_global_stocks", {"query": "汽车行业且市盈率低于50", "market": "港股"})
-
-# 港美股基本资料
-call("global_stock", "global_stock_profile", {"query": "智谱、minimax的所属行业、上市日期与发行价"})
-
-# 港美股行情数据
-call("global_stock", "global_stock_quotes", {"query": "苹果和特斯拉近10个交易日的涨跌幅、换手率"})
-
-# 港美股财务数据
-call("global_stock", "global_stock_financial", {"query": "Google和Meta在最新报告期的ROE、ROA、利润增速"})
-
-# 港美股公告事件
-call("global_stock", "global_stock_events", {"query": "minimax的IPO日期、数量、价格及保荐人"})
+# 示例：脚本兜底调用 search_edb（MCP 暂未覆盖）
+from call import call
+result = call("edb", "search_edb", {"query": "光伏电池产量相关指标"})
+if result["ok"]:
+    for item in result["data"]:
+        print(item)
 ```
 
----
+**API Key**：需在 `~/.claude/settings.json` 的 `env` 字段中配置 `IFIND_API_KEY`。所有脚本通过该变量获取鉴权 Token，无需手动构造请求头。
 
-## 指数板块服务工具 (server_type="index")
+**注意事项**：
+- `call()` 返回 `{ok, status_code, data, error, raw}`，务必先检查 `ok` 字段
+- 日期格式统一使用 `YYYY-MM-DD`
+- 财务类查询的日期为报告期格式（如 `2025-06-30`）
+- 查询完成后清理临时脚本
 
-| 工具名称 | 功能说明 | 典型参数 |
-|---------|---------|---------|
-| `index_data` | 指数行情、技术指标与估值指标 | `{"query": "指数名称+时间+指标"}` 如 `"沪深300、中证2000过去10个交易日的涨跌幅和收盘点数"` |
-| `sector_data` | 板块行情、财务分析与成分股指标 | `{"query": "板块名称+时间+指标"}` 如 `"医疗设备板块(中证行业)的成分股个数及过去5个交易日的成分股平均涨跌幅"` |
+## 输出模板
 
-### 指数板块查询示例
+每次查询结果按以下结构呈现：
 
-```python
-# 指数数据查询
-call("index", "index_data", {"query": "沪深300、中证2000过去10个交易日的涨跌幅和收盘点数"})
+```
+## [查询标题]
 
-# 板块数据查询
-call("index", "sector_data", {"query": "医疗设备板块(中证行业)的成分股个数及过去5个交易日的成分股平均涨跌幅"})
+**查询时间**：YYYY-MM-DD HH:MM
+**数据来源**：iFinD MCP / [服务器名]
+**查询工具**：[MCP 工具完整名]
+
+### 查询结果
+
+[结构化的数据呈现，优先使用表格]
+
+### 数据说明
+
+- 数据时点：[数据对应的时间]
+- 数据边界：[如"仅交易所债券"、"不含银行间市场"]
+- 免责：[如"数据仅供参考，不构成投资建议"]
 ```
 
----
+## 参数
 
-## 使用示例
+本技能通过自然语言驱动，无需显式传递参数。以下为引导性参数说明：
 
-本skill提供两种调用方案，请根据您的环境选择（用户未指定且不明确python环境时，优先选择 Node.js 方案）：
+| 参数 | 说明 | 可选值 |
+|---|---|---|
+| 数据域 | 指定查询归属域 | `stock` / `fund` / `edb` / `news` / `bond` / `global_stock` / `index` |
+| 调用模式 | 强制 MCP 或脚本模式 | MCP 优先（默认）、脚本兜底（MCP 异常时自动降级） |
+| 并发级别 | 仅影响速率限制提示 | `free`（2 qps）/ `personal`（5 qps）/ `enterprise`（10 qps） |
 
-### 方案1：Node.js脚本调用方式
+## 边界与免责
 
-```javascript
-const { call, listTools } = require('./call-node.js');
-
-async function main() {
-    // 查询股票数据
-    const result1 = await call("stock", "search_stocks", { query: "电子行业市值排名前20的股票" });
-    console.log(JSON.stringify(result1, null, 2));
-
-    // 查询基金数据
-    const result2 = await call("fund", "search_funds", { query: "南方基金的新能源ETF" });
-    console.log(JSON.stringify(result2, null, 2));
-
-    // 查询宏观经济数据
-    const result3 = await call("edb", "get_edb_data", { query: "光伏电池产量当月值（202301-202506）" });
-    console.log(JSON.stringify(result3, null, 2));
-
-    // 查询新闻
-    const result4 = await call("news", "search_news", {
-        query: "人工智能行业动态",
-        time_start: "2025-01-01",
-        time_end: "2026-01-01",
-        size: 5
-    });
-    console.log(JSON.stringify(result4, null, 2));
-
-    // 查询债券数据
-    const result5 = await call("bond", "bond_basic_info", { query: "23广东11的发行期限与发行总额" });
-    console.log(JSON.stringify(result5, null, 2));
-
-    // 查询港美股数据
-    const result6 = await call("global_stock", "global_stock_quotes", { query: "苹果和特斯拉近10个交易日的涨跌幅、换手率" });
-    console.log(JSON.stringify(result6, null, 2));
-
-    // 查询指数板块数据
-    const result7 = await call("index", "index_data", { query: "沪深300过去10个交易日的涨跌幅和收盘点数" });
-    console.log(JSON.stringify(result7, null, 2));
-}
-
-main().catch(console.error);
-```
-
-### 方案2：Python脚本调用方式
-
-```python
-from call import call, list_tools
-
-# 查询股票数据
-result = call("stock", "search_stocks", {"query": "电子行业市值排名前20的股票"})
-print(result)
-
-# 查询基金数据
-result = call("fund", "search_funds", {"query": "南方基金的新能源ETF"})
-print(result)
-
-# 查询宏观经济数据
-result = call("edb", "get_edb_data", {"query": "光伏电池产量当月值（202301-202506）"})
-print(result)
-
-# 查询新闻
-result = call("news", "search_news", {
-    "query": "人工智能行业动态",
-    "time_start": "2025-01-01",
-    "time_end": "2026-01-01",
-    "size": 5
-})
-print(result)
-
-# 查询债券数据
-result = call("bond", "bond_basic_info", {"query": "23广东11的发行期限与发行总额"})
-print(result)
-
-# 查询港美股数据
-result = call("global_stock", "global_stock_quotes", {"query": "苹果和特斯拉近10个交易日的涨跌幅、换手率"})
-print(result)
-
-# 查询指数板块数据
-result = call("index", "index_data", {"query": "沪深300过去10个交易日的涨跌幅和收盘点数"})
-print(result)
-```
-
-**Node.js方案特点：**
-- 无需安装额外依赖库，使用Node.js内置的 `http`/`https` 模块
-- 异步函数设计，支持 `async/await` 语法
-- 与Python方案使用相同的环境变量 `IFIND_API_KEY`
-
----
-
-## 注意事项
-
-1. 环境变量 `IFIND_API_KEY` 需要设置为有效的 API 密钥（两个方案共用），在 `~/.claude/settings.json` 的 `env` 字段中配置
-2. 请求地址已经内置在请求脚本 call.py 和 call-node.js 内部，密钥通过环境变量 `IFIND_API_KEY` 读取，直接调用即可，无需你重新阅读、生成URL和密钥
-3. 所有函数返回结果需检查 `ok` 字段确认请求是否成功
-4. 时间参数格式：`YYYY-MM-DD`
-5. `search_edb` 可用于不确定具体指标名称时的模糊搜索
-6. 如无Python环境，可使用Node.js方案（`call-node.js`），无需安装任何依赖
-7. 单次请求完成后，请帮助用户清除你临时生成的取数脚本
-
----
-
-## list_tools 使用说明
-
-`list_tools(server_type)` 用于获取某个服务当前在线的可用工具列表，但**不应作为首选调用方式**。
-
-### 正确的使用顺序：
-
-1. **优先直接调用**：先按照本文档中各服务工具表所列的 `tool_name` 直接发起 `call()` 请求
-2. **异常时备用**：如果遇到以下情况，再尝试调用 `list_tools(server_type)` 获取该服务当前可用的工具清单：
-   - 工具调用返回错误，提示工具不存在或名称已变更
-   - 不确定某个服务下当前有哪些可用工具
-   - 文档中的工具列表与服务端实际提供的不一致
-
-### 使用示例
-
-```python
-from call import list_tools
-
-# 当债券工具调用异常时，获取债券服务当前可用工具
-bond_tools = list_tools("bond")
-print(bond_tools)
-
-# 当港美股工具不确定时，获取港美股服务当前可用工具
-gs_tools = list_tools("global_stock")
-print(gs_tools)
-
-# 当指数板块工具调用失败时，获取指数板块服务当前可用工具
-index_tools = list_tools("index")
-print(index_tools)
-```
-
-```javascript
-const { listTools } = require('./call-node.js');
-
-async function main() {
-    // 获取债券服务当前可用工具
-    const bondTools = await listTools("bond");
-    console.log(JSON.stringify(bondTools, null, 2));
-}
-
-main().catch(console.error);
-```
+1. **数据源**：所有数据来自同花顺 iFinD MCP API（`api-mcp.51ifind.com`），数据版权归同花顺所有
+2. **时效性**：除 `*_highfreq_quotes` 工具外，其余数据均为日频或更低频率。行情数据有约 15 分钟延迟（实时快照工具除外）
+3. **覆盖范围**：债券数据仅覆盖交易所市场，不含银行间市场；港美股数据覆盖主流交易所，部分小盘股可能无数据
+4. **非投资建议**：本技能提供原始数据查询，不包含分析、评级或投资建议功能。用户需自行判断数据适用性
+5. **速率限制**：免费版 2 qps / 个人版 5 qps / 企业版 10 qps，超限请求会被拒绝。跨服务器调用共享同一速率限制池
+6. **API Key 要求**：使用前必须配置 `IFIND_API_KEY`
+7. **环境依赖**：脚本兜底需要 Node.js ≥ 18（内置 http/https）或 Python ≥ 3.12 + requests 库
