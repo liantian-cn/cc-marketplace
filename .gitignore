@@ -1,6 +1,5 @@
-# Plugin local settings (per-user configuration)
-.claude/*.local.md
-.claude/*.local.json
+# Claude Code local configuration
+.claude/
 
 # MCP query result cache
 */MCP查询结果/
