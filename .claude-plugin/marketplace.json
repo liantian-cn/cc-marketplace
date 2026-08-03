@@ -5,14 +5,14 @@
   },
   "metadata": {
     "description": "liantian-cn 的 Claude Code 插件市场",
-    "version": "1.0.13"
+    "version": "1.0.15"
   },
   "plugins": [
     {
       "name": "qcc-due-diligence",
       "source": "./plugins/qcc-due-diligence",
       "description": "面向金融机构的企业尽职调查工具包，通过企查查（QCC）商业数据库提供 KYB 核验、UBO 穿透、授信尽调、贷后监控、破产预警、诉讼分析、贸易融资合规等 13 项核心业务能力。",
-      "version": "1.0.1",
+      "version": "1.0.2",
       "author": {
         "name": "liantian"
       },
@@ -25,7 +25,7 @@
       "name": "essentials",
       "source": "./plugins/essentials",
       "description": "liantian cc market 必备基础环境，包含 15 个技能——高效开发方法（构思、规划、TDD、调试、代码审查、验证等）及多引擎搜索编排（WebSearch + Tavily + Bailian + Bocha + Baidu + WeChat + Bing CN + Bing Int + Baidu no-API 兜底）。",
-      "version": "1.0.8",
+      "version": "1.0.9",
       "author": {
         "name": "liantian"
       },
@@ -38,7 +38,7 @@
       "name": "ifind",
       "source": "./plugins/iFinD",
       "description": "同花顺金融数据查询插件，通过 iFinD MCP API 提供股票、基金、宏观经济、行业经济、新闻公告、债券、港美股及指数板块数据查询，支持智能选股、智能选基、宏观行业经济指标查询、金融公告资讯搜索等服务。",
-      "version": "1.2.3",
+      "version": "1.2.4",
       "author": {
         "name": "iFinD"
       },
@@ -46,6 +46,110 @@
       "homepage": "https://www.51ifind.com",
       "repository": "https://github.com/liantian-cn/cc-marketplace/tree/main/plugins/iFinD",
       "category": "金融数据"
+    },
+    {
+      "name": "context7",
+      "source": "./plugins/context7",
+      "description": "Context7 MCP 服务器：检索主流开源库/框架的最新官方文档并注入上下文，解决模型训练数据过期的问题，支持 5000+ 个库的文档查询与代码示例检索。",
+      "version": "1.0.0",
+      "author": {
+        "name": "Context7"
+      },
+      "license": "MIT",
+      "homepage": "https://context7.com",
+      "repository": "https://github.com/liantian-cn/cc-marketplace/tree/main/plugins/context7",
+      "category": "搜索"
+    },
+    {
+      "name": "github-search",
+      "source": "./plugins/github-search",
+      "description": "GitHub 代码搜索插件：基于 grep.app 的 MCP 服务器，跨海量 GitHub 开源仓库搜索代码片段、函数定义与用法示例，无需 API Key。",
+      "version": "1.0.0",
+      "author": {
+        "name": "grep.app"
+      },
+      "license": "MIT",
+      "homepage": "https://grep.app",
+      "repository": "https://github.com/liantian-cn/cc-marketplace/tree/main/plugins/github-search",
+      "category": "搜索"
+    },
+    {
+      "name": "firecrawl",
+      "source": "./plugins/firecrawl",
+      "description": "Firecrawl MCP 服务器：网页抓取与爬取（scrape/crawl/search），支持将网页、PDF、动态渲染页面转换为干净的 Markdown 数据。",
+      "version": "1.0.0",
+      "author": {
+        "name": "Firecrawl"
+      },
+      "license": "MIT",
+      "homepage": "https://firecrawl.dev",
+      "repository": "https://github.com/liantian-cn/cc-marketplace/tree/main/plugins/firecrawl",
+      "category": "工具"
+    },
+    {
+      "name": "markitdown",
+      "source": "./plugins/markitdown",
+      "description": "微软 MarkItDown MCP 服务器：将 PDF、Word、PPT、Excel、HTML、图片（OCR）等文件转换为 Markdown 格式，供 LLM 进一步处理。",
+      "version": "1.0.0",
+      "author": {
+        "name": "Microsoft"
+      },
+      "license": "MIT",
+      "homepage": "https://github.com/microsoft/markitdown",
+      "repository": "https://github.com/liantian-cn/cc-marketplace/tree/main/plugins/markitdown",
+      "category": "工具"
+    },
+    {
+      "name": "playwright",
+      "source": "./plugins/playwright",
+      "description": "微软 Playwright MCP 服务器：浏览器自动化与端到端测试。让 Claude 操作网页（点击、填表、截图、执行 JS），已预置代理、Edge 浏览器与忽略 HTTPS 证书错误配置。",
+      "version": "1.0.0",
+      "author": {
+        "name": "Microsoft"
+      },
+      "license": "MIT",
+      "homepage": "https://github.com/microsoft/playwright-mcp",
+      "repository": "https://github.com/liantian-cn/cc-marketplace/tree/main/plugins/playwright",
+      "category": "工具"
+    },
+    {
+      "name": "tavily",
+      "source": "./plugins/tavily",
+      "description": "Tavily MCP 服务器：面向 AI 应用优化的搜索 API，返回高质量网页搜索结果、内容提取与摘要，专为 LLM 设计。",
+      "version": "1.0.0",
+      "author": {
+        "name": "Tavily"
+      },
+      "license": "MIT",
+      "homepage": "https://tavily.com",
+      "repository": "https://github.com/liantian-cn/cc-marketplace/tree/main/plugins/tavily",
+      "category": "搜索"
+    },
+    {
+      "name": "exa",
+      "source": "./plugins/exa",
+      "description": "Exa MCP 服务器：面向 AI 的语义搜索与网页检索，支持向量语义搜索、相似内容查找与网页内容提取。",
+      "version": "1.0.0",
+      "author": {
+        "name": "Exa"
+      },
+      "license": "MIT",
+      "homepage": "https://exa.ai",
+      "repository": "https://github.com/liantian-cn/cc-marketplace/tree/main/plugins/exa",
+      "category": "搜索"
+    },
+    {
+      "name": "ali-web-search",
+      "source": "./plugins/ali-web-search",
+      "description": "阿里云百炼 WebSearch MCP 服务器：通义千问生态的联网搜索服务，通过 DashScope API 提供实时网页搜索能力。",
+      "version": "1.0.0",
+      "author": {
+        "name": "Alibaba Cloud"
+      },
+      "license": "MIT",
+      "homepage": "https://bailian.console.aliyun.com",
+      "repository": "https://github.com/liantian-cn/cc-marketplace/tree/main/plugins/ali-web-search",
+      "category": "搜索"
     }
   ]
 }
