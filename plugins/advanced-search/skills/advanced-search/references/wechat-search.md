@@ -9,7 +9,7 @@
 WeChat 搜索没有 MCP 服务，通过 **直接 Bash 命令** 执行本地 Python 脚本：
 
 ```bash
-python plugins/essentials/skills/advanced-search/scripts/search_wechat.py "关键词" -n 数量
+python plugins/advanced-search/skills/advanced-search/scripts/search_wechat.py "关键词" -n 数量
 ```
 
 **关键区别：** WeChat 与其他五个引擎不同 — 它不使用 MCP 工具，不需要子代理 (subagent)。在并行执行阶段直接通过 Bash 调用脚本，读取 stdout 的 JSON 输出。

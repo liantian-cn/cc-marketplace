@@ -15,10 +15,10 @@ Bing 搜索没有 MCP 服务，通过 **直接 Bash 命令** 执行本地 Python
 
 ```bash
 # Bing CN（必应中国）
-python plugins/essentials/skills/advanced-search/scripts/bing_cn_no_api.py "关键词" -n 数量
+python plugins/advanced-search/skills/advanced-search/scripts/bing_cn_no_api.py "关键词" -n 数量
 
 # Bing Int（必应国际，需代理）
-python plugins/essentials/skills/advanced-search/scripts/bing_int_no_api.py "关键词" -n 数量 --proxy http://127.0.0.1:7890
+python plugins/advanced-search/skills/advanced-search/scripts/bing_int_no_api.py "关键词" -n 数量 --proxy http://127.0.0.1:7890
 ```
 
 **关键区别：** Bing 与 WeChat 一样 — 不使用 MCP 工具，不需要子代理。在并行执行阶段直接通过 Bash 调用脚本。
