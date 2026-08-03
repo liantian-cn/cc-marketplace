@@ -16,7 +16,7 @@ Baidu no-API 仅在以下情况触发：
 Baidu no-API 没有 MCP 服务，通过 **直接 Bash 命令** 执行：
 
 ```bash
-python plugins/advanced-search/skills/advanced-search/scripts/baidu_no_api.py "关键词" -n 数量
+python production-plugins/advanced-search/skills/advanced-search/scripts/baidu_no_api.py "关键词" -n 数量
 ```
 
 **仅在 Baidu MCP 子代理失败后**才执行此命令。不要与 Baidu MCP 并行运行。

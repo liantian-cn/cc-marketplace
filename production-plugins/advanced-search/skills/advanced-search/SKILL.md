@@ -39,7 +39,7 @@ All eight always-on engines are attempted on every search. If any engine is unav
 **Baidu MCP fallback rule:**
 - If the Baidu MCP subagent fails (auth error, tool not found, quota exhausted, service unavailable) → automatically launch Baidu no-API as fallback:
   ```
-  python plugins/advanced-search/skills/advanced-search/scripts/baidu_no_api.py "{query}" -n {count}
+  python production-plugins/advanced-search/skills/advanced-search/scripts/baidu_no_api.py "{query}" -n {count}
   ```
 - Baidu no-API is web scraping without an API key — it has no daily limit but is slower and has no freshness filter
 - Results from Baidu no-API are tagged `[Baidu no-API]` to distinguish from normal `[Baidu]` results
@@ -91,9 +91,9 @@ Read the user's query and classify the intent. Then launch the appropriate combi
 - `Agent` subagent calling `bailian_web_search` with `count=5`
 - `Agent` subagent calling `bocha_web_search` with `count=10`
 - `Agent` subagent calling `baidu_web_search` with `count=5`
-- `Bash` command: `python plugins/advanced-search/skills/advanced-search/scripts/search_wechat.py "{query}" -n 5` — WeChat public account articles (Chinese)
-- `Bash` command: `python plugins/advanced-search/skills/advanced-search/scripts/bing_cn_no_api.py "{query}" -n 5` — Bing CN bilingual results
-- `Bash` command: `python plugins/advanced-search/skills/advanced-search/scripts/bing_int_no_api.py "{query}" -n 5` — Bing Int global results (skip if no proxy)
+- `Bash` command: `python production-plugins/advanced-search/skills/advanced-search/scripts/search_wechat.py "{query}" -n 5` — WeChat public account articles (Chinese)
+- `Bash` command: `python production-plugins/advanced-search/skills/advanced-search/scripts/bing_cn_no_api.py "{query}" -n 5` — Bing CN bilingual results
+- `Bash` command: `python production-plugins/advanced-search/skills/advanced-search/scripts/bing_int_no_api.py "{query}" -n 5` — Bing Int global results (skip if no proxy)
 
 **Subagent prompt templates:**
 ```
@@ -118,22 +118,22 @@ Search Baidu for: {query}
 Use baidu_web_search with count=5.
 Search with Chinese keywords — Baidu excels at Chinese domestic content (百家号, 百度百科, 搜狐, etc.).
 Return the raw results — do not summarize.
-If Baidu MCP fails → fallback: python plugins/advanced-search/skills/advanced-search/scripts/baidu_no_api.py "{query}" -n 5
+If Baidu MCP fails → fallback: python production-plugins/advanced-search/skills/advanced-search/scripts/baidu_no_api.py "{query}" -n 5
 
 # WeChat command
 If the user's query is NOT in Chinese, translate it to Chinese keywords first.
-Run: python plugins/advanced-search/skills/advanced-search/scripts/search_wechat.py "{Chinese query}" -n 5
+Run: python production-plugins/advanced-search/skills/advanced-search/scripts/search_wechat.py "{Chinese query}" -n 5
 Read the JSON from stdout. Parse the "articles" array — each article has title, url, summary, source (公众号名称), published_at.
 Return the raw results — do not summarize.
 
 # Bing CN command
-Run: python plugins/advanced-search/skills/advanced-search/scripts/bing_cn_no_api.py "{query}" -n 5
+Run: python production-plugins/advanced-search/skills/advanced-search/scripts/bing_cn_no_api.py "{query}" -n 5
 Read the JSON from stdout. Parse the "results" array — each result has title, url, summary.
 Bing CN provides Chinese-English bilingual results from cn.bing.com with direct access in China.
 Return the raw results — do not summarize.
 
 # Bing Int command (skip if no proxy configured)
-Run: python plugins/advanced-search/skills/advanced-search/scripts/bing_int_no_api.py "{query}" -n 5
+Run: python production-plugins/advanced-search/skills/advanced-search/scripts/bing_int_no_api.py "{query}" -n 5
 If proxy is configured, add: --proxy {proxy_address} (or rely on BING_PROXY env var).
 Read the JSON from stdout. Parse the "results" array.
 Bing Int provides global English results from www.bing.com — needs proxy in mainland China.
@@ -151,9 +151,9 @@ Return the raw results — do not summarize.
 - `Agent` subagent calling `bailian_web_search` with `count=10` (Bailian has no time_range filter — the subagent should append "最新" or "2026" to the query for recency)
 - `Agent` subagent calling `bocha_web_search` with `count=10`, `freshness="{oneWeek|oneDay|oneMonth}"`
 - `Agent` subagent calling `baidu_web_search` with `count=10`, `freshness="{pd|pw|pm}"`
-- `Bash` command: `python plugins/advanced-search/skills/advanced-search/scripts/search_wechat.py "{query}" -n 10` — WeChat articles for recent Chinese news
-- `Bash` command: `python plugins/advanced-search/skills/advanced-search/scripts/bing_cn_no_api.py "{query}" -n 10` — Bing CN bilingual news
-- `Bash` command: `python plugins/advanced-search/skills/advanced-search/scripts/bing_int_no_api.py "{query}" -n 10` — Bing Int global news (skip if no proxy)
+- `Bash` command: `python production-plugins/advanced-search/skills/advanced-search/scripts/search_wechat.py "{query}" -n 10` — WeChat articles for recent Chinese news
+- `Bash` command: `python production-plugins/advanced-search/skills/advanced-search/scripts/bing_cn_no_api.py "{query}" -n 10` — Bing CN bilingual news
+- `Bash` command: `python production-plugins/advanced-search/skills/advanced-search/scripts/bing_int_no_api.py "{query}" -n 10` — Bing Int global news (skip if no proxy)
 
 **Subagent prompt templates:**
 ```
@@ -181,22 +181,22 @@ Use baidu_web_search with count=10, freshness="{pd|pw|pm}".
 Choose the freshness value matching the user's time context — "pd" (past day) for today's news, "pw" (past week) for this week, "pm" (past month) for this month.
 Baidu's freshness filter works well for Chinese domestic news (百家号, 搜狐新闻, etc.).
 Return the raw results — do not summarize.
-If Baidu MCP fails → fallback: python plugins/advanced-search/skills/advanced-search/scripts/baidu_no_api.py "{query}" -n 10
+If Baidu MCP fails → fallback: python production-plugins/advanced-search/skills/advanced-search/scripts/baidu_no_api.py "{query}" -n 10
 
 # WeChat command
 If the user's query is NOT in Chinese, translate it to Chinese keywords first. Append "最新" to the query for recency (WeChat has no freshness filter — compensate with query crafting).
-Run: python plugins/advanced-search/skills/advanced-search/scripts/search_wechat.py "{Chinese query + 最新}" -n 10
+Run: python production-plugins/advanced-search/skills/advanced-search/scripts/search_wechat.py "{Chinese query + 最新}" -n 10
 Read the JSON from stdout. Parse the "articles" array.
 Return the raw results — do not summarize.
 
 # Bing CN command
 Append "最新" or the current year to the query for recency (Bing CN has no freshness filter).
-Run: python plugins/advanced-search/skills/advanced-search/scripts/bing_cn_no_api.py "{query + 最新}" -n 10
+Run: python production-plugins/advanced-search/skills/advanced-search/scripts/bing_cn_no_api.py "{query + 最新}" -n 10
 Read the JSON from stdout. Parse the "results" array.
 Return the raw results — do not summarize.
 
 # Bing Int command (skip if no proxy configured)
-Run: python plugins/advanced-search/skills/advanced-search/scripts/bing_int_no_api.py "{query}" -n 10
+Run: python production-plugins/advanced-search/skills/advanced-search/scripts/bing_int_no_api.py "{query}" -n 10
 If proxy is configured, add: --proxy {proxy_address}.
 Bing Int may surface international news sources that other engines miss.
 Return the raw results — do not summarize.
@@ -212,9 +212,9 @@ Return the raw results — do not summarize.
 - `Agent` subagent calling `bailian_web_search` with `count=10` — captures Chinese-language perspectives and China-market angles
 - `Agent` subagent calling `bocha_web_search` with `count=10` — semantic search for nuanced angles the other engines might miss
 - `Agent` subagent calling `baidu_web_search` with `count=10` — Chinese domestic content and Baidu ecosystem perspectives
-- `Bash` command: `python plugins/advanced-search/skills/advanced-search/scripts/search_wechat.py "{query}" -n 10` — WeChat in-depth long-form articles (Chinese)
-- `Bash` command: `python plugins/advanced-search/skills/advanced-search/scripts/bing_cn_no_api.py "{query}" -n 10` — Bing CN bilingual deep results
-- `Bash` command: `python plugins/advanced-search/skills/advanced-search/scripts/bing_int_no_api.py "{query}" -n 10` — Bing Int global research (skip if no proxy)
+- `Bash` command: `python production-plugins/advanced-search/skills/advanced-search/scripts/search_wechat.py "{query}" -n 10` — WeChat in-depth long-form articles (Chinese)
+- `Bash` command: `python production-plugins/advanced-search/skills/advanced-search/scripts/bing_cn_no_api.py "{query}" -n 10` — Bing CN bilingual deep results
+- `Bash` command: `python production-plugins/advanced-search/skills/advanced-search/scripts/bing_int_no_api.py "{query}" -n 10` — Bing Int global research (skip if no proxy)
 
 **Subagent prompt templates:**
 ```
@@ -241,23 +241,23 @@ Search Baidu for: {query}
 Use baidu_web_search with count=10.
 Search with Chinese keywords — Baidu excels at Chinese domestic content. For China-market topics, Baidu's coverage of 百家号 and 百度百科 is often complementary to Bailian's coverage.
 Return the raw results — do not summarize.
-If Baidu MCP fails → fallback: python plugins/advanced-search/skills/advanced-search/scripts/baidu_no_api.py "{query}" -n 10
+If Baidu MCP fails → fallback: python production-plugins/advanced-search/skills/advanced-search/scripts/baidu_no_api.py "{query}" -n 10
 
 # WeChat command
 Translate the user's query into Chinese keywords if not already in Chinese. Break the topic into 2-3 Chinese sub-queries for broader coverage (e.g., the main topic + "深度分析" + "行业趋势").
-Run: python plugins/advanced-search/skills/advanced-search/scripts/search_wechat.py "{Chinese query}" -n 10
+Run: python production-plugins/advanced-search/skills/advanced-search/scripts/search_wechat.py "{Chinese query}" -n 10
 Run multiple times with different sub-queries if the topic has multiple angles.
 Read the JSON from stdout. Parse the "articles" array.
 Return the raw results — do not summarize.
 
 # Bing CN command
 If the topic involves Chinese perspectives, use Chinese keywords. For English-origin topics, use the original English query — Bing CN handles bilingual queries well.
-Run: python plugins/advanced-search/skills/advanced-search/scripts/bing_cn_no_api.py "{query}" -n 10
+Run: python production-plugins/advanced-search/skills/advanced-search/scripts/bing_cn_no_api.py "{query}" -n 10
 Bing CN provides Chinese-English bilingual deep results from cn.bing.com.
 Return the raw results — do not summarize.
 
 # Bing Int command (skip if no proxy configured)
-Run: python plugins/advanced-search/skills/advanced-search/scripts/bing_int_no_api.py "{query}" -n 10
+Run: python production-plugins/advanced-search/skills/advanced-search/scripts/bing_int_no_api.py "{query}" -n 10
 If proxy is configured, add: --proxy {proxy_address}.
 For deep research with international angles, Bing Int often surfaces global academic, corporate, and news sources.
 Return the raw results — do not summarize.
@@ -275,9 +275,9 @@ Return the raw results — do not summarize.
 - `Agent` subagent calling `bailian_web_search` using `site:{domain}` query — covers Chinese-hosted or China-accessible pages
 - `Agent` subagent calling `bocha_web_search` with query="{domain} {topic}" — semantic exploration of the domain
 - `Agent` subagent calling `baidu_web_search` with query="{domain} {topic}" — Chinese search perspective on the domain
-- `Bash` command: `python plugins/advanced-search/skills/advanced-search/scripts/search_wechat.py "{domain/topic}" -n 5` — WeChat articles discussing the domain
-- `Bash` command: `python plugins/advanced-search/skills/advanced-search/scripts/bing_cn_no_api.py "{domain} {topic}" -n 5` — Bing CN bilingual discovery
-- `Bash` command: `python plugins/advanced-search/skills/advanced-search/scripts/bing_int_no_api.py "site:{domain} {topic}" -n 10` — Bing Int site search (skip if no proxy)
+- `Bash` command: `python production-plugins/advanced-search/skills/advanced-search/scripts/search_wechat.py "{domain/topic}" -n 5` — WeChat articles discussing the domain
+- `Bash` command: `python production-plugins/advanced-search/skills/advanced-search/scripts/bing_cn_no_api.py "{domain} {topic}" -n 5` — Bing CN bilingual discovery
+- `Bash` command: `python production-plugins/advanced-search/skills/advanced-search/scripts/bing_int_no_api.py "site:{domain} {topic}" -n 10` — Bing Int site search (skip if no proxy)
 
 **Subagent prompt templates:**
 ```
@@ -303,21 +303,21 @@ Search Baidu for pages on: {domain}
 Use baidu_web_search with query="{domain} {topic if applicable}", count=10.
 Baidu may surface Chinese-hosted pages or Chinese-language discussions about the domain.
 Return the raw results — do not summarize.
-If Baidu MCP fails → fallback: python plugins/advanced-search/skills/advanced-search/scripts/baidu_no_api.py "{domain} {topic}" -n 10
+If Baidu MCP fails → fallback: python production-plugins/advanced-search/skills/advanced-search/scripts/baidu_no_api.py "{domain} {topic}" -n 10
 
 # WeChat command
 Search WeChat for articles mentioning or discussing {domain}.
-Run: python plugins/advanced-search/skills/advanced-search/scripts/search_wechat.py "{domain name} {topic if applicable}" -n 5
+Run: python production-plugins/advanced-search/skills/advanced-search/scripts/search_wechat.py "{domain name} {topic if applicable}" -n 5
 WeChat articles may contain discussions, reviews, or references to the site.
 Return the raw results — do not summarize.
 
 # Bing CN command
-Run: python plugins/advanced-search/skills/advanced-search/scripts/bing_cn_no_api.py "{domain} {topic if applicable}" -n 5
+Run: python production-plugins/advanced-search/skills/advanced-search/scripts/bing_cn_no_api.py "{domain} {topic if applicable}" -n 5
 Bing CN can surface both Chinese and English pages related to the domain.
 Return the raw results — do not summarize.
 
 # Bing Int command (skip if no proxy configured)
-Run: python plugins/advanced-search/skills/advanced-search/scripts/bing_int_no_api.py "site:{domain} {topic if applicable}" -n 10
+Run: python production-plugins/advanced-search/skills/advanced-search/scripts/bing_int_no_api.py "site:{domain} {topic if applicable}" -n 10
 Use site: operator in the query — Bing Int's site search is often more comprehensive than other engines.
 Return the raw results — do not summarize.
 ```
@@ -334,9 +334,9 @@ Return the raw results — do not summarize.
 - `Agent` subagent calling `bailian_web_search` with `site:{domain}` — surface check for additional content
 - `Agent` subagent calling `bocha_web_search` with query="{domain}" — surface scan for additional discovery
 - `Agent` subagent calling `baidu_web_search` with query="{domain}" — Chinese search surface scan
-- `Bash` command: `python plugins/advanced-search/skills/advanced-search/scripts/search_wechat.py "{domain/topic}" -n 5` — WeChat articles related to the domain
-- `Bash` command: `python plugins/advanced-search/skills/advanced-search/scripts/bing_cn_no_api.py "{domain}" -n 5` — Bing CN surface scan
-- `Bash` command: `python plugins/advanced-search/skills/advanced-search/scripts/bing_int_no_api.py "site:{domain}" -n 10` — Bing Int site scan (skip if no proxy)
+- `Bash` command: `python production-plugins/advanced-search/skills/advanced-search/scripts/search_wechat.py "{domain/topic}" -n 5` — WeChat articles related to the domain
+- `Bash` command: `python production-plugins/advanced-search/skills/advanced-search/scripts/bing_cn_no_api.py "{domain}" -n 5` — Bing CN surface scan
+- `Bash` command: `python production-plugins/advanced-search/skills/advanced-search/scripts/bing_int_no_api.py "site:{domain}" -n 10` — Bing Int site scan (skip if no proxy)
 
 **Subagent prompt templates:**
 ```
@@ -363,21 +363,21 @@ Search Baidu for content on: {domain}
 Use baidu_web_search with query="{domain}", count=10.
 Baidu may find Chinese-hosted content or discussions about the domain.
 Return the raw results — do not summarize.
-If Baidu MCP fails → fallback: python plugins/advanced-search/skills/advanced-search/scripts/baidu_no_api.py "{domain}" -n 10
+If Baidu MCP fails → fallback: python production-plugins/advanced-search/skills/advanced-search/scripts/baidu_no_api.py "{domain}" -n 10
 
 # WeChat command
 Search WeChat for articles discussing {domain} or its content topics.
-Run: python plugins/advanced-search/skills/advanced-search/scripts/search_wechat.py "{domain name or key topic}" -n 5
+Run: python production-plugins/advanced-search/skills/advanced-search/scripts/search_wechat.py "{domain name or key topic}" -n 5
 WeChat may surface Chinese-language analysis, reviews, or discussions about the site's content.
 Return the raw results — do not summarize.
 
 # Bing CN command
-Run: python plugins/advanced-search/skills/advanced-search/scripts/bing_cn_no_api.py "{domain}" -n 5
+Run: python production-plugins/advanced-search/skills/advanced-search/scripts/bing_cn_no_api.py "{domain}" -n 5
 Quick surface scan of what Bing CN finds on the domain.
 Return the raw results — do not summarize.
 
 # Bing Int command (skip if no proxy configured)
-Run: python plugins/advanced-search/skills/advanced-search/scripts/bing_int_no_api.py "site:{domain}" -n 10
+Run: python production-plugins/advanced-search/skills/advanced-search/scripts/bing_int_no_api.py "site:{domain}" -n 10
 Bing Int site scan for additional pages beyond what tavily_crawl discovers.
 Return the raw results — do not summarize.
 ```
@@ -392,9 +392,9 @@ Return the raw results — do not summarize.
 - `Agent` subagent calling `bailian_web_search` — search for the same domain/page to find related Chinese-language discussion
 - `Agent` subagent calling `bocha_web_search` — semantic search for related discussion of the same content
 - `Agent` subagent calling `baidu_web_search` — Chinese domestic discussion about the same content
-- `Bash` command: `python plugins/advanced-search/skills/advanced-search/scripts/search_wechat.py "{page topic}" -n 5` — WeChat articles about the same topic
-- `Bash` command: `python plugins/advanced-search/skills/advanced-search/scripts/bing_cn_no_api.py "{page title or domain}" -n 5` — Bing CN related content
-- `Bash` command: `python plugins/advanced-search/skills/advanced-search/scripts/bing_int_no_api.py "{page title or domain}" -n 5` — Bing Int related content (skip if no proxy)
+- `Bash` command: `python production-plugins/advanced-search/skills/advanced-search/scripts/search_wechat.py "{page topic}" -n 5` — WeChat articles about the same topic
+- `Bash` command: `python production-plugins/advanced-search/skills/advanced-search/scripts/bing_cn_no_api.py "{page title or domain}" -n 5` — Bing CN related content
+- `Bash` command: `python production-plugins/advanced-search/skills/advanced-search/scripts/bing_int_no_api.py "{page title or domain}" -n 5` — Bing Int related content (skip if no proxy)
 
 **Subagent prompt templates:**
 ```
@@ -421,21 +421,21 @@ Search Baidu for related content about: {domain/topic from the URLs}
 Use baidu_web_search with query="{page title or domain}", count=5.
 Search for Chinese-language discussions or coverage of the same content.
 Return the raw results — do not summarize.
-If Baidu MCP fails → fallback: python plugins/advanced-search/skills/advanced-search/scripts/baidu_no_api.py "{page title or domain}" -n 5
+If Baidu MCP fails → fallback: python production-plugins/advanced-search/skills/advanced-search/scripts/baidu_no_api.py "{page title or domain}" -n 5
 
 # WeChat command
 Search WeChat for articles discussing the same topic as the extracted URLs.
-Run: python plugins/advanced-search/skills/advanced-search/scripts/search_wechat.py "{page title or key topic in Chinese}" -n 5
+Run: python production-plugins/advanced-search/skills/advanced-search/scripts/search_wechat.py "{page title or key topic in Chinese}" -n 5
 WeChat may provide Chinese-language analysis or commentary on the same content.
 Return the raw results — do not summarize.
 
 # Bing CN command
-Run: python plugins/advanced-search/skills/advanced-search/scripts/bing_cn_no_api.py "{page title or domain}" -n 5
+Run: python production-plugins/advanced-search/skills/advanced-search/scripts/bing_cn_no_api.py "{page title or domain}" -n 5
 Bing CN may find related bilingual content discussing the same URLs.
 Return the raw results — do not summarize.
 
 # Bing Int command (skip if no proxy configured)
-Run: python plugins/advanced-search/skills/advanced-search/scripts/bing_int_no_api.py "{page title or domain}" -n 5
+Run: python production-plugins/advanced-search/skills/advanced-search/scripts/bing_int_no_api.py "{page title or domain}" -n 5
 Bing Int may find related international coverage or discussion.
 Return the raw results — do not summarize.
 ```
@@ -450,9 +450,9 @@ Return the raw results — do not summarize.
 - `Agent` subagent calling `bailian_web_search` with `count=10` — Chinese internet coverage
 - `Agent` subagent calling `bocha_web_search` with `count=10` — semantic search with freshness awareness
 - `Agent` subagent calling `baidu_web_search` with `count=10` — Chinese domestic content
-- `Bash` command: `python plugins/advanced-search/skills/advanced-search/scripts/search_wechat.py "{query}" -n 10` — WeChat public account articles (Chinese)
-- `Bash` command: `python plugins/advanced-search/skills/advanced-search/scripts/bing_cn_no_api.py "{query}" -n 10` — Bing CN bilingual results
-- `Bash` command: `python plugins/advanced-search/skills/advanced-search/scripts/bing_int_no_api.py "{query}" -n 10` — Bing Int global results (skip if no proxy)
+- `Bash` command: `python production-plugins/advanced-search/skills/advanced-search/scripts/search_wechat.py "{query}" -n 10` — WeChat public account articles (Chinese)
+- `Bash` command: `python production-plugins/advanced-search/skills/advanced-search/scripts/bing_cn_no_api.py "{query}" -n 10` — Bing CN bilingual results
+- `Bash` command: `python production-plugins/advanced-search/skills/advanced-search/scripts/bing_int_no_api.py "{query}" -n 10` — Bing Int global results (skip if no proxy)
 
 **Subagent prompt templates:**
 ```
@@ -480,24 +480,24 @@ Search Baidu for: {query}
 Use baidu_web_search with count=10.
 Search with Chinese keywords — Baidu excels at Chinese domestic content (百家号, 百度百科, CSDN, 知乎, 搜狐, etc.). Use `count=5` for simple queries to conserve the daily 50-query free limit.
 Return the raw results — do not summarize.
-If Baidu MCP fails → fallback: python plugins/advanced-search/skills/advanced-search/scripts/baidu_no_api.py "{query}" -n 10
+If Baidu MCP fails → fallback: python production-plugins/advanced-search/skills/advanced-search/scripts/baidu_no_api.py "{query}" -n 10
 
 # WeChat command
 If the user's query is NOT in Chinese, translate it to Chinese keywords first (WeChat content is almost entirely Chinese).
-Run: python plugins/advanced-search/skills/advanced-search/scripts/search_wechat.py "{Chinese query}" -n 10
+Run: python production-plugins/advanced-search/skills/advanced-search/scripts/search_wechat.py "{Chinese query}" -n 10
 Read the JSON from stdout. Parse the "articles" array — each article has title, url, summary, source (公众号名称), published_at.
 If the query has multiple aspects, run multiple WeChat searches with different Chinese sub-queries for broader coverage.
 Return the raw results — do not summarize.
 
 # Bing CN command
 If the user's query is in Chinese, use Chinese keywords. For English queries, use the original English — Bing CN handles bilingual queries well.
-Run: python plugins/advanced-search/skills/advanced-search/scripts/bing_cn_no_api.py "{query}" -n 10
+Run: python production-plugins/advanced-search/skills/advanced-search/scripts/bing_cn_no_api.py "{query}" -n 10
 Read the JSON from stdout. Parse the "results" array — each result has title, url, summary.
 Bing CN provides Chinese-English bilingual results with direct access in China.
 Return the raw results — do not summarize.
 
 # Bing Int command (skip if no proxy configured)
-Run: python plugins/advanced-search/skills/advanced-search/scripts/bing_int_no_api.py "{query}" -n 10
+Run: python production-plugins/advanced-search/skills/advanced-search/scripts/bing_int_no_api.py "{query}" -n 10
 If proxy is configured, add: --proxy {proxy_address} (or rely on BING_PROXY env var).
 Read the JSON from stdout. Parse the "results" array.
 Bing Int provides global English results — complements Tavily with different source coverage.
@@ -659,7 +659,7 @@ The subagent's only job is to call `baidu_web_search` with `webSearch` and retur
 
 **IMPORTANT — Baidu fallback:** If the Baidu subagent fails (auth error, tool not found, quota exhausted), immediately launch the Baidu no-API fallback:
 ```bash
-python plugins/advanced-search/skills/advanced-search/scripts/baidu_no_api.py "{query}" -n {count}
+python production-plugins/advanced-search/skills/advanced-search/scripts/baidu_no_api.py "{query}" -n {count}
 ```
 Parse the JSON from stdout. The `results` array has the same structure as other engines: `title`, `url`, `summary`. Tag these results as `[Baidu no-API]` in the final output. Do NOT run Baidu MCP and Baidu no-API in parallel — the fallback only fires after MCP fails.
 
@@ -682,7 +682,7 @@ When the Baidu subagent calls `baidu_web_search`'s `webSearch`, it should determ
 WeChat search does NOT use a subagent — it is a direct Bash command. There is no MCP tool for WeChat; instead, run the local Python script:
 
 ```bash
-python plugins/advanced-search/skills/advanced-search/scripts/search_wechat.py "{query}" -n {count}
+python production-plugins/advanced-search/skills/advanced-search/scripts/search_wechat.py "{query}" -n {count}
 ```
 
 The script outputs JSON to stdout. Parse `result["articles"]` for the article list. Each article has: `title`, `url`, `summary`, `source` (公众号名称), `published_at`.
@@ -705,7 +705,7 @@ The script outputs JSON to stdout. Parse `result["articles"]` for the article li
 Bing CN search does NOT use a subagent — it is a direct Bash command, like WeChat:
 
 ```bash
-python plugins/advanced-search/skills/advanced-search/scripts/bing_cn_no_api.py "{query}" -n {count}
+python production-plugins/advanced-search/skills/advanced-search/scripts/bing_cn_no_api.py "{query}" -n {count}
 ```
 
 The script outputs JSON to stdout. Parse `result["results"]` for the result list. Each result has: `title`, `url`, `summary`.
@@ -729,7 +729,7 @@ The script outputs JSON to stdout. Parse `result["results"]` for the result list
 Bing Int search does NOT use a subagent — it is a direct Bash command, like WeChat:
 
 ```bash
-python plugins/advanced-search/skills/advanced-search/scripts/bing_int_no_api.py "{query}" -n {count} --proxy {proxy_address}
+python production-plugins/advanced-search/skills/advanced-search/scripts/bing_int_no_api.py "{query}" -n {count} --proxy {proxy_address}
 ```
 
 The script outputs JSON to stdout. Parse `result["results"]` for the result list. Each result has: `title`, `url`, `summary`.
@@ -753,7 +753,7 @@ The script outputs JSON to stdout. Parse `result["results"]` for the result list
 Baidu no-API is a **fallback only** — it runs ONLY when the Baidu MCP subagent fails:
 
 ```bash
-python plugins/advanced-search/skills/advanced-search/scripts/baidu_no_api.py "{query}" -n {count}
+python production-plugins/advanced-search/skills/advanced-search/scripts/baidu_no_api.py "{query}" -n {count}
 ```
 
 **Key characteristics:**
