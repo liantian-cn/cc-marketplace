@@ -1,6 +1,6 @@
 ---
 name: ifind-mcp-setup
-description: "Use when mcp__plugin_ifind-finance-data_* tools are unavailable or report a missing/invalid API key or validation errors. Guides the user to obtain the iFinD MCP key from https://mcp.51ifind.com/ and configure IFIND_API_KEY."
+description: "Use when mcp__plugin_ifind-finance-data_* tools are unavailable or report a missing/invalid API key. Guides the user to obtain and configure the iFinD API key."
 version: "2026-08-03"
 ---
 
@@ -8,7 +8,7 @@ version: "2026-08-03"
 
 ## 定位
 
-当会话工具列表中缺少 `mcp__plugin_ifind-finance-data_*` 工具（MCP 连接失败），或调用 iFinD 金融数据工具时返回验证/鉴权报错（如密钥缺失、无效、权限不足）时，引导用户访问同花顺 MCP 官网获取 API Key，并用本技能 `scripts/set_ifind_key.py` 完成配置。
+当会话工具列表中缺少 `mcp__plugin_ifind-finance-data_*` 工具（MCP 连接失败）时，引导用户获取同花顺 iFinD API Key，并用本技能 `scripts/set_ifind_key.py` 完成配置。
 
 ## 工作流
 
