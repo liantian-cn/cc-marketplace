@@ -5,14 +5,14 @@
   },
   "metadata": {
     "description": "liantian-cn 的 Claude Code 插件市场",
-    "version": "1.0.37"
+    "version": "1.0.38"
   },
   "plugins": [
     {
       "name": "qcc-due-diligence",
       "source": "./finance-plugins/qcc-due-diligence",
       "description": "面向金融机构的企业尽职调查工具包，通过企查查（QCC）商业数据库提供 KYB 核验、UBO 穿透、授信尽调、贷后监控、破产预警、诉讼分析、贸易融资合规等 13 项核心业务能力。",
-      "version": "1.0.5",
+      "version": "1.0.6",
       "author": {
         "name": "liantian"
       },
@@ -25,7 +25,7 @@
       "name": "pku-law",
       "source": "./legal-plugins/pku-law",
       "description": "北大法宝（PKU Law）MCP 服务器与法律技能集合：法律法规检索、案例检索、条文定位、引用校验等中国法律数据服务。",
-      "version": "1.0.2",
+      "version": "1.0.3",
       "author": {
         "name": "liantian"
       },
@@ -51,7 +51,7 @@
       "name": "ifind-finance-data",
       "source": "./finance-plugins/ifind-finance-data",
       "description": "同花顺金融数据查询插件，通过 iFinD MCP API 提供股票、基金、宏观经济、行业经济、新闻公告、债券、港美股及指数板块数据查询，支持智能选股、智能选基、宏观行业经济指标查询、金融公告资讯搜索等服务。",
-      "version": "1.2.11",
+      "version": "1.2.12",
       "author": {
         "name": "iFinD"
       },
@@ -64,7 +64,7 @@
       "name": "context7",
       "source": "./search-plugins/context7",
       "description": "Context7 MCP 服务器：检索主流开源库/框架的最新官方文档并注入上下文，解决模型训练数据过期的问题，支持 5000+ 个库的文档查询与代码示例检索。",
-      "version": "1.0.4",
+      "version": "1.0.5",
       "author": {
         "name": "Context7"
       },
@@ -90,7 +90,7 @@
       "name": "firecrawl",
       "source": "./search-plugins/firecrawl",
       "description": "Firecrawl MCP 服务器：网页抓取与爬取（scrape/crawl/search），支持将网页、PDF、动态渲染页面转换为干净的 Markdown 数据。",
-      "version": "1.0.3",
+      "version": "1.0.4",
       "author": {
         "name": "Firecrawl"
       },
@@ -116,7 +116,7 @@
       "name": "tavily-search",
       "source": "./search-plugins/tavily-search",
       "description": "Tavily MCP 服务器：面向 AI 应用优化的搜索 API，返回高质量网页搜索结果、内容提取与摘要，专为 LLM 设计。",
-      "version": "1.0.4",
+      "version": "1.0.5",
       "author": {
         "name": "Tavily"
       },
@@ -129,7 +129,7 @@
       "name": "exa-search",
       "source": "./search-plugins/exa-search",
       "description": "Exa MCP 服务器：面向 AI 的语义搜索与网页检索，支持向量语义搜索、相似内容查找与网页内容提取。",
-      "version": "1.0.4",
+      "version": "1.0.5",
       "author": {
         "name": "Exa"
       },
@@ -142,7 +142,7 @@
       "name": "aliyuncs-search",
       "source": "./search-plugins/aliyuncs-search",
       "description": "阿里云百炼 WebSearch MCP 服务器：通义千问生态的联网搜索服务，通过 DashScope API 提供实时网页搜索能力。",
-      "version": "1.0.9",
+      "version": "1.0.10",
       "author": {
         "name": "Alibaba Cloud"
       },
@@ -155,7 +155,7 @@
       "name": "bocha-search",
       "source": "./search-plugins/bocha-search",
       "description": "博查（Bocha AI）Web 搜索 MCP 服务器：语义理解、时效筛选与丰富元数据（含发布日期、站点信息），适合模糊查询与时效性搜索。",
-      "version": "1.0.3",
+      "version": "1.0.4",
       "author": {
         "name": "BochaAI"
       },
@@ -168,7 +168,7 @@
       "name": "baidu-search",
       "source": "./search-plugins/baidu-search",
       "description": "百度智能云千帆 Web 搜索 MCP 服务器：百度生态中文内容（百家号、百度百科等），支持时效筛选，每天 50 次免费额度。",
-      "version": "1.0.3",
+      "version": "1.0.4",
       "author": {
         "name": "Baidu"
       },

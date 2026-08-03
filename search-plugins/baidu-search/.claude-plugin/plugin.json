@@ -1,6 +1,6 @@
 {
   "name": "baidu-search",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "百度智能云千帆 Web 搜索 MCP 服务器：百度生态中文内容（百家号、百度百科等），支持时效筛选，每天 50 次免费额度。",
   "author": {
     "name": "Baidu"
