@@ -47,15 +47,57 @@ tags:
 
 ## 四、References 索引（7 组 × 38 项）
 
-| 编号 | 分组 | 触发场景 / 用户意图 | 文档 |
-| --- | --- | --- | --- |
-| 01 | 信息检索 | 检索类似案例、法条、立法背景、监管信息；核验法条效力；理解法律概念 | `references/case-retrieval.md` · `references/legal-article-retrieval.md` · `references/other-legal-retrieval.md` · `references/legal-norm-validity-check.md` · `references/legal-concept-comprehension.md` |
-| 02 | 事实与要素处理 | 从非结构化文本提取法律事实/要素；争议焦点识别；证据三性与证明力评估 | `references/legal-element-extraction.md` · `references/structured-element-extraction.md` · `references/dispute-issue-identification.md` · `references/evidence-evaluation.md` |
-| 03 | 法律解释 | 法条文义模糊、歧义、存在多种理解或适用争议时进行解释论证（文义/体系/目的/规范意义） | `references/legal-interpretation-argument.md` · `references/systematic-interpretation.md` · `references/teleological-interpretation.md` · `references/normative-meaning-argumentation.md` |
-| 04 | 法律推理 | 演绎/归纳/类比/溯因/反事实推理；由构成要件推导具体法律后果；解决法条竞合、证据矛盾、法源冲突 | `references/deductive-reasoning.md` · `references/inductive-reasoning.md` · `references/analogical-reasoning.md` · `references/legal-abductive-reasoning.md` · `references/counterfactual-reasoning.md` · `references/formal-legal-consequence.md` · `references/conflict-resolution.md` |
-| 05 | 论证组织与评估 | 构建论证链条/反驳对方观点；评估论证强度与置信度；证据-主张对应映射；多个风险点的优先级排序 | `references/argument-chain-construction.md` · `references/argument-strength-evaluation.md` · `references/evidence-argument-chain.md` · `references/strategic-risk-prioritization.md` |
-| 06 | 风险评估与价值判断 | 合同纠纷/违约风险审查；企业内部合规体系审查；监管处罚风险评估；司法/行政价值判断与利益衡量；预测判决结果与量刑 | `references/dispute-and-performance-risk.md` · `references/internal-compliance-risk-identification.md` · `references/legal-risk-assessment.md` · `references/judicial-value-judgment.md` · `references/administrative-value-judgment.md` · `references/legal-judgment-prediction.md` ✦ |
-| 07 | 文书与事务管理 | 起草判决书/裁判文书；法律文书结构化摘要；多文档综合概览；法律术语规范化；案件全周期规划；法定期限跟踪；工时与诉讼预算 | `references/legal-document-formatting.md` · `references/judgment-document-generation.md` ✦ · `references/legal-document-summarization.md` · `references/multi-document-summarization.md` · `references/legal-terminology.md` · `references/case-lifecycle-planning.md` · `references/trial-scheduling-and-deadline-monitoring.md` · `references/billing-and-litigation-budget.md` |
+### 01 · 信息检索
+- 案例检索：查找类似案例、相关判决、裁判规则 → `references/case-retrieval.md`
+- 法条检索：检索法律法规、司法解释，生成标准化检索报告 → `references/legal-article-retrieval.md`
+- 其他法律信息检索：立法背景、监管处罚、行业规范、学术通说等 → `references/other-legal-retrieval.md`
+- 法条效力核验：引用前确认条文现行有效、层级正确、无冲突 → `references/legal-norm-validity-check.md`
+- 法律概念理解：解释、辨析、拆解法律概念 → `references/legal-concept-comprehension.md`
+
+### 02 · 事实与要素处理
+- 法律要素提取：从非结构化文本中提取具有法律意义的事实 → `references/legal-element-extraction.md`
+- 结构化要素提取：将法律问题系统性分解为完整要素清单（质量闸门） → `references/structured-element-extraction.md`
+- 争议焦点识别：从法律事实中提取争议焦点，转化为法律关系问题 → `references/dispute-issue-identification.md`
+- 证据评估：真实性、合法性、关联性（"三性"）及证明力评估 → `references/evidence-evaluation.md`
+
+### 03 · 法律解释
+- 法律解释论证：法条文义模糊、歧义或适用争议时的综合解释论证 → `references/legal-interpretation-argument.md`
+- 体系解释：根据规范在法律体系中的位置进行解释 → `references/systematic-interpretation.md`
+- 目的解释：发现并论证条文目的，选择最正当的含义 → `references/teleological-interpretation.md`
+- 规范意义论证：分析规范目的、价值导向与涵摄限度 → `references/normative-meaning-argumentation.md`
+
+### 04 · 法律推理
+- 演绎推理：形式逻辑三段论（P-F-C），验证法律论证有效性 → `references/deductive-reasoning.md`
+- 归纳推理：从案例、事实模式中提炼一般性法律规则 → `references/inductive-reasoning.md`
+- 类比推理：法律漏洞时参照相似案件/规范（"相似案件相似处理"） → `references/analogical-reasoning.md`
+- 溯因推理：证据不完整时生成并评估最合理的解释性假设 → `references/legal-abductive-reasoning.md`
+- 反事实推理：评估"若无某事实/行为，法律结果将如何不同" → `references/counterfactual-reasoning.md`
+- 法律后果推导：由构成要件推导具体法律后果（赔偿数额、刑期、合同效力等） → `references/formal-legal-consequence.md`
+- 冲突解决：法条竞合、证据矛盾、法源冲突、争点优先级 → `references/conflict-resolution.md`
+
+### 05 · 论证组织与评估
+- 论证链条构建：将推理结果组织为完整、自洽、有说服力的论证 → `references/argument-chain-construction.md`
+- 论证强度评估：评估论证整体强度与置信度，标注薄弱环节 → `references/argument-strength-evaluation.md`
+- 证据-主张对应：构建"主张→要件→证据→证明力"完整映射 → `references/evidence-argument-chain.md`
+- 风险优先级排序：按发生概率与影响程度对多个风险点排序 → `references/strategic-risk-prioritization.md`
+
+### 06 · 风险评估与价值判断
+- 合同纠纷与履约风险：审查合同、交易安排，识别纠纷/违约风险 → `references/dispute-and-performance-risk.md`
+- 内部合规风险识别：企业合规管理体系的系统性审查 → `references/internal-compliance-risk-identification.md`
+- 监管处罚风险评估：从许可资质、法规遵循、历史处罚等维度评估 → `references/legal-risk-assessment.md`
+- 司法价值判断：法官在权利冲突、法律不确定时的价值衡量与裁量说理 → `references/judicial-value-judgment.md`
+- 行政价值判断：按行政法基本原则进行价值判断与利益衡量 → `references/administrative-value-judgment.md`
+- 判决预测 ✦：综合调用原子能力预测罪名、适用法条、刑期及量刑情节 → `references/legal-judgment-prediction.md`
+
+### 07 · 文书与事务管理
+- 法律文书起草：按裁判文书制作规范起草民事/刑事判决书 → `references/legal-document-formatting.md`
+- 判决书生成 ✦：协调 8 个原子能力生成格式规范的完整刑事判决书 → `references/judgment-document-generation.md`
+- 法律文书摘要：对判决书、裁定书、仲裁裁决书等做结构化摘要 → `references/legal-document-summarization.md`
+- 多文档综合：跨文档关联分析，识别共性与差异，生成综合概览 → `references/multi-document-summarization.md`
+- 法律术语规范化：确保术语准确、统一、符合法律文体 → `references/legal-terminology.md`
+- 案件全周期规划：案件准备时间线、诉讼路线图和关键时间一览表 → `references/case-lifecycle-planning.md`
+- 法定期限跟踪：开庭排期、上诉期限、证据提交期限等 → `references/trial-scheduling-and-deadline-monitoring.md`
+- 工时与诉讼预算：律师工时、专家费用、办案成本与预算控制 → `references/billing-and-litigation-budget.md`
 
 > ✦ = 合成类技能：自身会编排多个原子能力（如要素提取、推理、后果推导），是复杂任务的终点入口。
 
