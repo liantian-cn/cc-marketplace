@@ -5,7 +5,7 @@
   },
   "metadata": {
     "description": "liantian-cn 的 Claude Code 插件市场",
-    "version": "1.0.32"
+    "version": "1.0.33"
   },
   "plugins": [
     {
@@ -168,7 +168,7 @@
       "name": "advanced-search",
       "source": "./production-plugins/advanced-search",
       "description": "八引擎并行网络搜索编排技能：WebSearch + Tavily + 百炼 + 博查 + 百度 + 搜狗微信 + Bing CN + Bing Int，多引擎并行、去重合并、优雅降级与深度研究路由。",
-      "version": "1.0.1",
+      "version": "1.0.2",
       "author": {
         "name": "liantian"
       },
