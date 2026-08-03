@@ -1,6 +1,6 @@
 {
   "name": "tavily-search",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Tavily MCP 服务器：面向 AI 应用优化的搜索 API，返回高质量网页搜索结果、内容提取与摘要，专为 LLM 设计。",
   "author": {
     "name": "Tavily"
