@@ -5,7 +5,7 @@
   },
   "metadata": {
     "description": "liantian-cn 的 Claude Code 插件市场",
-    "version": "1.0.19"
+    "version": "1.0.20"
   },
   "plugins": [
     {
@@ -116,7 +116,7 @@
       "name": "tavily-search",
       "source": "./plugins/tavily-search",
       "description": "Tavily MCP 服务器：面向 AI 应用优化的搜索 API，返回高质量网页搜索结果、内容提取与摘要，专为 LLM 设计。",
-      "version": "1.0.2",
+      "version": "1.0.3",
       "author": {
         "name": "Tavily"
       },
