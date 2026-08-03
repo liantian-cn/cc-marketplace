@@ -5,7 +5,7 @@
   },
   "metadata": {
     "description": "liantian-cn 的 Claude Code 插件市场",
-    "version": "1.0.31"
+    "version": "1.0.32"
   },
   "plugins": [
     {
@@ -22,16 +22,16 @@
       "category": "金融风控"
     },
     {
-      "name": "essentials",
-      "source": "./plugins/essentials",
-      "description": "liantian cc market 基础文档处理技能集合：PDF、Word(docx)、PowerPoint(pptx)、Excel(xlsx) 的创建/编辑/分析，MarkItDown 格式转换，网页 PPT 生成（guizang-ppt）等。",
-      "version": "1.0.10",
+      "name": "office-docs",
+      "source": "./fusion-plugins/office-docs",
+      "description": "liantian cc market 办公文档处理技能集合：PDF、Word(docx)、PowerPoint(pptx)、Excel(xlsx) 的创建、编辑与分析。",
+      "version": "1.0.11",
       "author": {
         "name": "liantian"
       },
       "license": "MIT",
       "homepage": "https://github.com/liantian-cn/cc-marketplace/",
-      "repository": "https://github.com/liantian-cn/cc-marketplace/tree/main/plugins/essentials",
+      "repository": "https://github.com/liantian-cn/cc-marketplace/tree/main/fusion-plugins/office-docs",
       "category": "工具"
     },
     {
@@ -88,15 +88,15 @@
     },
     {
       "name": "markitdown",
-      "source": "./plugins/markitdown",
+      "source": "./fusion-plugins/markitdown",
       "description": "微软 MarkItDown MCP 服务器：将 PDF、Word、PPT、Excel、HTML、图片（OCR）等文件转换为 Markdown 格式，供 LLM 进一步处理。",
-      "version": "1.0.0",
+      "version": "1.0.1",
       "author": {
         "name": "Microsoft"
       },
       "license": "MIT",
       "homepage": "https://github.com/microsoft/markitdown",
-      "repository": "https://github.com/liantian-cn/cc-marketplace/tree/main/plugins/markitdown",
+      "repository": "https://github.com/liantian-cn/cc-marketplace/tree/main/fusion-plugins/markitdown",
       "category": "工具"
     },
     {
@@ -166,16 +166,29 @@
     },
     {
       "name": "advanced-search",
-      "source": "./plugins/advanced-search",
+      "source": "./production-plugins/advanced-search",
       "description": "八引擎并行网络搜索编排技能：WebSearch + Tavily + 百炼 + 博查 + 百度 + 搜狗微信 + Bing CN + Bing Int，多引擎并行、去重合并、优雅降级与深度研究路由。",
+      "version": "1.0.1",
+      "author": {
+        "name": "liantian"
+      },
+      "license": "MIT",
+      "homepage": "https://github.com/liantian-cn/cc-marketplace/",
+      "repository": "https://github.com/liantian-cn/cc-marketplace/tree/main/production-plugins/advanced-search",
+      "category": "搜索"
+    },
+    {
+      "name": "guizang-ppt",
+      "source": "./fusion-plugins/guizang-ppt",
+      "description": "网页 PPT 生成技能（來源：歸藏 guizang-ppt-skill）：生成单文件 HTML 横向翻页演示，含 WebGL 背景、章节幕封、数据大字报、图片网格等模板，支持「电子杂志×电子墨水」与「瑞士国际主义」两种风格。",
       "version": "1.0.0",
       "author": {
         "name": "liantian"
       },
       "license": "MIT",
       "homepage": "https://github.com/liantian-cn/cc-marketplace/",
-      "repository": "https://github.com/liantian-cn/cc-marketplace/tree/main/plugins/advanced-search",
-      "category": "搜索"
+      "repository": "https://github.com/liantian-cn/cc-marketplace/tree/main/fusion-plugins/guizang-ppt",
+      "category": "工具"
     }
   ]
 }
