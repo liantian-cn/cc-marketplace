@@ -5,7 +5,7 @@
   },
   "metadata": {
     "description": "liantian-cn 的 Claude Code 插件市场",
-    "version": "1.0.17"
+    "version": "1.0.18"
   },
   "plugins": [
     {
@@ -142,7 +142,7 @@
       "name": "aliyuncs-search",
       "source": "./plugins/aliyuncs-search",
       "description": "阿里云百炼 WebSearch MCP 服务器：通义千问生态的联网搜索服务，通过 DashScope API 提供实时网页搜索能力。",
-      "version": "1.0.5",
+      "version": "1.0.6",
       "author": {
         "name": "Alibaba Cloud"
       },
