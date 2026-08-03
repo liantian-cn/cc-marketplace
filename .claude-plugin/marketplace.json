@@ -5,7 +5,7 @@
   },
   "metadata": {
     "description": "liantian-cn 的 Claude Code 插件市场",
-    "version": "1.0.22"
+    "version": "1.0.23"
   },
   "plugins": [
     {
@@ -49,7 +49,7 @@
     },
     {
       "name": "context7",
-      "source": "./plugins/context7",
+      "source": "./search-plugins/context7",
       "description": "Context7 MCP 服务器：检索主流开源库/框架的最新官方文档并注入上下文，解决模型训练数据过期的问题，支持 5000+ 个库的文档查询与代码示例检索。",
       "version": "1.0.3",
       "author": {
@@ -57,12 +57,12 @@
       },
       "license": "MIT",
       "homepage": "https://context7.com",
-      "repository": "https://github.com/liantian-cn/cc-marketplace/tree/main/plugins/context7",
+      "repository": "https://github.com/liantian-cn/cc-marketplace/tree/main/search-plugins/context7",
       "category": "搜索"
     },
     {
       "name": "github-search",
-      "source": "./plugins/github-search",
+      "source": "./search-plugins/github-search",
       "description": "GitHub 代码搜索插件：基于 grep.app 的 MCP 服务器，跨海量 GitHub 开源仓库搜索代码片段、函数定义与用法示例，无需 API Key。",
       "version": "1.0.0",
       "author": {
@@ -70,12 +70,12 @@
       },
       "license": "MIT",
       "homepage": "https://grep.app",
-      "repository": "https://github.com/liantian-cn/cc-marketplace/tree/main/plugins/github-search",
+      "repository": "https://github.com/liantian-cn/cc-marketplace/tree/main/search-plugins/github-search",
       "category": "搜索"
     },
     {
       "name": "firecrawl",
-      "source": "./plugins/firecrawl",
+      "source": "./search-plugins/firecrawl",
       "description": "Firecrawl MCP 服务器：网页抓取与爬取（scrape/crawl/search），支持将网页、PDF、动态渲染页面转换为干净的 Markdown 数据。",
       "version": "1.0.2",
       "author": {
@@ -83,7 +83,7 @@
       },
       "license": "MIT",
       "homepage": "https://firecrawl.dev",
-      "repository": "https://github.com/liantian-cn/cc-marketplace/tree/main/plugins/firecrawl",
+      "repository": "https://github.com/liantian-cn/cc-marketplace/tree/main/search-plugins/firecrawl",
       "category": "工具"
     },
     {
@@ -114,7 +114,7 @@
     },
     {
       "name": "tavily-search",
-      "source": "./plugins/tavily-search",
+      "source": "./search-plugins/tavily-search",
       "description": "Tavily MCP 服务器：面向 AI 应用优化的搜索 API，返回高质量网页搜索结果、内容提取与摘要，专为 LLM 设计。",
       "version": "1.0.3",
       "author": {
@@ -122,12 +122,12 @@
       },
       "license": "MIT",
       "homepage": "https://tavily.com",
-      "repository": "https://github.com/liantian-cn/cc-marketplace/tree/main/plugins/tavily-search",
+      "repository": "https://github.com/liantian-cn/cc-marketplace/tree/main/search-plugins/tavily-search",
       "category": "搜索"
     },
     {
       "name": "exa-search",
-      "source": "./plugins/exa-search",
+      "source": "./search-plugins/exa-search",
       "description": "Exa MCP 服务器：面向 AI 的语义搜索与网页检索，支持向量语义搜索、相似内容查找与网页内容提取。",
       "version": "1.0.3",
       "author": {
@@ -135,12 +135,12 @@
       },
       "license": "MIT",
       "homepage": "https://exa.ai",
-      "repository": "https://github.com/liantian-cn/cc-marketplace/tree/main/plugins/exa-search",
+      "repository": "https://github.com/liantian-cn/cc-marketplace/tree/main/search-plugins/exa-search",
       "category": "搜索"
     },
     {
       "name": "aliyuncs-search",
-      "source": "./plugins/aliyuncs-search",
+      "source": "./search-plugins/aliyuncs-search",
       "description": "阿里云百炼 WebSearch MCP 服务器：通义千问生态的联网搜索服务，通过 DashScope API 提供实时网页搜索能力。",
       "version": "1.0.8",
       "author": {
@@ -148,12 +148,12 @@
       },
       "license": "MIT",
       "homepage": "https://bailian.console.aliyun.com",
-      "repository": "https://github.com/liantian-cn/cc-marketplace/tree/main/plugins/aliyuncs-search",
+      "repository": "https://github.com/liantian-cn/cc-marketplace/tree/main/search-plugins/aliyuncs-search",
       "category": "搜索"
     },
     {
       "name": "bocha-search",
-      "source": "./plugins/bocha-search",
+      "source": "./search-plugins/bocha-search",
       "description": "博查（Bocha AI）Web 搜索 MCP 服务器：语义理解、时效筛选与丰富元数据（含发布日期、站点信息），适合模糊查询与时效性搜索。",
       "version": "1.0.2",
       "author": {
@@ -161,12 +161,12 @@
       },
       "license": "MIT",
       "homepage": "https://open.bochaai.com",
-      "repository": "https://github.com/liantian-cn/cc-marketplace/tree/main/plugins/bocha-search",
+      "repository": "https://github.com/liantian-cn/cc-marketplace/tree/main/search-plugins/bocha-search",
       "category": "搜索"
     },
     {
       "name": "baidu-search",
-      "source": "./plugins/baidu-search",
+      "source": "./search-plugins/baidu-search",
       "description": "百度智能云千帆 Web 搜索 MCP 服务器：百度生态中文内容（百家号、百度百科等），支持时效筛选，每天 50 次免费额度。",
       "version": "1.0.2",
       "author": {
@@ -174,7 +174,7 @@
       },
       "license": "MIT",
       "homepage": "https://console.bce.baidu.com/qianfan",
-      "repository": "https://github.com/liantian-cn/cc-marketplace/tree/main/plugins/baidu-search",
+      "repository": "https://github.com/liantian-cn/cc-marketplace/tree/main/search-plugins/baidu-search",
       "category": "搜索"
     },
     {
