@@ -1,6 +1,6 @@
 {
   "mcpServers": {
-    "exa": {
+    "exa-search": {
       "type": "http",
       "url": "https://mcp.exa.ai/mcp",
       "headers": {
