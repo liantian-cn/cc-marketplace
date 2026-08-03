@@ -16,7 +16,7 @@
 ```json
 {
   "env": {
-    "PKU-LAW-API": "你的 Key"
+    "PKU_LAW_API": "你的 Key"
   }
 }
 ```
@@ -25,19 +25,19 @@ Key 可在 https://mcp.pkulaw.com/console 获取。
 
 ## MCP 服务器
 
-`.mcp.json` 配置了 9 个北大法宝 MCP 服务器（均使用 `PKU-LAW-API` 认证）：
+`.mcp.json` 配置了 9 个北大法宝 MCP 服务器（均使用 `PKU_LAW_API` 认证）：
 
-| 服务器 | 用途 |
-|--------|------|
-| `pkulaw-law-search` | 法律法规语义检索 |
-| `pkulaw-law-keyword` | 法律法规关键词检索 |
-| `pkulaw-case-semantic-search` | 案例语义检索 |
-| `pkulaw-case-keyword` | 案例关键词检索 |
-| `pkulaw-law-item-keyword` | 法条定位 |
-| `pkulaw-law-recognition` | 法规文本识别 |
-| `pkulaw-case-number-recognition` | 案号识别 |
-| `pkulaw-citation-validator` | 引用校验 |
-| `pkulaw-doc-link` | 文档关联 |
+| 服务器                           | 用途               |
+| -------------------------------- | ------------------ |
+| `pkulaw-law-search`              | 法律法规语义检索   |
+| `pkulaw-law-keyword`             | 法律法规关键词检索 |
+| `pkulaw-case-semantic-search`    | 案例语义检索       |
+| `pkulaw-case-keyword`            | 案例关键词检索     |
+| `pkulaw-law-item-keyword`        | 法条定位           |
+| `pkulaw-law-recognition`         | 法规文本识别       |
+| `pkulaw-case-number-recognition` | 案号识别           |
+| `pkulaw-citation-validator`      | 引用校验           |
+| `pkulaw-doc-link`                | 文档关联           |
 
 ## 使用
 
@@ -47,11 +47,11 @@ Key 可在 https://mcp.pkulaw.com/console 获取。
 
 ## Setup Skill
 
-`pkulaw-mcp-setup` 技能用于维护 `PKU-LAW-API` 环境变量：当 `mcp__plugin_pku-law_*` 工具不可用或报密钥错误时，引导用户到 https://mcp.pkulaw.com/console 获取密钥，并通过 `scripts/set_pkulaw_key.py` 写入 `~/.claude/settings.json`。
+`pkulaw-mcp-setup` 技能用于维护 `PKU_LAW_API` 环境变量：当 `mcp__plugin_pku-law_*` 工具不可用或报密钥错误时，引导用户到 https://mcp.pkulaw.com/console 获取密钥，并通过 `scripts/set_pkulaw_key.py` 写入 `~/.claude/settings.json`。
 
 ## Hooks
 
-会话启动时（`SessionStart`）检查 `PKU-LAW-API` 环境变量是否已配置；缺失时向 Claude 注入提示，引导调用 `pkulaw-mcp-setup` skill 完成配置。
+会话启动时（`SessionStart`）检查 `PKU_LAW_API` 环境变量是否已配置；缺失时向 Claude 注入提示，引导调用 `pkulaw-mcp-setup` skill 完成配置。
 
 - 配置：`hooks/hooks.json`，脚本：`hooks/check_env.sh`
 - Hook 在会话启动时加载，**修改后需重启 Claude Code 生效**

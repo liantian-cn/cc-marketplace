@@ -8,7 +8,7 @@ version: "2026-08-03"
 
 ## 定位
 
-当会话工具列表中缺少 `mcp__plugin_pku-law_*` 工具（MCP 连接失败）时，引导用户获取北大法宝 PKU-LAW-API Key，并用本技能 `scripts/set_pkulaw_key.py` 完成配置。
+当会话工具列表中缺少 `mcp__plugin_pku-law_*` 工具（MCP 连接失败）时，引导用户获取北大法宝 PKU_LAW_API Key，并用本技能 `scripts/set_pkulaw_key.py` 完成配置。
 
 ## 工作流
 

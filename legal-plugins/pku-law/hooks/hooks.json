@@ -1,5 +1,5 @@
 {
-  "description": "SessionStart hook that warns when PKU-LAW-API is not configured.",
+  "description": "SessionStart hook that warns when PKU_LAW_API is not configured.",
   "hooks": {
     "SessionStart": [
       {

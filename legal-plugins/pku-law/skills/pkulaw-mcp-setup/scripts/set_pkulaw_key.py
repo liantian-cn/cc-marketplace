@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
 """
-Set PKU-LAW-API in Claude Code's ~/.claude/settings.json.
+Set PKU_LAW_API in Claude Code's ~/.claude/settings.json.
 
 Usage:
-  python set_pkulaw_key.py <PKU-LAW-API value>
+  python set_pkulaw_key.py <PKU_LAW_API value>
 
 Reads/writes the "env" field in ~/.claude/settings.json.
 Creates the file or "env" field if missing; preserves existing settings.
@@ -14,7 +14,7 @@ import os
 import sys
 from pathlib import Path
 
-VAR_NAME = "PKU-LAW-API"
+VAR_NAME = "PKU_LAW_API"
 
 
 def main():
