@@ -49,14 +49,14 @@ gh pr create --title "..." --body "..."        # create PR
 
 1. Create the plugin directory under `plugins/<name>/`
 2. Add a `.claude-plugin/plugin.json` inside it
-3. Add an entry to `marketplace.json` → `plugins` array with: `name`, `source` (relative path `./plugins/<name>`), `description`, `version`, `author`, `license`, `keywords`, `homepage`, `repository`, `category`
+3. Add an entry to `marketplace.json` → `plugins` array with: `name`, `source` (relative path `./plugins/<name>`), `description`, `version`, `author`, `license`, `homepage`, `repository`, `category`
 
 ### Plugin Structure
 
 ```
 plugins/<plugin-name>/
 ├── .claude-plugin/
-│   └── plugin.json       # name, version, description, author, license, keywords
+│   └── plugin.json       # name, version, description, author, license（不含 keywords）
 ├── .mcp.json             # MCP servers (optional — only if plugin needs MCP tools)
 ├── skills/               # skills auto-discovered from SKILL.md files
 │   └── <skill-name>/
@@ -65,6 +65,8 @@ plugins/<plugin-name>/
 │       └── mcp-cache-guide.md   # MCP caching convention
 └── README.md
 ```
+
+> **不要**在 `plugin.json`（或 marketplace 条目）中添加 `keywords` 字段——本市场不需要搜索引擎优化（SEO），插件靠 `description` 自然匹配即可。新建/修改插件时不要写 keywords。
 
 ### MCP Configuration Pattern
 
