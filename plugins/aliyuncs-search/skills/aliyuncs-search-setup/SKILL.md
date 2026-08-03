@@ -1,8 +1,7 @@
 ---
 name: aliyuncs-search-setup
-description: "Use when aliyuncs-search MCP tools are missing from the current session (no mcp__plugin_aliyuncs-search_* tools available). Guides the user to obtain and configure the DashScope API key."
+description: "Use when the mcp__plugin_aliyuncs-search_aliyuncs-search__bailian_web_search tool is unavailable in the session. Guides the user to obtain and configure the DashScope API key."
 version: "2026-08-03"
-category: "环境配置"
 ---
 
 # aliyuncs-search 环境配置
