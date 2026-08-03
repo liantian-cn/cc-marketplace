@@ -5,7 +5,7 @@
   },
   "metadata": {
     "description": "liantian-cn 的 Claude Code 插件市场",
-    "version": "1.0.33"
+    "version": "1.0.34"
   },
   "plugins": [
     {
@@ -20,6 +20,19 @@
       "homepage": "https://github.com/liantian-cn/cc-marketplace/",
       "repository": "https://github.com/liantian-cn/cc-marketplace/tree/main/finance-plugins/qcc-due-diligence",
       "category": "金融风控"
+    },
+    {
+      "name": "pku-law",
+      "source": "./legal-plugins/pku-law",
+      "description": "北大法宝（PKU Law）MCP 服务器与法律技能集合：法律法规检索、案例检索、条文定位、引用校验等中国法律数据服务。",
+      "version": "1.0.0",
+      "author": {
+        "name": "liantian"
+      },
+      "license": "MIT",
+      "homepage": "https://github.com/liantian-cn/cc-marketplace/",
+      "repository": "https://github.com/liantian-cn/cc-marketplace/tree/main/legal-plugins/pku-law",
+      "category": "法律"
     },
     {
       "name": "office-docs",
