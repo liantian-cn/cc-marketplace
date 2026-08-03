@@ -1,6 +1,6 @@
 {
   "name": "exa-search",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Exa MCP 服务器：面向 AI 的语义搜索与网页检索，支持向量语义搜索、相似内容查找与网页内容提取。",
   "author": {
     "name": "Exa"
