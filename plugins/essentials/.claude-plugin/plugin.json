@@ -1,9 +1,0 @@
-{
-  "name": "essentials",
-  "version": "1.0.10",
-  "description": "liantian cc market 基础文档处理技能集合：PDF、Word(docx)、PowerPoint(pptx)、Excel(xlsx) 的创建/编辑/分析，MarkItDown 格式转换，网页 PPT 生成（guizang-ppt）等。",
-  "author": {
-    "name": "liantian"
-  },
-  "license": "MIT"
-}

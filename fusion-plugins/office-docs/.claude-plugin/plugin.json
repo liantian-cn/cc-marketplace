@@ -1,0 +1,9 @@
+{
+  "name": "office-docs",
+  "version": "1.0.11",
+  "description": "liantian cc market 办公文档处理技能集合：PDF、Word(docx)、PowerPoint(pptx)、Excel(xlsx) 的创建、编辑与分析。",
+  "author": {
+    "name": "liantian"
+  },
+  "license": "MIT"
+}
