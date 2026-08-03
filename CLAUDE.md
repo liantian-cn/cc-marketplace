@@ -26,7 +26,7 @@ print(f'OK: {len(data[\"plugins\"])} plugin(s)')
 "
 
 # Check each bundled plugin has plugin.json and count skills
-for d in plugins/*/; do
+for d in plugins/*/ search-plugins/*/; do
   name=$(basename "$d")
   echo "--- $name ---"
   [ -f "$d/.claude-plugin/plugin.json" ] && echo "  plugin.json: OK" || echo "  MISSING plugin.json"
@@ -47,14 +47,16 @@ gh pr create --title "..." --body "..."        # create PR
 
 `.claude-plugin/marketplace.json` is the single source of truth for which plugins are included. To add a new plugin:
 
-1. Create the plugin directory under `plugins/<name>/`
+1. Create the plugin directory under `plugins/<name>/` (search/retrieval plugins go under `search-plugins/<name>/` instead)
 2. Add a `.claude-plugin/plugin.json` inside it
-3. Add an entry to `marketplace.json` → `plugins` array with: `name`, `source` (relative path `./plugins/<name>`), `description`, `version`, `author`, `license`, `homepage`, `repository`, `category`
+3. Add an entry to `marketplace.json` → `plugins` array with: `name`, `source` (relative path `./plugins/<name>` or `./search-plugins/<name>`), `description`, `version`, `author`, `license`, `homepage`, `repository`, `category`
 
 ### Plugin Structure
 
+Plugins live in one of two top-level directories: `plugins/` (business/utility plugins) and `search-plugins/` (internet search & retrieval plugins). Both follow the same structure:
+
 ```
-plugins/<plugin-name>/
+<plugins|search-plugins>/<plugin-name>/
 ├── .claude-plugin/
 │   └── plugin.json       # name, version, description, author, license（不含 keywords）
 ├── .mcp.json             # MCP servers (optional — only if plugin needs MCP tools)
@@ -100,7 +102,7 @@ All qcc-due-diligence skills use a consistent caching convention:
 
 `.github/workflows/validate.yml` runs on push/PR to `main`:
 1. Validates `.claude-plugin/marketplace.json` is valid JSON with required fields
-2. Iterates `plugins/*/` directories, checks each has `plugin.json`, counts skills
+2. Iterates `plugins/*/` and `search-plugins/*/` directories, checks each has `plugin.json`, counts skills
 
 ## Plugins
 
@@ -115,7 +117,7 @@ All qcc-due-diligence skills use a consistent caching convention:
 - **Any modification** (no matter how small — typo fixes, description updates, dependency changes, etc.): increment the **PATCH** version by 1 (the third digit: X.Y.Z → X.Y.Z+1)
 - Only update MINOR or MAJOR for breaking changes or significant feature additions, per semver convention
 - Update the version in **both** locations:
-  1. `plugins/<name>/.claude-plugin/plugin.json` — `version` field
+  1. `plugins/<name>/.claude-plugin/plugin.json` (or `search-plugins/<name>/...` for search plugins) — `version` field
   2. `.claude-plugin/marketplace.json` — corresponding plugin entry's `version` field and metadata `version` field
 
 ## Repository Operations
