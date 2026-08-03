@@ -1,6 +1,6 @@
 {
   "name": "bocha-search",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "博查（Bocha AI）Web 搜索 MCP 服务器：语义理解、时效筛选（freshness）与丰富元数据（含发布日期、站点信息），适合模糊查询与时效性搜索。",
   "author": {
     "name": "BochaAI"
