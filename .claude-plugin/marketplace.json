@@ -5,7 +5,7 @@
   },
   "metadata": {
     "description": "liantian-cn 的 Claude Code 插件市场",
-    "version": "1.0.24"
+    "version": "1.0.25"
   },
   "plugins": [
     {
@@ -97,19 +97,6 @@
       "license": "MIT",
       "homepage": "https://github.com/microsoft/markitdown",
       "repository": "https://github.com/liantian-cn/cc-marketplace/tree/main/plugins/markitdown",
-      "category": "工具"
-    },
-    {
-      "name": "playwright",
-      "source": "./plugins/playwright",
-      "description": "微软 Playwright MCP 服务器：浏览器自动化与端到端测试。让 Claude 操作网页（点击、填表、截图、执行 JS），已预置代理、Edge 浏览器与忽略 HTTPS 证书错误配置。",
-      "version": "1.0.0",
-      "author": {
-        "name": "Microsoft"
-      },
-      "license": "MIT",
-      "homepage": "https://github.com/microsoft/playwright-mcp",
-      "repository": "https://github.com/liantian-cn/cc-marketplace/tree/main/plugins/playwright",
       "category": "工具"
     },
     {
