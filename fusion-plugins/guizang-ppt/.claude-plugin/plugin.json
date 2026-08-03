@@ -1,0 +1,9 @@
+{
+  "name": "guizang-ppt",
+  "version": "1.0.0",
+  "description": "网页 PPT 生成技能（來源：歸藏 guizang-ppt-skill）：单文件 HTML 横向翻页演示，含 WebGL 背景与「电子杂志×电子墨水」/「瑞士国际主义」两套视觉模板。",
+  "author": {
+    "name": "liantian"
+  },
+  "license": "MIT"
+}
