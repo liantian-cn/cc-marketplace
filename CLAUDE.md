@@ -26,7 +26,7 @@ print(f'OK: {len(data[\"plugins\"])} plugin(s)')
 "
 
 # Check each bundled plugin has plugin.json and count skills
-for d in plugins/*/ search-plugins/*/ finance-plugins/*/; do
+for d in search-plugins/*/ finance-plugins/*/ production-plugins/*/ fusion-plugins/*/; do
   name=$(basename "$d")
   echo "--- $name ---"
   [ -f "$d/.claude-plugin/plugin.json" ] && echo "  plugin.json: OK" || echo "  MISSING plugin.json"
@@ -47,16 +47,16 @@ gh pr create --title "..." --body "..."        # create PR
 
 `.claude-plugin/marketplace.json` is the single source of truth for which plugins are included. To add a new plugin:
 
-1. Create the plugin directory under `plugins/<name>/` (search/retrieval plugins go under `search-plugins/<name>/`, finance plugins under `finance-plugins/<name>/`)
+1. Create the plugin directory under one of the five taxonomy directories: `plugins/<name>/` (default business/utility plugins), `search-plugins/<name>/` (internet search & retrieval plugins), `finance-plugins/<name>/` (financial data & risk control plugins), `production-plugins/<name>/` (production-grade business tools), or `fusion-plugins/<name>/` (document processing & format conversion plugins)
 2. Add a `.claude-plugin/plugin.json` inside it
-3. Add an entry to `marketplace.json` → `plugins` array with: `name`, `source` (relative path `./plugins/<name>`, `./search-plugins/<name>`, or `./finance-plugins/<name>`), `description`, `version`, `author`, `license`, `homepage`, `repository`, `category`
+3. Add an entry to `marketplace.json` → `plugins` array with: `name`, `source` (relative path `./plugins/<name>`, `./search-plugins/<name>`, `./finance-plugins/<name>`, `./production-plugins/<name>`, or `./fusion-plugins/<name>`), `description`, `version`, `author`, `license`, `homepage`, `repository`, `category`
 
 ### Plugin Structure
 
-Plugins live in one of three top-level directories: `plugins/` (business/utility plugins), `search-plugins/` (internet search & retrieval plugins), and `finance-plugins/` (financial data & risk control plugins). All follow the same structure:
+Plugins live in one of five top-level directories: `plugins/` (default business/utility plugins), `search-plugins/` (internet search & retrieval plugins), `finance-plugins/` (financial data & risk control plugins), `production-plugins/` (production-grade business tools, e.g. `advanced-search`), and `fusion-plugins/` (document processing & format conversion plugins, e.g. `office-docs`, `markitdown`, `guizang-ppt`). All follow the same structure:
 
 ```
-<plugins|search-plugins>/<plugin-name>/
+<plugins|search-plugins|finance-plugins|production-plugins|fusion-plugins>/<plugin-name>/
 ├── .claude-plugin/
 │   └── plugin.json       # name, version, description, author, license（不含 keywords）
 ├── .mcp.json             # MCP servers (optional — only if plugin needs MCP tools)
@@ -96,7 +96,7 @@ All qcc-due-diligence skills use a consistent caching convention:
 
 ### Skill Dependency Graph
 
-`essentials` is a **foundational dependency** for all other plugins. It provides 15 skills covering development methodology (brainstorming, planning, TDD, debugging, code review, etc.) and five-engine web search (WebSearch + Tavily + Bailian + Bocha + Baidu). Business skills in `qcc-due-diligence` assume this environment is already set up.
+`office-docs` (fusion-plugins) is the base document-processing toolset (PDF / Word / PPT / Excel). Web search orchestration is handled by `advanced-search` (production-plugins), which composes the MCP engine plugins under `search-plugins/` (Tavily、百炼、博查、百度等) and degrades gracefully to local scripts when engines are unavailable. Business skills in `qcc-due-diligence` assume the finance and search plugin environments are already set up.
 
 ## CI
 
@@ -106,10 +106,15 @@ All qcc-due-diligence skills use a consistent caching convention:
 
 ## Plugins
 
-| Plugin | Skills | Purpose |
-|--------|--------|---------|
-| `essentials` | 15 | Development methodology + five-engine web search (WebSearch/Tavily/Bailian/Bocha/Baidu) |
-| `qcc-due-diligence` | 12 | Enterprise due diligence via QCC database (KYB, UBO, credit, litigation, etc.) |
+| Plugin | Directory | Skills | Purpose |
+|--------|-----------|--------|---------|
+| `office-docs` | `fusion-plugins/` | 4 | Office document processing: PDF / Word(docx) / PowerPoint(pptx) / Excel(xlsx) creation, editing, analysis |
+| `guizang-ppt` | `fusion-plugins/` | 1 | Web PPT generation (歸藏 guizang-ppt-skill, single-file horizontal-swipe HTML) |
+| `markitdown` | `fusion-plugins/` | 0 | MarkItDown MCP: convert PDF/Word/PPT/Excel/HTML/image → Markdown |
+| `advanced-search` | `production-plugins/` | 1 | Eight-engine parallel web search orchestration |
+| `qcc-due-diligence` | `finance-plugins/` | 12 | Enterprise due diligence via QCC database (KYB, UBO, credit, litigation, etc.) |
+| `ifind-finance-data` | `finance-plugins/` | — | iFinD financial data queries (stocks, funds, macro, industry, news) |
+| 8 search plugins | `search-plugins/` | 1 each | Web search / doc retrieval MCP servers: Tavily, Exa, Context7, Firecrawl, GitHub, 百炼, 博查, 百度 |
 
 ## Versioning
 
