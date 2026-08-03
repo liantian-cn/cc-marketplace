@@ -26,3 +26,11 @@ Key 可在 https://exa.ai 获取。
 ## 使用
 
 安装后运行 `/mcp` 确认 `exa-search` 已连接，然后提问，例如「搜索与‘向量数据库’语义最接近的技术文章」。
+
+## Hooks
+
+会话启动时（`SessionStart`）检查 `EXA_API_KEY` 环境变量是否已配置；缺失时向 Claude 注入提示，引导调用 `exa-search-setup` skill 完成配置。
+
+- 配置：`hooks/hooks.json`，脚本：`hooks/check_env.sh`
+- Hook 在会话启动时加载，**修改后需重启 Claude Code 生效**
+- 也可用 `/hooks` 命令查看当前会话已加载的 hooks
