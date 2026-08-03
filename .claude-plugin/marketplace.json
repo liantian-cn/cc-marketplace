@@ -5,7 +5,7 @@
   },
   "metadata": {
     "description": "liantian-cn 的 Claude Code 插件市场",
-    "version": "1.0.27"
+    "version": "1.0.28"
   },
   "plugins": [
     {
@@ -38,7 +38,7 @@
       "name": "ifind-finance-data",
       "source": "./finance-plugins/ifind-finance-data",
       "description": "同花顺金融数据查询插件，通过 iFinD MCP API 提供股票、基金、宏观经济、行业经济、新闻公告、债券、港美股及指数板块数据查询，支持智能选股、智能选基、宏观行业经济指标查询、金融公告资讯搜索等服务。",
-      "version": "1.2.7",
+      "version": "1.2.8",
       "author": {
         "name": "iFinD"
       },
