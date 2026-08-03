@@ -1,0 +1,9 @@
+{
+  "name": "github-search",
+  "version": "1.0.0",
+  "description": "GitHub 代码搜索插件：基于 grep.app 的 MCP 服务器，跨海量 GitHub 开源仓库搜索代码片段、函数定义与用法示例，无需 API Key。",
+  "author": {
+    "name": "grep.app"
+  },
+  "license": "MIT"
+}
