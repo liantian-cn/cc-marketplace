@@ -1,13 +1,6 @@
 {
-  "mcpServers": {
-    "playwright": {
-      "command": "npx",
-      "args": ["-y", "@playwright/mcp@latest"],
-      "env": {
-        "PLAYWRIGHT_MCP_PROXY_SERVER": "socks5://127.0.0.1:7897",
-        "PLAYWRIGHT_MCP_BROWSER": "msedge",
-        "PLAYWRIGHT_MCP_IGNORE_HTTPS_ERRORS": "1"
-      }
-    }
+  "playwright": {
+    "command": "npx",
+    "args": ["@playwright/mcp@latest"]
   }
 }
