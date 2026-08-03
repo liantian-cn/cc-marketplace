@@ -1,6 +1,6 @@
 {
   "name": "advanced-search",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "八引擎并行网络搜索编排技能：WebSearch + Tavily + 百炼 + 博查 + 百度 + 搜狗微信 + Bing CN + Bing Int，多引擎并行、去重合并、优雅降级与深度研究路由。依赖 tavily-search / aliyuncs-search / bocha-search / baidu-search 插件提供 MCP 引擎。",
   "author": {
     "name": "liantian"
