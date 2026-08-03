@@ -1,0 +1,14 @@
+{
+  "enabledPlugins": {
+    "plugin-dev@claude-plugins-official": true,
+    "claude-md-management@claude-plugins-official": true,
+    "claude-code-setup@claude-plugins-official": true,
+    "aliyuncs-search@liantian-cc-market": true,
+    "baidu-search@liantian-cc-market": true,
+    "bocha-search@liantian-cc-market": true,
+    "context7@liantian-cc-market": true,
+    "exa-search@liantian-cc-market": true,
+    "firecrawl@liantian-cc-market": true,
+    "tavily-search@liantian-cc-market": true
+  }
+}
