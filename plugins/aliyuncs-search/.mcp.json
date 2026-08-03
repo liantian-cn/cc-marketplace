@@ -1,6 +1,6 @@
 {
   "mcpServers": {
-    "ali_web_search": {
+    "aliyuncs-search": {
       "type": "http",
       "url": "https://dashscope.aliyuncs.com/api/v1/mcps/WebSearch/mcp",
       "headers": {
