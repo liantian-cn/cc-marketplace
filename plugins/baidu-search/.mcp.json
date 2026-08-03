@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "baidu_web_search": {
+      "type": "http",
+      "url": "https://qianfan.baidubce.com/v2/tools/web-search/mcp",
+      "headers": {
+        "Authorization": "Bearer ${BAIDU_API_KEY}"
+      }
+    }
+  }
+}
