@@ -1,5 +1,5 @@
 ---
-name: ifinD-finance-data
+name: ifind-finance-data
 description: "同花顺金融数据一站式查询技能。当用户需要查询 A股/港美股股票数据、公募基金数据、宏观经济与行业经济指标（EDB）、财经新闻、上市公司公告、债券行情估值、指数板块行情时自动触发。覆盖智能选股、财务指标查询、风险分析、ESG 评级、基金持仓分析、可转债转股条款、IPO 事件等场景。如果你的任务是查询任何中国或全球金融市场数据、经济指标、或金融资讯，优先激活本技能——即使只需要一个具体数字（如\"茅台最新PE\"），也通过本技能获取。"
 version: "2026-06-13"
 category: "金融数据"
@@ -51,7 +51,7 @@ model: deepseek-v4-pro
 ## 共享引用
 - MCP 工具映射表：参见本目录下的 `mcp-tools-map.md`（MCP 工具 → 缓存文件名 → 脚本兜底对照）
 - MCP 缓存约定：参见本目录下的 `mcp-cache-guide.md`（数据缓存策略）
-> **核心原则**：优先调用 MCP 工具（`mcp__plugin_ifind_hexin-ifind-ds-{domain}-mcp__{tool_name}`），MCP 不可用或工具未覆盖时使用脚本兜底（`call("server_type", "tool_name", params)`）。
+> **核心原则**：优先调用 MCP 工具（`mcp__plugin_ifind-finance-data_hexin-ifind-ds-{domain}-mcp__{tool_name}`），MCP 不可用或工具未覆盖时使用脚本兜底（`call("server_type", "tool_name", params)`）。
 
 ## MCP 依赖
 
@@ -69,7 +69,7 @@ model: deepseek-v4-pro
 
 ## 通用执行原则
 
-1. **MCP 优先，脚本兜底** — 优先调用 `mcp__plugin_ifind_...` 工具；仅当 MCP 工具不可用或返回错误，或工具未在 MCP 端暴露（见上方 ⚠️ 标记）时，使用脚本 `call()` 降级
+1. **MCP 优先，脚本兜底** — 优先调用 `mcp__plugin_ifind-finance-data_...` 工具；仅当 MCP 工具不可用或返回错误，或工具未在 MCP 端暴露（见上方 ⚠️ 标记）时，使用脚本 `call()` 降级
 2. **先搜再查** — 当用户描述模糊、或指标/实体名不确定时，先用搜索类工具定位目标，再查询具体数据。搜索类工具有：`search_stocks`（MCP）、`search_news`（MCP）、`search_notice`（MCP）、以及仅脚本可用的 `search_edb`、`search_funds`、`search_global_stocks`
 3. **查询合并** — 单个工具调用支持多主体、多指标，但主体数和指标数各控制在 **5 个以内**，避免单次调用过重超时
 4. **并发友好** — 对不同数据域的查询可并行调用（它们走到不同 MCP 服务器），同域内注意速率限制
@@ -88,16 +88,16 @@ model: deepseek-v4-pro
 
 | MCP 工具 | 功能 | 典型参数 |
 |---|---|---|
-| `mcp__plugin_ifind_hexin-ifind-ds-stock-mcp__search_stocks` | 智能选股 | `{query: "汽车零部件行业市值大于1000亿的股票"}` |
-| `mcp__plugin_ifind_hexin-ifind-ds-stock-mcp__get_stock_summary` | 股票信息摘要 | `{query: "同花顺和恒生电子最新估值水平"}` |
-| `mcp__plugin_ifind_hexin-ifind-ds-stock-mcp__get_stock_info` | 基本资料/行业分类 | `{query: "格力电器的上市时间与所属申万行业"}` |
-| `mcp__plugin_ifind_hexin-ifind-ds-stock-mcp__get_stock_performance` | 行情/技术指标/形态 | `{query: "三花智控最近5日的涨跌幅与换手率"}` |
-| `mcp__plugin_ifind_hexin-ifind-ds-stock-mcp__get_stock_financials` | 财务/估值指标 | `{query: "科大讯飞在2025-12-31的ROE、净利润率"}` |
-| `mcp__plugin_ifind_hexin-ifind-ds-stock-mcp__get_stock_shareholders` | 股本结构/股东 | `{query: "光明乳业的流通股占比、前5大股东持股占比"}` |
-| `mcp__plugin_ifind_hexin-ifind-ds-stock-mcp__get_risk_indicators` | 定量风险指标 | `{query: "航天电子过去1年的beta(沪深300基准)"}` |
-| `mcp__plugin_ifind_hexin-ifind-ds-stock-mcp__get_stock_events` | 重大事件 | `{query: "摩尔线程IPO首次发行新股数量"}` |
-| `mcp__plugin_ifind_hexin-ifind-ds-stock-mcp__get_esg_data` | ESG 评级 | `{query: "诚意药业的中诚信ESG评级"}` |
-| `mcp__plugin_ifind_hexin-ifind-ds-stock-mcp__stock_highfreq_quotes` | 日内高频行情 | `{symbols:"300033.SZ,贵州茅台", indicators:"最新价,涨跌幅", data_mode:"real_time"}` |
+| `mcp__plugin_ifind-finance-data_hexin-ifind-ds-stock-mcp__search_stocks` | 智能选股 | `{query: "汽车零部件行业市值大于1000亿的股票"}` |
+| `mcp__plugin_ifind-finance-data_hexin-ifind-ds-stock-mcp__get_stock_summary` | 股票信息摘要 | `{query: "同花顺和恒生电子最新估值水平"}` |
+| `mcp__plugin_ifind-finance-data_hexin-ifind-ds-stock-mcp__get_stock_info` | 基本资料/行业分类 | `{query: "格力电器的上市时间与所属申万行业"}` |
+| `mcp__plugin_ifind-finance-data_hexin-ifind-ds-stock-mcp__get_stock_performance` | 行情/技术指标/形态 | `{query: "三花智控最近5日的涨跌幅与换手率"}` |
+| `mcp__plugin_ifind-finance-data_hexin-ifind-ds-stock-mcp__get_stock_financials` | 财务/估值指标 | `{query: "科大讯飞在2025-12-31的ROE、净利润率"}` |
+| `mcp__plugin_ifind-finance-data_hexin-ifind-ds-stock-mcp__get_stock_shareholders` | 股本结构/股东 | `{query: "光明乳业的流通股占比、前5大股东持股占比"}` |
+| `mcp__plugin_ifind-finance-data_hexin-ifind-ds-stock-mcp__get_risk_indicators` | 定量风险指标 | `{query: "航天电子过去1年的beta(沪深300基准)"}` |
+| `mcp__plugin_ifind-finance-data_hexin-ifind-ds-stock-mcp__get_stock_events` | 重大事件 | `{query: "摩尔线程IPO首次发行新股数量"}` |
+| `mcp__plugin_ifind-finance-data_hexin-ifind-ds-stock-mcp__get_esg_data` | ESG 评级 | `{query: "诚意药业的中诚信ESG评级"}` |
+| `mcp__plugin_ifind-finance-data_hexin-ifind-ds-stock-mcp__stock_highfreq_quotes` | 日内高频行情 | `{symbols:"300033.SZ,贵州茅台", indicators:"最新价,涨跌幅", data_mode:"real_time"}` |
 
 > ⚠️ `stock_highfreq_quotes` 仅支持交易日日内数据，不支持历史数据查询。
 
@@ -109,13 +109,13 @@ model: deepseek-v4-pro
 
 | MCP 工具 | 功能 | 典型参数 |
 |---|---|---|
-| `mcp__plugin_ifind_hexin-ifind-ds-fund-mcp__get_fund_profile` | 基金基本资料 | `{query: "工银双盈债券A(010068)的发行日期与发行费率"}` |
-| `mcp__plugin_ifind_hexin-ifind-ds-fund-mcp__get_fund_market_performance` | 行情/业绩/绩效评价 | `{query: "方正富邦策略精选A(010072)在近一周和近一月收益率"}` |
-| `mcp__plugin_ifind_hexin-ifind-ds-fund-mcp__get_fund_ownership` | 份额/持有人结构 | `{query: "湘财长弘灵活配置混合A(010076)在2025-06-30的申购总份额和赎回总份额"}` |
-| `mcp__plugin_ifind_hexin-ifind-ds-fund-mcp__get_fund_portfolio` | 资产配置/持仓 | `{query: "工银优质成长混合A(010088)在2025-06-30的股票投资占比"}` |
-| `mcp__plugin_ifind_hexin-ifind-ds-fund-mcp__get_fund_financials` | 基金财报/分红 | `{query: "泰康浩泽混合A(010081)在2025-06-30的利润"}` |
-| `mcp__plugin_ifind_hexin-ifind-ds-fund-mcp__get_fund_company_info` | 基金公司/经理 | `{query: "蜂巢丰瑞债券A(010084)所属基金公司的基金经理数量和平均从业年限"}` |
-| `mcp__plugin_ifind_hexin-ifind-ds-fund-mcp__fund_highfreq_quotes` | 日内高频行情 | `{symbols:"000307.OF,易方达蓝筹精选混合", indicators:"最新价,折价", data_mode:"real_time"}` |
+| `mcp__plugin_ifind-finance-data_hexin-ifind-ds-fund-mcp__get_fund_profile` | 基金基本资料 | `{query: "工银双盈债券A(010068)的发行日期与发行费率"}` |
+| `mcp__plugin_ifind-finance-data_hexin-ifind-ds-fund-mcp__get_fund_market_performance` | 行情/业绩/绩效评价 | `{query: "方正富邦策略精选A(010072)在近一周和近一月收益率"}` |
+| `mcp__plugin_ifind-finance-data_hexin-ifind-ds-fund-mcp__get_fund_ownership` | 份额/持有人结构 | `{query: "湘财长弘灵活配置混合A(010076)在2025-06-30的申购总份额和赎回总份额"}` |
+| `mcp__plugin_ifind-finance-data_hexin-ifind-ds-fund-mcp__get_fund_portfolio` | 资产配置/持仓 | `{query: "工银优质成长混合A(010088)在2025-06-30的股票投资占比"}` |
+| `mcp__plugin_ifind-finance-data_hexin-ifind-ds-fund-mcp__get_fund_financials` | 基金财报/分红 | `{query: "泰康浩泽混合A(010081)在2025-06-30的利润"}` |
+| `mcp__plugin_ifind-finance-data_hexin-ifind-ds-fund-mcp__get_fund_company_info` | 基金公司/经理 | `{query: "蜂巢丰瑞债券A(010084)所属基金公司的基金经理数量和平均从业年限"}` |
+| `mcp__plugin_ifind-finance-data_hexin-ifind-ds-fund-mcp__fund_highfreq_quotes` | 日内高频行情 | `{symbols:"000307.OF,易方达蓝筹精选混合", indicators:"最新价,折价", data_mode:"real_time"}` |
 
 > ⚠️ **MCP 暂未覆盖**：`search_funds`（基金搜索）仅在脚本端可用。使用 `call("fund", "search_funds", {"query": "南方基金的新能源ETF"})` 兜底。
 
@@ -127,7 +127,7 @@ model: deepseek-v4-pro
 
 | MCP 工具 | 功能 | 典型参数 |
 |---|---|---|
-| `mcp__plugin_ifind_hexin-ifind-ds-edb-mcp__get_edb_data` | 宏观/行业经济指标查询 | `{query: "新能源汽车产量当月值（202301-202506）"}` |
+| `mcp__plugin_ifind-finance-data_hexin-ifind-ds-edb-mcp__get_edb_data` | 宏观/行业经济指标查询 | `{query: "新能源汽车产量当月值（202301-202506）"}` |
 
 > ⚠️ **MCP 暂未覆盖**：`search_edb`（指标搜索）仅在脚本端可用。EDB 指标名称体系庞大，建议先用 `call("edb", "search_edb", {"query": "光伏电池产量相关指标"})` 搜索确认指标名，再用 MCP 的 `get_edb_data` 获取数据。
 
@@ -139,8 +139,8 @@ model: deepseek-v4-pro
 
 | MCP 工具 | 功能 | 典型参数 |
 |---|---|---|
-| `mcp__plugin_ifind_hexin-ifind-ds-news-mcp__search_news` | 财经新闻语义搜索 | `{query: "脑机接口技术最新进展", time_start: "2025-01-01", time_end: "2026-01-01", size: 5}` |
-| `mcp__plugin_ifind_hexin-ifind-ds-news-mcp__search_notice` | 上市公司公告语义搜索 | `{query: "光迅科技2024年度报告 光模块技术", time_start: "2025-01-01", time_end: "2026-01-01", size: 5}` |
+| `mcp__plugin_ifind-finance-data_hexin-ifind-ds-news-mcp__search_news` | 财经新闻语义搜索 | `{query: "脑机接口技术最新进展", time_start: "2025-01-01", time_end: "2026-01-01", size: 5}` |
+| `mcp__plugin_ifind-finance-data_hexin-ifind-ds-news-mcp__search_notice` | 上市公司公告语义搜索 | `{query: "光迅科技2024年度报告 光模块技术", time_start: "2025-01-01", time_end: "2026-01-01", size: 5}` |
 
 > ⚠️ **MCP 暂未覆盖**：`search_trending_news`（热点事件搜索）仅在脚本端可用。使用 `call("news", "search_trending_news", {"keyword": "智能体", "industry_name": "计算机", "time_scope": "24小时", "size": 5})` 兜底。
 
@@ -152,11 +152,11 @@ model: deepseek-v4-pro
 
 | MCP 工具 | 功能 | 典型参数 |
 |---|---|---|
-| `mcp__plugin_ifind_hexin-ifind-ds-bond-mcp__bond_basic_info` | 债券及发行主体信息 | `{query: "23广东11、19黑龙江债01的发行期限与发行总额"}` |
-| `mcp__plugin_ifind_hexin-ifind-ds-bond-mcp__bond_market_data` | 行情/估值/风险收益 | `{query: "26国债01近五日收盘价、涨跌幅与最新久期、凸性"}` |
-| `mcp__plugin_ifind_hexin-ifind-ds-bond-mcp__bond_financial_data` | 发行体财务指标 | `{query: "24辽港01、24皮城01在20251231的资产负债率和ROE"}` |
-| `mcp__plugin_ifind_hexin-ifind-ds-bond-mcp__bond_special_data` | 信用评级/可转债/回购 | `{query: "华海转债、南航转债的最新转股价格及转换比例"}` |
-| `mcp__plugin_ifind_hexin-ifind-ds-bond-mcp__bond_highfreq_quotes` | 日内高频行情 | `{symbols:"240025.IB,24附息国债25", indicators:"最新价,涨跌幅", data_mode:"real_time"}` |
+| `mcp__plugin_ifind-finance-data_hexin-ifind-ds-bond-mcp__bond_basic_info` | 债券及发行主体信息 | `{query: "23广东11、19黑龙江债01的发行期限与发行总额"}` |
+| `mcp__plugin_ifind-finance-data_hexin-ifind-ds-bond-mcp__bond_market_data` | 行情/估值/风险收益 | `{query: "26国债01近五日收盘价、涨跌幅与最新久期、凸性"}` |
+| `mcp__plugin_ifind-finance-data_hexin-ifind-ds-bond-mcp__bond_financial_data` | 发行体财务指标 | `{query: "24辽港01、24皮城01在20251231的资产负债率和ROE"}` |
+| `mcp__plugin_ifind-finance-data_hexin-ifind-ds-bond-mcp__bond_special_data` | 信用评级/可转债/回购 | `{query: "华海转债、南航转债的最新转股价格及转换比例"}` |
+| `mcp__plugin_ifind-finance-data_hexin-ifind-ds-bond-mcp__bond_highfreq_quotes` | 日内高频行情 | `{symbols:"240025.IB,24附息国债25", indicators:"最新价,涨跌幅", data_mode:"real_time"}` |
 
 > ⚠️ 债券 MCP 工具仅支持交易所债券数据，不支持银行间市场数据。
 
@@ -168,10 +168,10 @@ model: deepseek-v4-pro
 
 | MCP 工具 | 功能 | 典型参数 |
 |---|---|---|
-| `mcp__plugin_ifind_hexin-ifind-ds-global-stock-mcp__global_stock_profile` | 基本资料/行业/上市信息 | `{query: "智谱、minimax的所属行业、上市日期与发行价"}` |
-| `mcp__plugin_ifind_hexin-ifind-ds-global-stock-mcp__global_stock_quotes` | 行情/技术指标 | `{query: "苹果和特斯拉近10个交易日的涨跌幅、换手率"}` |
-| `mcp__plugin_ifind_hexin-ifind-ds-global-stock-mcp__global_stock_financial` | 财务/估值/盈利预测 | `{query: "Google和Meta在最新报告期的ROE、ROA、利润增速"}` |
-| `mcp__plugin_ifind_hexin-ifind-ds-global-stock-mcp__global_stock_events` | 事件数据 | `{query: "minimax的IPO日期、数量、价格及保荐人"}` |
+| `mcp__plugin_ifind-finance-data_hexin-ifind-ds-global-stock-mcp__global_stock_profile` | 基本资料/行业/上市信息 | `{query: "智谱、minimax的所属行业、上市日期与发行价"}` |
+| `mcp__plugin_ifind-finance-data_hexin-ifind-ds-global-stock-mcp__global_stock_quotes` | 行情/技术指标 | `{query: "苹果和特斯拉近10个交易日的涨跌幅、换手率"}` |
+| `mcp__plugin_ifind-finance-data_hexin-ifind-ds-global-stock-mcp__global_stock_financial` | 财务/估值/盈利预测 | `{query: "Google和Meta在最新报告期的ROE、ROA、利润增速"}` |
+| `mcp__plugin_ifind-finance-data_hexin-ifind-ds-global-stock-mcp__global_stock_events` | 事件数据 | `{query: "minimax的IPO日期、数量、价格及保荐人"}` |
 
 > ⚠️ **MCP 暂未覆盖**：`search_global_stocks`（港美股选股）仅在脚本端可用。使用 `call("global_stock", "search_global_stocks", {"query": "汽车行业且市盈率低于50", "market": "港股"})` 兜底。
 
@@ -183,9 +183,9 @@ model: deepseek-v4-pro
 
 | MCP 工具 | 功能 | 典型参数 |
 |---|---|---|
-| `mcp__plugin_ifind_hexin-ifind-ds-index-mcp__index_data` | 指数行情/估值/成分 | `{query: "沪深300、中证2000过去10个交易日的涨跌幅和收盘点数"}` |
-| `mcp__plugin_ifind_hexin-ifind-ds-index-mcp__sector_data` | 板块行情/成分股 | `{query: "医疗设备板块(中证行业)的成分股个数及过去5个交易日的成分股平均涨跌幅"}` |
-| `mcp__plugin_ifind_hexin-ifind-ds-index-mcp__index_highfreq_quotes` | 指数高频行情 | `{symbols:"000001.SH,创业板指", indicators:"最新价,涨跌幅,上涨家数", data_mode:"real_time"}` |
+| `mcp__plugin_ifind-finance-data_hexin-ifind-ds-index-mcp__index_data` | 指数行情/估值/成分 | `{query: "沪深300、中证2000过去10个交易日的涨跌幅和收盘点数"}` |
+| `mcp__plugin_ifind-finance-data_hexin-ifind-ds-index-mcp__sector_data` | 板块行情/成分股 | `{query: "医疗设备板块(中证行业)的成分股个数及过去5个交易日的成分股平均涨跌幅"}` |
+| `mcp__plugin_ifind-finance-data_hexin-ifind-ds-index-mcp__index_highfreq_quotes` | 指数高频行情 | `{symbols:"000001.SH,创业板指", indicators:"最新价,涨跌幅,上涨家数", data_mode:"real_time"}` |
 
 > ⚠️ 板块命名可能相似，查询时尽量提供板块所属分类（如"中证行业"、"申万行业"）以精确定位。
 
