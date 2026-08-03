@@ -33,6 +33,6 @@ Key 可在 https://tavily.com 获取。
 
 会话启动时（`SessionStart`）检查 `TAVILY_API_KEY` 环境变量是否已配置；缺失时向 Claude 注入提示，引导调用 `tavily-search-setup` skill 完成配置。
 
-- 配置：`hooks/hooks.json`，脚本：`hooks/check_env.sh`
+- 配置：`hooks/hooks.json`，脚本：`hooks/check_env.js`（基于 Node.js，需 `node` 在 PATH 中）
 - Hook 在会话启动时加载，**修改后需重启 Claude Code 生效**
 - 也可用 `/hooks` 命令查看当前会话已加载的 hooks
