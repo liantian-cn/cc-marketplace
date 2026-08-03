@@ -6,11 +6,11 @@ Use this workflow when the user needs trade finance compliance through MCP tools
 
 ## Minimum Calls
 
-- `mcp__qcc-company__get_company_registration_info`: company registration info.
-- `mcp__qcc-operation__get_import_export_credit`: import export credit.
-- `mcp__qcc-operation__get_administrative_license`: administrative license.
-- `mcp__qcc-operation__get_bidding_info`: bidding info.
-- `mcp__qcc-risk__get_tax_violation`: tax violation.
+- `mcp__plugin_qcc-due-diligence_qcc-company__get_company_registration_info`: company registration info.
+- `mcp__plugin_qcc-due-diligence_qcc-operation__get_import_export_credit`: import export credit.
+- `mcp__plugin_qcc-due-diligence_qcc-operation__get_administrative_license`: administrative license.
+- `mcp__plugin_qcc-due-diligence_qcc-operation__get_bidding_info`: bidding info.
+- `mcp__plugin_qcc-due-diligence_qcc-risk__get_tax_violation`: tax violation.
 
 ## Escalation Signals
 

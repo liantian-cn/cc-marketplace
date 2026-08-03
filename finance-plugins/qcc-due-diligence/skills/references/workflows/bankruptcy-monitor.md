@@ -6,11 +6,11 @@ Use this workflow when the user needs insolvency monitoring through MCP tools. C
 
 ## Minimum Calls
 
-- `mcp__qcc-risk__get_judgment_debtor_info`: judgment debtor info.
-- `mcp__qcc-risk__get_dishonest_info`: dishonest info.
-- `mcp__qcc-risk__get_terminated_cases`: terminated cases.
-- `mcp__qcc-risk__get_bankruptcy_reorganization`: bankruptcy reorganization.
-- `mcp__qcc-risk__get_liquidation_info`: liquidation info.
+- `mcp__plugin_qcc-due-diligence_qcc-risk__get_judgment_debtor_info`: judgment debtor info.
+- `mcp__plugin_qcc-due-diligence_qcc-risk__get_dishonest_info`: dishonest info.
+- `mcp__plugin_qcc-due-diligence_qcc-risk__get_terminated_cases`: terminated cases.
+- `mcp__plugin_qcc-due-diligence_qcc-risk__get_bankruptcy_reorganization`: bankruptcy reorganization.
+- `mcp__plugin_qcc-due-diligence_qcc-risk__get_liquidation_info`: liquidation info.
 
 ## Escalation Signals
 

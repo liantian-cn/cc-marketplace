@@ -1,14 +1,29 @@
 ---
 name: "qcc-due-diligence"
 description: "Use when performing QCC company due diligence, KYB verification, credit risk review, litigation analysis, UBO screening, counterparty risk checks, or executive background screening through MCP tools."
-homepage: https://www.qcc.com
-version: 2.0.0
-author: QCC
+version: "2026-08-03"
+category: "企业尽调"
+mcp_servers:
+  - qcc-company
+  - qcc-risk
+  - qcc-ipr
+  - qcc-operation
+  - qcc-executive
+  - qcc-legal-regulation
+  - qcc-legal-case
+  - qcc-document
+tags:
+  - 企查查
+  - QCC
+  - 尽调
+  - KYB
+  - UBO
+  - 风控
 ---
 
 # QCC Due Diligence
 
-This skill uses MCP tools to query QCC company intelligence services. All tools are available as `mcp__qcc-{category}__{tool_name}`.
+This skill uses MCP tools to query QCC company intelligence services. All tools are available as `mcp__plugin_qcc-due-diligence_qcc-{category}__{tool_name}`.
 
 ## Prerequisites
 
@@ -20,23 +35,23 @@ This skill uses MCP tools to query QCC company intelligence services. All tools 
 
 | Category | MCP Prefix | Description |
 | --- | --- | --- |
-| Company | `mcp__qcc-company__` | Company profile, ownership, filings, annual reports, and registry changes |
-| Risk | `mcp__qcc-risk__` | Court, enforcement, tax, penalty, insolvency, and asset risk records |
-| Executive | `mcp__qcc-executive__` | Executive, legal representative, controller, and individual risk records |
-| IPR | `mcp__qcc-ipr__` | Intellectual property, digital assets, licenses, and franchise records |
-| Operation | `mcp__qcc-operation__` | Operating activity, tenders, hiring, qualifications, financing, and news |
-| Legal Case | `mcp__qcc-legal-case__` | Judicial case search and retrieval |
-| Legal Regulation | `mcp__qcc-legal-regulation__` | Legal articles and regulation search |
-| Document | `mcp__qcc-document__` | Document parsing and analysis |
+| Company | `mcp__plugin_qcc-due-diligence_qcc-company__` | Company profile, ownership, filings, annual reports, and registry changes |
+| Risk | `mcp__plugin_qcc-due-diligence_qcc-risk__` | Court, enforcement, tax, penalty, insolvency, and asset risk records |
+| Executive | `mcp__plugin_qcc-due-diligence_qcc-executive__` | Executive, legal representative, controller, and individual risk records |
+| IPR | `mcp__plugin_qcc-due-diligence_qcc-ipr__` | Intellectual property, digital assets, licenses, and franchise records |
+| Operation | `mcp__plugin_qcc-due-diligence_qcc-operation__` | Operating activity, tenders, hiring, qualifications, financing, and news |
+| Legal Case | `mcp__plugin_qcc-due-diligence_qcc-legal-case__` | Judicial case search and retrieval |
+| Legal Regulation | `mcp__plugin_qcc-due-diligence_qcc-legal-regulation__` | Legal articles and regulation search |
+| Document | `mcp__plugin_qcc-due-diligence_qcc-document__` | Document parsing and analysis |
 
 ## Invocation
 
 Call MCP tools directly using the tool calling mechanism:
 
 ```
-mcp__qcc-company__get_company_by_query({"searchKey": "Alibaba"})
-mcp__qcc-risk__get_dishonest_info({"searchKey": "Alibaba"})
-mcp__qcc-executive__get_executive_positions({"searchKey": "Alibaba", "personName": "JackMa"})
+mcp__plugin_qcc-due-diligence_qcc-company__get_company_by_query({"searchKey": "Alibaba"})
+mcp__plugin_qcc-due-diligence_qcc-risk__get_dishonest_info({"searchKey": "Alibaba"})
+mcp__plugin_qcc-due-diligence_qcc-executive__get_executive_positions({"searchKey": "Alibaba", "personName": "JackMa"})
 ```
 
 ## Response Style
@@ -75,6 +90,6 @@ The following table is the single canonical workflow list:
 ## Usage Tips
 
 1. Apply the routing gate before opening any workflow.
-2. Company checks usually start with `mcp__qcc-company__get_company_registration_info`, then add shareholders, controllers, annual reports, changes, and contact records as needed.
+2. Company checks usually start with `mcp__plugin_qcc-due-diligence_qcc-company__get_company_registration_info`, then add shareholders, controllers, annual reports, changes, and contact records as needed.
 3. Risk scans should combine court, enforcement, dishonesty, penalty, abnormal-operation, tax, insolvency, and guarantee records.
-4. Use `mcp__qcc-executive__*` tools for individual background checks, `mcp__qcc-operation__*` for operating activity, and `mcp__qcc-ipr__*` for intellectual property.
+4. Use `mcp__plugin_qcc-due-diligence_qcc-executive__*` tools for individual background checks, `mcp__plugin_qcc-due-diligence_qcc-operation__*` for operating activity, and `mcp__plugin_qcc-due-diligence_qcc-ipr__*` for intellectual property.

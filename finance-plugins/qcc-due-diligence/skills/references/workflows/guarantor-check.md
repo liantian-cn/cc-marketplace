@@ -6,11 +6,11 @@ Use this workflow when the user needs guarantor check through MCP tools. Confirm
 
 ## Minimum Calls
 
-- `mcp__qcc-company__get_company_registration_info`: company registration info.
-- `mcp__qcc-company__get_financial_data`: financial data.
-- `mcp__qcc-risk__get_guarantee_info`: guarantee info.
+- `mcp__plugin_qcc-due-diligence_qcc-company__get_company_registration_info`: company registration info.
+- `mcp__plugin_qcc-due-diligence_qcc-company__get_financial_data`: financial data.
+- `mcp__plugin_qcc-due-diligence_qcc-risk__get_guarantee_info`: guarantee info.
 - `get_chattel_mortgage_info`: chattel mortgage info.
-- `mcp__qcc-risk__get_judgment_debtor_info`: judgment debtor info.
+- `mcp__plugin_qcc-due-diligence_qcc-risk__get_judgment_debtor_info`: judgment debtor info.
 
 ## Escalation Signals
 

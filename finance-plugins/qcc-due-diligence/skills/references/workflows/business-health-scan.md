@@ -6,11 +6,11 @@ Use this workflow when the user needs business health scan through MCP tools. Co
 
 ## Minimum Calls
 
-- `mcp__qcc-operation__get_recruitment_info`: recruitment info.
-- `mcp__qcc-operation__get_bidding_info`: bidding info.
-- `mcp__qcc-company__get_financial_data`: financial data.
-- `mcp__qcc-operation__get_news_sentiment`: news sentiment.
-- `mcp__qcc-risk__get_business_exception`: business exception.
+- `mcp__plugin_qcc-due-diligence_qcc-operation__get_recruitment_info`: recruitment info.
+- `mcp__plugin_qcc-due-diligence_qcc-operation__get_bidding_info`: bidding info.
+- `mcp__plugin_qcc-due-diligence_qcc-company__get_financial_data`: financial data.
+- `mcp__plugin_qcc-due-diligence_qcc-operation__get_news_sentiment`: news sentiment.
+- `mcp__plugin_qcc-due-diligence_qcc-risk__get_business_exception`: business exception.
 
 ## Escalation Signals
 

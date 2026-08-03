@@ -6,11 +6,11 @@ Use this workflow when the user needs litigation analysis through MCP tools. Con
 
 ## Minimum Calls
 
-- `mcp__qcc-risk__get_judicial_documents`: judicial documents.
-- `mcp__qcc-risk__get_case_filing_info`: case filing info.
-- `mcp__qcc-risk__get_hearing_notice`: hearing notice.
-- `mcp__qcc-risk__get_judgment_debtor_info`: judgment debtor info.
-- `mcp__qcc-risk__get_equity_freeze`: equity freeze.
+- `mcp__plugin_qcc-due-diligence_qcc-risk__get_judicial_documents`: judicial documents.
+- `mcp__plugin_qcc-due-diligence_qcc-risk__get_case_filing_info`: case filing info.
+- `mcp__plugin_qcc-due-diligence_qcc-risk__get_hearing_notice`: hearing notice.
+- `mcp__plugin_qcc-due-diligence_qcc-risk__get_judgment_debtor_info`: judgment debtor info.
+- `mcp__plugin_qcc-due-diligence_qcc-risk__get_equity_freeze`: equity freeze.
 
 ## Escalation Signals
 

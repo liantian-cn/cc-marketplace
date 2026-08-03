@@ -6,11 +6,11 @@ Use this workflow when the user needs equity structure review through MCP tools.
 
 ## Minimum Calls
 
-- `mcp__qcc-company__get_shareholder_info`: shareholder info.
-- `mcp__qcc-company__get_actual_controller`: actual controller.
-- `mcp__qcc-company__get_beneficial_owners`: beneficial owners.
-- `mcp__qcc-company__get_change_records`: change records.
-- `mcp__qcc-risk__get_equity_pledge_info`: equity pledge info.
+- `mcp__plugin_qcc-due-diligence_qcc-company__get_shareholder_info`: shareholder info.
+- `mcp__plugin_qcc-due-diligence_qcc-company__get_actual_controller`: actual controller.
+- `mcp__plugin_qcc-due-diligence_qcc-company__get_beneficial_owners`: beneficial owners.
+- `mcp__plugin_qcc-due-diligence_qcc-company__get_change_records`: change records.
+- `mcp__plugin_qcc-due-diligence_qcc-risk__get_equity_pledge_info`: equity pledge info.
 
 ## Escalation Signals
 

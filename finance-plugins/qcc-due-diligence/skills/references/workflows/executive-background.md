@@ -6,11 +6,11 @@ Use this workflow when the user needs executive background check through MCP too
 
 ## Minimum Calls
 
-- `mcp__qcc-company__get_key_personnel`: key personnel.
-- `mcp__qcc-executive__get_executive_positions`: executive positions.
-- `mcp__qcc-executive__get_executive_dishonest`: executive dishonest.
-- `mcp__qcc-executive__get_executive_judgment_debtor`: executive judgment debtor.
-- `mcp__qcc-executive__get_executive_controlled_companies`: executive controlled companies.
+- `mcp__plugin_qcc-due-diligence_qcc-company__get_key_personnel`: key personnel.
+- `mcp__plugin_qcc-due-diligence_qcc-executive__get_executive_positions`: executive positions.
+- `mcp__plugin_qcc-due-diligence_qcc-executive__get_executive_dishonest`: executive dishonest.
+- `mcp__plugin_qcc-due-diligence_qcc-executive__get_executive_judgment_debtor`: executive judgment debtor.
+- `mcp__plugin_qcc-due-diligence_qcc-executive__get_executive_controlled_companies`: executive controlled companies.
 
 ## Escalation Signals
 

@@ -6,11 +6,11 @@ Use this workflow when the user needs ubo screening through MCP tools. Confirm t
 
 ## Minimum Calls
 
-- `mcp__qcc-company__get_beneficial_owners`: beneficial owners.
-- `mcp__qcc-company__get_actual_controller`: actual controller.
-- `mcp__qcc-company__get_shareholder_info`: shareholder info.
-- `mcp__qcc-executive__get_executive_positions`: executive positions.
-- `mcp__qcc-executive__get_executive_dishonest`: executive dishonest.
+- `mcp__plugin_qcc-due-diligence_qcc-company__get_beneficial_owners`: beneficial owners.
+- `mcp__plugin_qcc-due-diligence_qcc-company__get_actual_controller`: actual controller.
+- `mcp__plugin_qcc-due-diligence_qcc-company__get_shareholder_info`: shareholder info.
+- `mcp__plugin_qcc-due-diligence_qcc-executive__get_executive_positions`: executive positions.
+- `mcp__plugin_qcc-due-diligence_qcc-executive__get_executive_dishonest`: executive dishonest.
 
 ## Escalation Signals
 

@@ -6,11 +6,11 @@ Use this workflow when the user needs credit monitoring through MCP tools. Confi
 
 ## Minimum Calls
 
-- `mcp__qcc-company__get_company_registration_info`: company registration info.
-- `mcp__qcc-company__get_change_records`: change records.
-- `mcp__qcc-company__get_financial_data`: financial data.
-- `mcp__qcc-risk__get_judgment_debtor_info`: judgment debtor info.
-- `mcp__qcc-risk__get_business_exception`: business exception.
+- `mcp__plugin_qcc-due-diligence_qcc-company__get_company_registration_info`: company registration info.
+- `mcp__plugin_qcc-due-diligence_qcc-company__get_change_records`: change records.
+- `mcp__plugin_qcc-due-diligence_qcc-company__get_financial_data`: financial data.
+- `mcp__plugin_qcc-due-diligence_qcc-risk__get_judgment_debtor_info`: judgment debtor info.
+- `mcp__plugin_qcc-due-diligence_qcc-risk__get_business_exception`: business exception.
 
 ## Escalation Signals
 

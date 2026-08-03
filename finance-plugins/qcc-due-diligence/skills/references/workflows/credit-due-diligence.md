@@ -6,12 +6,12 @@ Use this workflow when the user needs credit due diligence report through MCP to
 
 ## Minimum Calls
 
-- `mcp__qcc-company__get_company_registration_info`: company registration info.
-- `mcp__qcc-company__get_shareholder_info`: shareholder info.
-- `mcp__qcc-company__get_actual_controller`: actual controller.
-- `mcp__qcc-company__get_financial_data`: financial data.
-- `mcp__qcc-risk__get_judicial_documents`: judicial documents.
-- `mcp__qcc-risk__get_dishonest_info`: dishonest info.
+- `mcp__plugin_qcc-due-diligence_qcc-company__get_company_registration_info`: company registration info.
+- `mcp__plugin_qcc-due-diligence_qcc-company__get_shareholder_info`: shareholder info.
+- `mcp__plugin_qcc-due-diligence_qcc-company__get_actual_controller`: actual controller.
+- `mcp__plugin_qcc-due-diligence_qcc-company__get_financial_data`: financial data.
+- `mcp__plugin_qcc-due-diligence_qcc-risk__get_judicial_documents`: judicial documents.
+- `mcp__plugin_qcc-due-diligence_qcc-risk__get_dishonest_info`: dishonest info.
 
 ## Escalation Signals
 

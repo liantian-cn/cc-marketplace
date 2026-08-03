@@ -6,11 +6,11 @@ Use this workflow when the user needs counterparty risk review through MCP tools
 
 ## Minimum Calls
 
-- `mcp__qcc-company__get_company_registration_info`: company registration info.
-- `mcp__qcc-company__get_company_profile`: company profile.
-- `mcp__qcc-operation__get_import_export_credit`: import export credit.
-- `mcp__qcc-risk__get_judicial_documents`: judicial documents.
-- `mcp__qcc-risk__get_dishonest_info`: dishonest info.
+- `mcp__plugin_qcc-due-diligence_qcc-company__get_company_registration_info`: company registration info.
+- `mcp__plugin_qcc-due-diligence_qcc-company__get_company_profile`: company profile.
+- `mcp__plugin_qcc-due-diligence_qcc-operation__get_import_export_credit`: import export credit.
+- `mcp__plugin_qcc-due-diligence_qcc-risk__get_judicial_documents`: judicial documents.
+- `mcp__plugin_qcc-due-diligence_qcc-risk__get_dishonest_info`: dishonest info.
 
 ## Escalation Signals
 

@@ -1,10 +1,10 @@
 # Tool Reference
 
-All tools are available via MCP as `mcp__qcc-{category}__{tool_name}`.
+All tools are available via MCP as `mcp__plugin_qcc-due-diligence_qcc-{category}__{tool_name}`.
 
 ## company
 
-Company profile, ownership, filings, annual reports, and registry changes. MCP prefix: `mcp__qcc-company__`
+Company profile, ownership, filings, annual reports, and registry changes. MCP prefix: `mcp__plugin_qcc-due-diligence_qcc-company__`
 
 | Tool | Required params | Common optional params | Label |
 | --- | --- | --- | --- |
@@ -27,7 +27,7 @@ Company profile, ownership, filings, annual reports, and registry changes. MCP p
 
 ## risk
 
-Court, enforcement, tax, penalty, insolvency, and asset risk records. MCP prefix: `mcp__qcc-risk__`
+Court, enforcement, tax, penalty, insolvency, and asset risk records. MCP prefix: `mcp__plugin_qcc-due-diligence_qcc-risk__`
 
 | Tool | Required params | Common optional params | Label |
 | --- | --- | --- | --- |
@@ -72,7 +72,7 @@ Court, enforcement, tax, penalty, insolvency, and asset risk records. MCP prefix
 
 ## ipr
 
-Intellectual property, digital assets, licenses, and franchise records. MCP prefix: `mcp__qcc-ipr__`
+Intellectual property, digital assets, licenses, and franchise records. MCP prefix: `mcp__plugin_qcc-due-diligence_qcc-ipr__`
 
 | Tool | Required params | Common optional params | Label |
 | --- | --- | --- | --- |
@@ -97,7 +97,7 @@ Intellectual property, digital assets, licenses, and franchise records. MCP pref
 
 ## operation
 
-Operating activity, tenders, hiring, qualifications, financing, and news. MCP prefix: `mcp__qcc-operation__`
+Operating activity, tenders, hiring, qualifications, financing, and news. MCP prefix: `mcp__plugin_qcc-due-diligence_qcc-operation__`
 
 | Tool | Required params | Common optional params | Label |
 | --- | --- | --- | --- |
@@ -139,7 +139,7 @@ Operating activity, tenders, hiring, qualifications, financing, and news. MCP pr
 
 ## executive
 
-Executive, legal representative, controller, and individual risk records. MCP prefix: `mcp__qcc-executive__`
+Executive, legal representative, controller, and individual risk records. MCP prefix: `mcp__plugin_qcc-due-diligence_qcc-executive__`
 
 | Tool | Required params | Common optional params | Label |
 | --- | --- | --- | --- |
