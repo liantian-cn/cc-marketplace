@@ -1,0 +1,9 @@
+{
+  "name": "markitdown",
+  "version": "1.0.0",
+  "description": "微软 MarkItDown MCP 服务器：将 PDF、Word、PPT、Excel、HTML、图片（OCR）等文件转换为 Markdown 格式，供 LLM 进一步处理。",
+  "author": {
+    "name": "Microsoft"
+  },
+  "license": "MIT"
+}
