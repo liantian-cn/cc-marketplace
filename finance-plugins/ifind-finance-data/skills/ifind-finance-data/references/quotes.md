@@ -12,34 +12,34 @@
 
 | 品类 | MCP 工具 |
 | --- | --- |
-| A股 | `mcp__hexin-ifind-ds-stock-mcp__stock_highfreq_quotes` |
-| 基金 | `mcp__hexin-ifind-ds-fund-mcp__fund_highfreq_quotes` |
-| 债券 | `mcp__hexin-ifind-ds-bond-mcp__bond_highfreq_quotes` |
-| 指数 | `mcp__hexin-ifind-ds-index-mcp__index_highfreq_quotes` |
+| A股 | `mcp__plugin_ifind-finance-data_hexin-ifind-ds-stock-mcp__stock_highfreq_quotes` |
+| 基金 | `mcp__plugin_ifind-finance-data_hexin-ifind-ds-fund-mcp__fund_highfreq_quotes` |
+| 债券 | `mcp__plugin_ifind-finance-data_hexin-ifind-ds-bond-mcp__bond_highfreq_quotes` |
+| 指数 | `mcp__plugin_ifind-finance-data_hexin-ifind-ds-index-mcp__index_highfreq_quotes` |
 
 ## 调用示例
 
 **A股实时行情:**
 ```
-使用 MCP 工具: mcp__hexin-ifind-ds-stock-mcp__stock_highfreq_quotes
+使用 MCP 工具: mcp__plugin_ifind-finance-data_hexin-ifind-ds-stock-mcp__stock_highfreq_quotes
 参数: {"symbols":"贵州茅台","indicators":"最新价,涨跌幅,成交量,成交额","data_mode":"real_time"}
 ```
 
 **基金高频行情:**
 ```
-使用 MCP 工具: mcp__hexin-ifind-ds-fund-mcp__fund_highfreq_quotes
+使用 MCP 工具: mcp__plugin_ifind-finance-data_hexin-ifind-ds-fund-mcp__fund_highfreq_quotes
 参数: {"symbols":"516850","indicators":"开盘价,最高价,最低价,收盘价,成交量","data_mode":"highfreq","interval":1}
 ```
 
 **债券实时行情:**
 ```
-使用 MCP 工具: mcp__hexin-ifind-ds-bond-mcp__bond_highfreq_quotes
+使用 MCP 工具: mcp__plugin_ifind-finance-data_hexin-ifind-ds-bond-mcp__bond_highfreq_quotes
 参数: {"symbols":"24附息国债25","indicators":"最新价,现手,振幅,最新成交价","data_mode":"real_time"}
 ```
 
 **指数高频行情:**
 ```
-使用 MCP 工具: mcp__hexin-ifind-ds-index-mcp__index_highfreq_quotes
+使用 MCP 工具: mcp__plugin_ifind-finance-data_hexin-ifind-ds-index-mcp__index_highfreq_quotes
 参数: {"symbols":"创业板指","indicators":"开盘价,最高价,最低价,收盘价,日内累积涨跌幅","data_mode":"highfreq","interval":1}
 ```
 

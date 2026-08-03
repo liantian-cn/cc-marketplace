@@ -4,12 +4,12 @@
 
 | MCP 工具 | 功能说明 | 典型参数 |
 | --- | --- | --- |
-| `mcp__hexin-ifind-ds-edb-mcp__get_edb_data` | 指标数据查询 | `{"query":"光伏电池产量202301-202506"}` |
+| `mcp__plugin_ifind-finance-data_hexin-ifind-ds-edb-mcp__get_edb_data` | 指标数据查询 | `{"query":"光伏电池产量202301-202506"}` |
 
 ### 调用示例
 
 **宏观经济指标查询:**
 ```
-使用 MCP 工具: mcp__hexin-ifind-ds-edb-mcp__get_edb_data
+使用 MCP 工具: mcp__plugin_ifind-finance-data_hexin-ifind-ds-edb-mcp__get_edb_data
 参数: {"query":"新能源汽车产量当月值（202301-202506）"}
 ```
