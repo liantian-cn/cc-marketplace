@@ -1,6 +1,6 @@
 {
   "name": "firecrawl",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Firecrawl MCP 服务器：网页抓取与爬取（scrape/crawl/search），支持将网页、PDF、动态渲染页面转换为干净的 Markdown 数据。",
   "author": {
     "name": "Firecrawl"
