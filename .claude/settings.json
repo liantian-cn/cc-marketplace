@@ -3,15 +3,16 @@
     "plugin-dev@claude-plugins-official": true,
     "claude-md-management@claude-plugins-official": true,
     "claude-code-setup@claude-plugins-official": true,
-    "aliyuncs-search@liantian-cc-market": true,
-    "baidu-search@liantian-cc-market": true,
-    "bocha-search@liantian-cc-market": true,
+    "aliyuncs-search@liantian-cc-market": false,
+    "baidu-search@liantian-cc-market": false,
+    "bocha-search@liantian-cc-market": false,
     "context7@liantian-cc-market": true,
-    "exa-search@liantian-cc-market": true,
-    "firecrawl@liantian-cc-market": true,
+    "exa-search@liantian-cc-market": false,
+    "firecrawl@liantian-cc-market": false,
     "tavily-search@liantian-cc-market": true,
-    "qcc-due-diligence@liantian-cc-market": true,
-    "pku-law@liantian-cc-market": true,
-    "ifind-finance-data@liantian-cc-market": true
+    "qcc-due-diligence@liantian-cc-market": false,
+    "pku-law@liantian-cc-market": false,
+    "ifind-finance-data@liantian-cc-market": false,
+    "guizang-ppt@liantian-cc-market": true
   }
 }
