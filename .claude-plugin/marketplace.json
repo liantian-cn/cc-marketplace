@@ -5,7 +5,7 @@
   },
   "metadata": {
     "description": "liantian-cn 的 Claude Code 插件市场",
-    "version": "1.0.38"
+    "version": "1.0.39"
   },
   "plugins": [
     {
@@ -189,6 +189,19 @@
       "homepage": "https://github.com/liantian-cn/cc-marketplace/",
       "repository": "https://github.com/liantian-cn/cc-marketplace/tree/main/production-plugins/advanced-search",
       "category": "搜索"
+    },
+    {
+      "name": "humanizer-zh-next",
+      "source": "./production-plugins/humanizer-zh-next",
+      "description": "去除中文文本中由人工智能生成的痕迹。在编辑或审阅文本时使用该功能，可使文本更自然、更像人工撰写的作品。基于 op7418/humanizer-zh 与 blader/humanizer 重新适配的中文去 AI 味技能，遵循「改写而非删除、等量覆盖」原则。",
+      "version": "1.0.0",
+      "author": {
+        "name": "Hyacehila"
+      },
+      "license": "MIT",
+      "homepage": "https://github.com/liantian-cn/cc-marketplace/",
+      "repository": "https://github.com/liantian-cn/cc-marketplace/tree/main/production-plugins/humanizer-zh-next",
+      "category": "工具"
     },
     {
       "name": "guizang-ppt",
