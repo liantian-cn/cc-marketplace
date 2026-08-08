@@ -47,7 +47,7 @@ Key 可在 https://mcp.pkulaw.com/console 获取。
 
 ## Setup Skill
 
-`pkulaw-mcp-setup` 技能用于维护 `PKU_LAW_API` 环境变量：当 `mcp__plugin_pku-law_*` 工具不可用或报密钥错误时，引导用户到 https://mcp.pkulaw.com/console 获取密钥，并通过 `scripts/set_pkulaw_key.py` 写入 `~/.claude/settings.json`。
+`pkulaw-mcp-setup` 技能用于维护 `PKU_LAW_API` 环境变量：当 `mcp__plugin_pku-law_*` 工具不可用或报密钥错误时，引导用户到 https://mcp.pkulaw.com/console 获取密钥，并通过 `scripts/set_pkulaw_key.py` 配置。脚本会自动检测环境：在 Claude Code 中写入 `~/.claude/settings.json` 的 `env` 字段；在其他环境中设置用户级环境变量（Windows 通过 `[System.Environment]::SetEnvironmentVariable`，Linux/macOS 写入登录 shell 的 rc 文件）。
 
 ## Hooks
 
