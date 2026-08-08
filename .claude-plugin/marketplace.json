@@ -5,14 +5,14 @@
   },
   "metadata": {
     "description": "liantian-cn 的 Claude Code 插件市场",
-    "version": "1.0.47"
+    "version": "1.0.49"
   },
   "plugins": [
     {
       "name": "qcc-due-diligence",
       "source": "./finance-plugins/qcc-due-diligence",
       "description": "面向金融机构的企业尽职调查工具包，通过企查查（QCC）商业数据库提供 KYB 核验、UBO 穿透、授信尽调、贷后监控、破产预警、诉讼分析、贸易融资合规等 13 项核心业务能力。",
-      "version": "1.0.10",
+      "version": "1.0.11",
       "author": {
         "name": "liantian"
       },
@@ -220,7 +220,7 @@
       "name": "code-neo",
       "source": "./production-plugins/code-neo",
       "description": "个人风格程序开发插件（黑客帝国主题）：Neo 作为日常入口，编排 plan→code→audit→commit 全流程。The Architect 两轮需求分析与历史意图审查、The Oracle 只读证据收集、The Construct 多模态分析（HAIKU）、Zion 按冻结 plan/spec/mean 实现代码（SONNET）、三位 Sentinel 分别执行业务符合性、代码逻辑与克制性、代码风格与可读性审计。仅由 agents 与 skills 组成，无 MCP、无 hook。",
-      "version": "1.0.3",
+      "version": "1.0.4",
       "author": {
         "name": "liantian"
       },
