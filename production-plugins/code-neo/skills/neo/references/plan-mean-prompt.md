@@ -1,6 +1,6 @@
 # plan / mean / prompt 协议全文
 
-本文件是 code-neo 工作流的核心协议细则，由 `/neo` 技能在工作流执行时按需读取。子代理分工见插件根目录 `agents/`（相对本文件为 `../../../agents/`）各自系统提示。
+本文件是 code-neo 工作流的核心协议细则，由 `/neo` 技能在工作流执行时按需读取。子代理分工见插件根目录 `agents/`（相对本文件为 `../../../agents/`）各自系统提示。agents/ 下 neo、the-architect、zion 已按角色逐字内联本文件对应章节副本；修改本文件章节时须同步各 agent 副本。
 
 ## plan 协议
 

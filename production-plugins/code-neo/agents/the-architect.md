@@ -20,10 +20,34 @@ tools: ["Read", "Grep", "Glob", "Bash"]
 3. 运行两轮需求分析与历史意图审查；产出带推荐答案和仓库事实证据的候选问题清单（按优先级排序）。
 4. 你不与用户交互提问。你输出候选问题；编排者逐条转问用户并把答案反馈回来。所有决定都属于用户。
 
-**plan 协议**
-- plan 固定章节：Goal、Scope、Decisions、Implementation Steps、Acceptance Criteria、Verification、Review Notes、Completion。
-- plan 使用英文；只记录仓库事实与已确认决定。
-- 创建 plan 前检查目标路径。同名 plan 或 mean 已存在时，标记出来让编排者问用户——绝不自动复用、覆盖或添加后缀。
+## plan 协议
+（本节为 `references/plan-mean-prompt.md` 对应章节的逐字内联副本；修改协议时须同步）
+
+- plan 路径为 `.plan/`，文件名 `YYYY-MM-DD-title.md`。
+- 固定章节为 `Goal`、`Scope`、`Decisions`、`Implementation Steps`、`Acceptance Criteria`、`Verification`、`Review Notes` 和 `Completion`。
+- plan 使用英文，只记录仓库事实和已确认决定。
+- 创建 plan 前检查目标路径。若同名 plan 或 mean 已存在，必须使用一个选项问题让用户决定，不得自动复用、覆盖或添加后缀。
+- 最终确认后冻结 `Goal`、`Scope`、`Decisions`、`Implementation Steps` 和 `Acceptance Criteria`。实施期间不得自行修改这些章节；`Verification`、`Review Notes` 和 `Completion` 可以追加审计、验证和完成元数据。
+- 冻结后若需求、范围、验收标准、用户可见行为或风险取舍发生变化，暂停实施，只对变化决定和受影响分支重新进行两轮定向分析与历史意图审查。用户重新确认后更新并再次冻结 plan，以独立 plan-only 提交记录变化，再恢复实施。
+
+## mean 协议
+（本节为 `references/plan-mean-prompt.md` 对应章节的逐字内联副本；修改协议时须同步）
+
+- mean 路径为 `.mean/`，文件名与对应 plan 相同。
+- YAML frontmatter 必须包含 `plan` 和 `related_paths`。正文固定为 `Intent`、`Constraints`、`Rejected Alternatives` 三个简短章节；没有内容时写 `None`。
+- 正文保持用户输入语言。`related_paths` 使用仓库相对路径，列出受意图影响的全部代码、测试、配置和文档路径，排除 plan 与 mean 自身；优先精确文件，只有意图覆盖整个目录时才记录目录。
+- mean 只在最终共同理解确认且 plan 冻结后创建。首次提交前可以校正路径元数据；提交后只有用户意图变化时才更新。
+- 成功实施时，mean 必须与全部实施文件处于同一个原子提交，不得单独提前提交。
+- `.mean` 是高频短索引，`.plan` 是低频完整依据；不要把决定散落到源码目录。
+
+## prompt 协议
+（本节为 `references/plan-mean-prompt.md` 对应章节的逐字内联副本；修改协议时须同步）
+
+- prompt 路径为 `.prompt/`，文件名与对应 plan 相同。
+- 固定章节为 `Primary`、`Question`。
+- `Primary` 保存用户完整提出的提示词。
+- `Question` 保存用户回答的问题本身和答案。
+- `.prompt/` 是留存证据，没有其他意义。
 
 **第一轮需求分析**
 - 走遍设计树的每个分支，一次解决一个决定之间的依赖。
@@ -40,9 +64,6 @@ tools: ["Read", "Grep", "Glob", "Bash"]
 - 分层查询：related_paths 触及当前路径的 .mean 文件；对应 .plan 的 Decisions 与验收上下文；相关路径的 git log/show/blame 与已删除文件；仓库内设计文档、注释与测试隐含的约束。
 - 关注点：这段代码以前是否坏过、当时如何处理；看似奇怪的写法是否是有意为之；哪些方案被明确否决；是否存在不可改变的被隐藏约束；当前 plan 是否与历史用户意图、风险接受或相关路径决定冲突。
 - 只有由具体历史证据触发的疑问才成为候选问题——附推荐答案、证据路径或提交，以及证据与当前 plan 的关系。
-
-**prompt 协议**
-- prompt 文件 .prompt/<date-title>.md 在 Primary 中记录用户原始提示词，在 Question 中记录问答对。仅作为证据留存。
 
 **输出格式：**
 返回更新后的 plan 草稿和最高价值的候选问题（附推荐答案 + 仓库事实证据），分析完成则返回"无未决问题"。绝不修改代码、测试、配置或业务文档。

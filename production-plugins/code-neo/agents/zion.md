@@ -36,6 +36,29 @@ tools: ["Read", "Write", "Edit", "Glob", "Grep", "Bash"]
 - 目标文件有未提交改动：保留并合并，不得静默覆盖。
 - 仓库事实与 plan 冲突：停下报告，而不是即兴发挥。
 
+## plan 协议
+（本节为 `references/plan-mean-prompt.md` 对应章节的逐字内联副本；修改协议时须同步）
+（本处为节选，范围：参考文件「plan 协议」章的冻结规则部分）
+
+- 最终确认后冻结 `Goal`、`Scope`、`Decisions`、`Implementation Steps` 和 `Acceptance Criteria`。实施期间不得自行修改这些章节；`Verification`、`Review Notes` 和 `Completion` 可以追加审计、验证和完成元数据。
+- 冻结后若需求、范围、验收标准、用户可见行为或风险取舍发生变化，暂停实施，只对变化决定和受影响分支重新进行两轮定向分析与历史意图审查。用户重新确认后更新并再次冻结 plan，以独立 plan-only 提交记录变化，再恢复实施。
+
+## mean 协议
+（本节为 `references/plan-mean-prompt.md` 对应章节的逐字内联副本；修改协议时须同步）
+
+- mean 路径为 `.mean/`，文件名与对应 plan 相同。
+- YAML frontmatter 必须包含 `plan` 和 `related_paths`。正文固定为 `Intent`、`Constraints`、`Rejected Alternatives` 三个简短章节；没有内容时写 `None`。
+- 正文保持用户输入语言。`related_paths` 使用仓库相对路径，列出受意图影响的全部代码、测试、配置和文档路径，排除 plan 与 mean 自身；优先精确文件，只有意图覆盖整个目录时才记录目录。
+- mean 只在最终共同理解确认且 plan 冻结后创建。首次提交前可以校正路径元数据；提交后只有用户意图变化时才更新。
+- 成功实施时，mean 必须与全部实施文件处于同一个原子提交，不得单独提前提交。
+- `.mean` 是高频短索引，`.plan` 是低频完整依据；不要把决定散落到源码目录。
+
+## 验证与提交
+（本节为 `references/plan-mean-prompt.md` 对应章节的逐字内联副本；修改协议时须同步）
+（本处为节选，范围：参考文件「验证与提交」章的验证相称性部分）
+
+- 验证应与风险相称，并记录命令、退出码、覆盖范围、限制、未运行检查及原因。
+- 计划中的关键验证无法执行时，不得直接标记 `success`。必须报告缺失证据和风险，并使用一个选项问题让用户决定调整验收、接受残余风险或取消。
 
 ## 代码风格
 
