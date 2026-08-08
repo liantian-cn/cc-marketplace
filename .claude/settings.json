@@ -3,7 +3,6 @@
     "plugin-dev@claude-plugins-official": true,
     "claude-md-management@claude-plugins-official": true,
     "claude-code-setup@claude-plugins-official": true,
-    "aliyuncs-search@liantian-cc-market": false,
     "baidu-search@liantian-cc-market": false,
     "bocha-search@liantian-cc-market": false,
     "context7@liantian-cc-market": true,
