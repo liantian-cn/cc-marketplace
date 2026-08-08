@@ -1,6 +1,6 @@
 {
   "name": "aliyuncs-search",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "description": "阿里云百炼 WebSearch MCP 服务器：通义千问生态的联网搜索服务，通过 DashScope API 提供实时网页搜索能力。",
   "author": {
     "name": "Alibaba Cloud"

@@ -1,6 +1,6 @@
 {
   "name": "context7",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Context7 MCP 服务器：检索主流开源库/框架的最新官方文档并注入上下文，解决模型训练数据过期的问题，支持 5000+ 个库的文档查询与代码示例检索。",
   "author": {
     "name": "Context7"
