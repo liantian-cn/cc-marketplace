@@ -1,2 +1,6 @@
 *.pyc
 __pycache__/
+/.prompt
+/.plan
+/.mean
+/.work-tmp
