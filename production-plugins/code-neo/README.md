@@ -26,17 +26,17 @@
 
 ## 组件
 
-| 组件 | 角色 | 模型 | 工具 |
-|------|------|------|------|
-| **`/neo` 技能** | 主线程交互式工作流驱动，向用户提问并编排各 agent | 会话默认 | 全量 |
-| **Neo**（agent） | 自主编排入口；遇到用户决策则停下回报 | 会话默认 | 读写 + 派生 |
-| **The Architect** | 两轮需求分析、历史意图审查、plan/prompt 草稿 | 会话默认 | 只读 |
-| **The Oracle** | 证据收集（仓库 + Web + git 历史） | 会话默认 | 只读 + Web |
-| **The Construct** | 多模态 / 图像分析 | **HAIKU** | 只读 |
-| **Zion** | 按冻结 plan/spec/mean 实现代码 | **SONNET** | 读写 |
-| **Sentinel-Compliance** | 业务符合性审计 | 会话默认 | 只读 |
-| **Sentinel-Logic** | 代码逻辑与克制性审计 | 会话默认 | 只读 |
-| **Sentinel-Style** | 代码风格与业务可读性审计 | 会话默认 | 只读 |
+| 组件                    | 角色                                             | 模型       | 工具        |
+| ----------------------- | ------------------------------------------------ | ---------- | ----------- |
+| **`/neo` 技能**         | 主线程交互式工作流驱动，向用户提问并编排各 agent | 会话默认   | 全量        |
+| **Neo**（agent）        | 自主编排入口；遇到用户决策则停下回报             | 会话默认   | 读写 + 派生 |
+| **The Architect**       | 两轮需求分析、历史意图审查、plan/prompt 草稿     | 会话默认   | 只读        |
+| **The Oracle**          | 证据收集（仓库 + Web + git 历史）                | 会话默认   | 只读 + Web  |
+| **The Construct**       | 多模态 / 图像分析                                | **HAIKU**  | 只读        |
+| **Zion**                | 按冻结 plan/spec/mean 实现代码                   | **SONNET** | 读写        |
+| **Sentinel-Compliance** | 业务符合性审计                                   | 会话默认   | 只读        |
+| **Sentinel-Logic**      | 代码逻辑与克制性审计                             | 会话默认   | 只读        |
+| **Sentinel-Style**      | 代码风格与业务可读性审计                         | 会话默认   | 只读        |
 
 无 MCP、无 hook。
 
@@ -81,4 +81,3 @@ production-plugins/code-neo/
 - **审计等级**：Blocker / Major / Minor / Suggestion；Blocker 与 Major 阻塞。
 - **提交**：中文提交信息，三段式，除非要求否则不推送。
 
-完整协议见 `skills/neo/references/plan-mean-prompt.md`。

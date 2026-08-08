@@ -53,7 +53,7 @@ tools: ["Read", "Write", "Edit", "Bash", "Glob", "Grep", "Agent", "TaskCreate", 
 返回工作流报告：产物（plan/mean/prompt 路径）、已作决定、待决决定（附推荐答案+证据）、验证命令与退出码、提交哈希，以及最终状态——`success`、`no-op`、`cancelled-before-freeze` 或 `cancelled-after-freeze`。若因待决决定停下，先给出该决定。
 
 ## plan 协议
-（本节为 `references/plan-mean-prompt.md` 对应章节的逐字内联副本；修改协议时须同步）
+
 
 - plan 路径为 `.plan/`，文件名 `YYYY-MM-DD-title.md`。
 - 固定章节为 `Goal`、`Scope`、`Decisions`、`Implementation Steps`、`Acceptance Criteria`、`Verification`、`Review Notes` 和 `Completion`。
@@ -63,7 +63,7 @@ tools: ["Read", "Write", "Edit", "Bash", "Glob", "Grep", "Agent", "TaskCreate", 
 - 冻结后若需求、范围、验收标准、用户可见行为或风险取舍发生变化，暂停实施，只对变化决定和受影响分支重新进行两轮定向分析与历史意图审查。用户重新确认后更新并再次冻结 plan，以独立 plan-only 提交记录变化，再恢复实施。
 
 ## mean 协议
-（本节为 `references/plan-mean-prompt.md` 对应章节的逐字内联副本；修改协议时须同步）
+
 
 - mean 路径为 `.mean/`，文件名与对应 plan 相同。
 - YAML frontmatter 必须包含 `plan` 和 `related_paths`。正文固定为 `Intent`、`Constraints`、`Rejected Alternatives` 三个简短章节；没有内容时写 `None`。
@@ -73,7 +73,7 @@ tools: ["Read", "Write", "Edit", "Bash", "Glob", "Grep", "Agent", "TaskCreate", 
 - `.mean` 是高频短索引，`.plan` 是低频完整依据；不要把决定散落到源码目录。
 
 ## prompt 协议
-（本节为 `references/plan-mean-prompt.md` 对应章节的逐字内联副本；修改协议时须同步）
+
 
 - prompt 路径为 `.prompt/`，文件名与对应 plan 相同。
 - 固定章节为 `Primary`、`Question`。
@@ -82,7 +82,7 @@ tools: ["Read", "Write", "Edit", "Bash", "Glob", "Grep", "Agent", "TaskCreate", 
 - `.prompt/` 是留存证据，没有其他意义。
 
 ## 审计范围与规模（工作流驱动视角）
-（本节为 `references/plan-mean-prompt.md` 对应章节的逐字内联副本；修改协议时须同步）
+
 
 - 只有冲突会改变已确认需求、范围、验收标准、用户可见行为或风险取舍，并且无法由 plan 与仓库事实唯一解决时，才交给用户。
 - 中小型变更由工作流直接审计。出现跨模块或跨接口变更、迁移、安全边界、不可逆副作用或多个独立业务流程中的任一项时，视为大型变更，必须派生只读 Sentinel 完成专项审计。
@@ -104,7 +104,7 @@ Blocker 和 Major 默认阻塞，由工作流按 plan 内唯一正确的最小�
 - 同一 finding 连续两次修复仍未解决，或修复方案在两个方向间往返，视为流程停滞。停止修复循环，使用一个带推荐答案的选项问题让用户决定。
 
 ## 验证与提交
-（本节为 `references/plan-mean-prompt.md` 对应章节的逐字内联副本；修改协议时须同步）
+
 
 - 验证应与风险相称，并记录命令、退出码、覆盖范围、限制、未运行检查及原因。
 - 计划中的关键验证无法执行时，不得直接标记 `success`。必须报告缺失证据和风险，并使用一个选项问题让用户决定调整验收、接受残余风险或取消。
@@ -121,7 +121,7 @@ Blocker 和 Major 默认阻塞，由工作流按 plan 内唯一正确的最小�
 - 最终报告实际存在的 plan、mean、变更文件、审计与修复轮次、验证命令和退出码、残余风险或限制，以及实际产生的提交哈希。结果明确标记为 `success`、`no-op`、`cancelled-before-freeze` 或 `cancelled-after-freeze`；只有成功实施路径要求报告完整三段提交哈希，其他路径说明缺失产物或提交的原因。
 
 ## 代码风格与强制充分注释
-（本节为 `references/plan-mean-prompt.md` 对应章节的逐字内联副本；修改协议时须同步）
+
 
 **变量命名**
 - 变量使用英文，遵循对应语言与目标项目的主流最佳实践。
@@ -153,7 +153,7 @@ Blocker 和 Major 默认阻塞，由工作流按 plan 内唯一正确的最小�
 ```
 
 ## 代码逻辑与克制性
-（本节为 `references/plan-mean-prompt.md` 对应章节的逐字内联副本；修改协议时须同步）
+
 
 **始终假定用户的代码不是长期运行的服务器级代码**
 - 用户接受运行时错误，且能立即修复。
