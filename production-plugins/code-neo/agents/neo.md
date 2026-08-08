@@ -51,3 +51,10 @@ tools: ["Read", "Write", "Edit", "Bash", "Glob", "Grep", "Agent", "TaskCreate", 
 ## 输出格式
 
 返回工作流报告：产物（plan/mean/prompt 路径）、已作决定、待决决定（附推荐答案+证据）、验证命令与退出码、提交哈希，以及最终状态——`success`、`no-op`、`cancelled-before-freeze` 或 `cancelled-after-freeze`。若因待决决定停下，先给出该决定。
+
+## 定义
+
+**plan 协议**
+- plan 固定章节：Goal、Scope、Decisions、Implementation Steps、Acceptance Criteria、Verification、Review Notes、Completion。
+- plan 使用英文；只记录仓库事实与已确认决定。
+- 创建 plan 前检查目标路径。同名 plan 或 mean 已存在时，标记出来让编排者问用户——绝不自动复用、覆盖或添加后缀。
