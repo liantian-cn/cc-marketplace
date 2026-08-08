@@ -71,8 +71,6 @@ Neo 是 code-neo 插件的日常入口，把非简单编码任务跑成一条可
 - mean 位于 `.mean/`，frontmatter 含 `plan` 与 `related_paths`；正文为 `Intent`、`Constraints`、`Rejected Alternatives` 三章节（无内容写 None）；与实施文件同原子提交。
 - prompt 位于 `.prompt/`，章节 `Primary`（用户原话）与 `Question`（问题与答案）；仅留存证据。
 
-完整协议见 **`references/plan-mean-prompt.md`**。
-
 ## 审计协议
 
 - 中小型变更由当前流程直接审计；跨模块/接口、迁移、安全边界、不可逆副作用或多个独立业务流程任一时视为大型变更，必须派生只读 Sentinel 完成专项审计。
@@ -97,7 +95,3 @@ Neo 是 code-neo 插件的日常入口，把非简单编码任务跑成一条可
 最终报告实际存在的 plan、mean、变更文件、审计与修复轮次、验证命令和退出码、残余风险或限制，以及实际产生的提交哈希。结果明确标记为 `success`、`no-op`、`cancelled-before-freeze` 或 `cancelled-after-freeze`。
 
 自主模式下若为等待用户决定而暂停，报告先给出该候选决策（问题 + 推荐答案 + 仓库证据）与已产出产物路径；主线程转问用户后，以交互模式继续，或重新委派 Neo 恢复工作流。
-
-## 参考文件
-
-- **`references/plan-mean-prompt.md`** — plan/mean/prompt 三份协议全文、审计规模与闭环、验证与提交细则、代码风格与强制充分注释。
