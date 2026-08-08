@@ -1,6 +1,6 @@
 {
   "name": "code-neo",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "个人风格程序开发插件（黑客帝国主题）：Neo 作为日常入口，编排 plan→code→audit→commit 全流程。The Architect 两轮需求分析与历史意图审查、The Oracle 只读证据收集、The Construct 多模态分析（HAIKU）、Zion 按冻结 plan/spec/mean 实现代码（SONNET）、三位 Sentinel 分别执行业务符合性、代码逻辑与克制性、代码风格与可读性审计。仅由 agents 与 skills 组成，无 MCP、无 hook。",
   "author": {
     "name": "liantian"
